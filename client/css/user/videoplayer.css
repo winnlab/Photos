@@ -1,0 +1,1152 @@
+
+.videoplayer {
+    position: relative;
+    line-height: 13px;
+    background: #000;
+    font-family: Arial,Helvetica,Tahoma,sans-serif;
+    z-index: 1
+}
+
+.videoplayer>img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 0;
+    margin: 0;
+    display: none
+}
+
+.videoplayer .video_wrapper {
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+    overflow: hidden
+}
+
+.videoplayer .video_wrapper>img {
+    height: 100%;
+    background-color: #000;
+    z-index: 0;
+    margin: 0
+}
+
+.videoplayer .video_wrapper .fix_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2
+}
+
+.videoplayer.widget,.videoplayer.sportbild {
+    padding-bottom: 0
+}
+
+.videoplayer.bundesliga {
+    padding-top: 70px;
+    padding-bottom: 0
+}
+
+.videoplayer.bundesliga.no_timeline {
+    padding-top: 0
+}
+
+.videoplayer.bild {
+    padding-bottom: 29px
+}
+
+.videoplayer.bundesliga .loader {
+    background: url(https://www.1414.de/ff-static/images/bild_player/spinner-background-buli.png) 0 0
+}
+
+.videoplayer.bundesliga .loader .spinner {
+    background: url(https://www.1414.de/ff-static/images/bild_player/spinner-buli.gif) 0 0
+}
+
+.videoplayer.playing .video_wrapper>img {
+    opacity: 0
+}
+
+.videoplayer.fullscreen,.videoplayer.fullscreen .video_wrapper {
+    position: fixed;
+    z-index: 100000;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0
+}
+
+.videoplayer.fullscreen .video_wrapper {
+    z-index: 100000
+}
+
+.videoplayer.browser-fullscreen,.videoplayer.browser-fullscreen .video_wrapper {
+    background-color: #000;
+    position: fixed;
+    overflow: hidden;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%
+}
+
+.videoplayer.browser-fullscreen .video_wrapper {
+    z-index: 100000
+}
+
+.videoplayer.browser-fullscreen video {
+    height: 100%;
+    width: 100%
+}
+
+.videoplayer.playing.fullscreen .play,.videoplayer.bundesliga.playing.fullscreen .play {
+    display: block
+}
+
+.videoplayer.playing.fullscreen .play.pause,.videoplayer.bundesliga.playing.fullscreen .play.pause {
+    display: none
+}
+
+.standalone-game-timeline {
+    height: 70px;
+    background-color: black;
+    width: 792px
+}
+
+.videoplayer .loader .spinner {
+    background: url(https://www.1414.de/ff-static/assets/bild_player/spinner-710fbe5dc3712fe55a93de21905c00a3.gif) 0 0;
+    width: 75px;
+    height: 75px
+}
+
+.videoplayer .play,.videoplayer .loader {
+    position: absolute;
+    font-size: 0;
+    height: 63px;
+    width: 63px;
+    left: 50%;
+    top: 50%;
+    padding: 0;
+    margin: -32px 0 0 -32px;
+    border: 0;
+    background: url(https://www.1414.de/ff-static/assets/bild_player/videobild-sprite-d721c4a99d51fa5bce93f1e133744457.png) -211px 0;
+    cursor: pointer;
+    line-height: 0;
+    z-index: 2;
+    text-indent: -9999px
+}
+
+.videoplayer.sportbild .play {
+    background: url(https://www.1414.de/ff-static/images/bild_player/spr_sportbild.png) -516px 0
+}
+
+.videoplayer.sportbild .play.pause {
+    background-position: -579px 0
+}
+
+.videoplayer.sportbild .play.pause:hover {
+    background-position: -579px -63px
+}
+
+.videoplayer.sportbild .play:hover {
+    background-position: -516px -63px
+}
+
+.videoplayer .loader {
+    height: 75px;
+    width: 75px;
+    margin: -38px 0 0 -38px;
+    background: url(https://www.1414.de/ff-static/assets/bild_player/spinner-background-e50d8b30f0a150305575849bf1d858c6.png) 0 0;
+    z-index: 3
+}
+
+.videoplayer.bundesliga .play {
+    height: 104px;
+    width: 104px;
+    margin: -52px 0 0 -52px;
+    background: url(https://www.1414.de/ff-static/images/bild_player/videobild-bundesliga-sprite.png) -157px -21px
+}
+
+.videoplayer.bundesliga .play:hover {
+    background-position: -157px -135px
+}
+
+.videoplayer.playing.hover .play {
+    display: block
+}
+
+.videoplayer .play:hover {
+    background-position: -211px -63px
+}
+
+.videoplayer .play.pause {
+    background-position: -274px -0
+}
+
+.videoplayer.bundesliga .play.pause {
+    background-position: -157px -249px
+}
+
+.videoplayer .play.pause:hover {
+    background-position: -274px -63px
+}
+
+.videoplayer.bundesliga .play.pause:hover {
+    background-position: -157px -363px
+}
+
+.videoplayer.welt .play,.videoplayer.welt .play:hover {
+    height: 80px;
+    width: 80px;
+    margin: -40px 0 0 -40px;
+    background: url(https://www.1414.de/ff-static/images/bild_player/welt_sprite.png) -164px 0
+}
+
+.videoplayer.welt .play.pause,.videoplayer.welt .play.pause:hover {
+    background-position: -244px 0
+}
+
+.videoplayer.native .play.pause {
+    display: none
+}
+
+.videoplayer .play {
+    display: none
+}
+
+.videoplayer.initialized>.play {
+    display: block
+}
+
+.videoplayer.bild .play {
+    margin-top: -46px
+}
+
+.videoplayer.bild .loader {
+    margin-top: -52px
+}
+
+.videoplayer .hide {
+    display: none
+}
+
+.videoplayer .invisible {
+    visibility: hidden
+}
+
+.videoplayer .unselectable {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none
+}
+
+.videoplayer.bundesliga.idle .play,.videoplayer.native>.controls,.videoplayer .play.hide,.videoplayer.hover .play.hide,.videoplayer.hover.hover-controls .play,.videoplayer.playing.comercial>.play,.videoplayer.playing .play,.videoplayer.playing.idle .play {
+    display: none
+}
+
+.videoplayer .play-pause-toggle,.videoplayer .play,.videoplayer .mute,.videoplayer .volume-down,.videoplayer .volume-up,.videoplayer .hd,.videoplayer .subtitle,.videoplayer .like,.videoplayer .bildde,.videoplayer .fullscreen,.videoplayer .volume-slider,.videoplayer .progress-bar,.videoplayer .subtitle {
+    cursor: pointer
+}
+
+.videoplayer button {
+    outline: 0 none
+}
+
+.videoplayer.bild {
+    padding-bottom: 29px;
+    padding-top: 0
+}
+
+.videoplayer.bild.native,.videoplayer.endscreen.bild.native {
+    padding-top: 0;
+    padding-bottom: 0
+}
+
+.videoplayer.bild video,.videoplayer.bild object,.videoplayer.bild .video embed {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: #000
+}
+
+.videoplayer.endscreen.bild {
+    padding-top: 14.5px;
+    padding-bottom: 14.5px
+}
+
+.videoplayer.endscreen.bild {
+    padding-top: 14.5px;
+    padding-bottom: 14.5px
+}
+
+.videoplayer.browser-fullscreen.bild,.videoplayer.fullscreen.bild {
+    padding-bottom: 0
+}
+
+.videoplayer.fullscreen.bild .controls,.videoplayer.fullscreen.bild .share-container,.videoplayer.browser-fullscreen.bild .controls,.videoplayer.browser-fullscreen.bild .share-container,.videoplayer.fullscreen.bild button.play,.videoplayer.browser-fullscreen.bild button.play {
+    z-index: 100001
+}
+
+.videoplayer.bild.fullscreen .btn-fullscreen-exit {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 270px;
+    height: 38px;
+    z-index: 100002;
+    background: url(https://www.1414.de/ff-static/images/bild_player/btn_exit_fullscreen.png)
+}
+
+.videoplayer.bild.fullscreen .btn-fullscreen-exit:hover {
+    cursor: pointer;
+    background: url(https://www.1414.de/ff-static/images/bild_player/btn_exit_fullscreen_hover.png)
+}
+
+.videoplayer.bild .btn-fullscreen-exit,.videoplayer.bild.idle .btn-fullscreen-exit {
+    display: none
+}
+
+.videoplayer.bild .controls {
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    left: 0;
+    color: #000;
+    background-color: #ececec;
+    opacity: 1;
+    position: absolute;
+    display: block;
+    z-index: 2;
+    width: 100%;
+    overflow: hidden
+}
+
+.videoplayer.native .controls {
+    display: none
+}
+
+.videoplayer.bild .controls.hide {
+    display: none
+}
+
+.videoplayer.bild .controls>button,.videoplayer.bild .seperator {
+    background-image: url(https://www.1414.de/ff-static/assets/bild_player/videobild-sprite-d721c4a99d51fa5bce93f1e133744457.png);
+    background-color: #ececec;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-top: 3px;
+    padding: 0;
+    border: 0
+}
+
+.videoplayer.bild .controls>button:focus {
+    outline: 0;
+    border: 0
+}
+
+.videoplayer.bild.flash.playing>img {
+    display: block
+}
+
+.videoplayer.bild object {
+    height: 100%;
+    width: 100%
+}
+
+.videoplayer.bild .play-pause-toggle {
+    float: left;
+    margin-left: 7px;
+    height: 16px;
+    width: 41px;
+    background-position: -0 -0
+}
+
+.videoplayer.bild .play-pause-toggle:hover {
+    background-position: -0 -16px
+}
+
+.videoplayer.bild .play-pause-toggle.playing {
+    background-position: -41px -0
+}
+
+.videoplayer.bild .play-pause-toggle.playing:hover {
+    background-position: -41px -16px
+}
+
+.videoplayer.bild .mute {
+    float: right;
+    width: 10px;
+    height: 16px;
+    background-position: -127px -0
+}
+
+.videoplayer.bild .mute:hover {
+    background-position: -127px -16px
+}
+
+.videoplayer.bild .mute.muted {
+    background-position: -137px -0
+}
+
+.videoplayer.bild .mute.muted:hover {
+    background-position: -137px -16px
+}
+
+.videoplayer.bild .volume-down {
+    float: right;
+    width: 13px;
+    height: 16px;
+    background-position: -96px -0
+}
+
+.videoplayer.bild .volume-down:hover {
+    background-position: -96px -16px
+}
+
+.videoplayer.bild .volume-up {
+    float: right;
+    width: 14px;
+    height: 16px;
+    background-position: -84px -0
+}
+
+.videoplayer.bild .volume-up:hover {
+    background-position: -84px -16px
+}
+
+.videoplayer.bild .hd {
+    float: right;
+    width: 17px;
+    height: 16px;
+    background-position: -48px -36px;
+    margin-left: 6px
+}
+
+.videoplayer.bild .hd:hover {
+    background-position: -48px -52px
+}
+
+.videoplayer.bild .hd.active {
+    background-position: -48px -52px
+}
+
+.videoplayer.bild .hd.active:hover {
+    background-position: -48px -52px
+}
+
+.videoplayer.bild .hd.deactive,.videoplayer.bild .hd.deactive:hover {
+    background-position: -48px -36px
+}
+
+.videoplayer.bild .subtitle {
+    float: right;
+    width: 23px;
+    height: 16px;
+    background-position: -0 -36px;
+    margin-left: 6px
+}
+
+.videoplayer.bild .subtitle:hover {
+    background-position: -0 -52px
+}
+
+.videoplayer.bild .subtitle.active {
+    background-position: -0 -52px
+}
+
+.videoplayer.bild .subtitle.active:hover {
+    background-position: -0 -52px
+}
+
+.videoplayer.bild .like {
+    float: right;
+    height: 16px;
+    width: 16px;
+    background-position: -111px -0
+}
+
+.videoplayer.bild .like.disable {
+    display: none
+}
+
+.videoplayer.bild .like:hover {
+    background-position: -111px -16px
+}
+
+.videoplayer.bild .bildde {
+    float: right;
+    width: 26px;
+    height: 16px;
+    background-position: -770px -0
+}
+
+.videoplayer.bild .bildde:hover {
+    background-position: -770px -0
+}
+
+.videoplayer.bild .time-display {
+    display: block;
+    float: left;
+    margin-top: 4px;
+    font-weight: bold;
+    height: 10px;
+    font-family: Arial,sans-serif,Helvetica;
+    font-size: 10px
+}
+
+.videoplayer.bild .live-text {
+    display: none;
+    color: #D00;
+    font-weight: bold
+}
+
+.videoplayer.bild.live .live-text {
+    display: inline-block
+}
+
+.videoplayer.bild time {
+    display: inline-block
+}
+
+.videoplayer.bild .time-display.hide,.videoplayer.bild.live .current-time,.videoplayer.bild.live .duration,.videoplayer.bild.live .time-seperator {
+    display: none
+}
+
+.videoplayer.bild .current-time,.videoplayer.bild .duration {
+    color: #000
+}
+
+.videoplayer.bild .current-time {
+    color: #D00
+}
+
+.videoplayer.bild .time-seperator {
+    margin: 0 5px
+}
+
+.videoplayer.bild .seperator {
+    float: left;
+    margin: 3px 16px 0 6px;
+    width: 3px;
+    height: 16px;
+    background-position: -339px -0
+}
+
+.videoplayer.bild.mini .seperator {
+    margin: 3px 5px 0 6px
+}
+
+.videoplayer.bild .seperator.position-right {
+    float: right;
+    margin-right: 9px
+}
+
+.videoplayer.bild.mini .seperator.position-right {
+    margin-right: 2px;
+    margin-left: 2px
+}
+
+.videoplayer.bild .fullscreen {
+    float: right;
+    height: 16px;
+    width: 22px;
+    margin-right: 10px;
+    margin-left: 6px;
+    background-position: -168px -0
+}
+
+.videoplayer.bild.mini .fullscreen {
+    margin-right: 2px;
+    margin-left: 3px
+}
+
+.videoplayer.bild .fullscreen:hover {
+    background-position: -168px -16px
+}
+
+.videoplayer.bild .volume-slider {
+    position: relative;
+    float: right;
+    width: 77px;
+    height: 3px;
+    background: #acacac none;
+    margin-top: 9px;
+    margin-left: 2px;
+    margin-right: 2px
+}
+
+.videoplayer.bild .volume-slider-foreground {
+    background-color: #d00;
+    height: 3px;
+    left: 0;
+    position: absolute
+}
+
+.videoplayer.bild .progress-bar {
+    width: 100%;
+    float: left;
+    height: 3px;
+    bottom: 4px;
+    margin: 8px 0 0 0;
+    position: relative
+}
+
+.videoplayer.bild .progress-bar-background {
+    background-color: #acacac;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1
+}
+
+.videoplayer.bild .progress-bar-load {
+    background-color: #666467;
+    position: absolute;
+    height: 3px;
+    width: 0;
+    left: 0;
+    top: 0;
+    z-index: 2
+}
+
+.videoplayer.bild .progress-bar-play {
+    background-color: #d00;
+    position: absolute;
+    height: 3px;
+    width: 0;
+    left: 0;
+    top: 0;
+    z-index: 3
+}
+
+.videoplayer.bild .progress-bar-slider {
+    background: url(https://www.1414.de/ff-static/assets/bild_player/videobild-sprite-d721c4a99d51fa5bce93f1e133744457.png) -190px 0;
+    width: 14px;
+    height: 16px;
+    position: absolute;
+    margin-left: -7px;
+    top: -7px;
+    z-index: 4
+}
+
+.videoplayer.bild .progress-bar-slider:hover {
+    background-position: -190px -16px
+}
+
+videoplayer.fullscreen {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
+.videoplayer.bild .comercial-text {
+    color: #000;
+    float: left;
+    padding-top: 5px;
+    padding-left: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 10px
+}
+
+.videoplayer.bild .share-container {
+    height: 30px;
+    position: absolute;
+    width: 170px;
+    bottom: 35px;
+    z-index: 3;
+    right: 20px
+}
+
+.videoplayer.bild .share-container .social-button {
+    top: 5px;
+    left: 5px;
+    z-index: 2;
+    position: absolute
+}
+
+.videoplayer.bild .share-container .sb-to-fill {
+    position: absolute;
+    left: 30px
+}
+
+.videoplayer.bild .share-container-background {
+    opacity: .5;
+    background-color: #FFF;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0
+}
+
+.videoplayer.bild>.subtitle {
+    color: #FFF;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    position: absolute;
+    bottom: 29px;
+    left: 0;
+    right: 0;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    -webkit-border-top-left-radius: 7px;
+    -moz-border-top-left-radius: 7px;
+    border-top-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -moz-border-top-right-radius: 7px;
+    border-top-right-radius: 7px;
+    background-color: rgba(0,0,0,0.5);
+    cursor: default;
+    z-index: 2
+}
+
+.videoplayer.bild .comercial .seperator.position-left {
+    display: none
+}
+
+.videoplayer.bild.micro .time-display {
+    display: none
+}
+
+.videoplayer.bild.micro .comercial .volume-slider,.videoplayer.bild.micro .comercial .volume-down,.videoplayer.bild.micro .comercial .volume-up {
+    display: none
+}
+
+.videoplayer.fullscreen>.subtitle {
+    position: fixed;
+    bottom: 29px
+}
+
+.videoplayer.bild.fullscreen .controls {
+    position: fixed;
+    width: 100%;
+    bottom: 0
+}
+
+.videoplayer.bild.fullscreen video,.videoplayer.bild.fullscreen object {
+    margin-top: -30px
+}
+
+.videoplayer.bild.fullscreen.idle .controls {
+    display: none
+}
+
+.videoplayer.widget {
+    padding: 0
+}
+
+.videoplayer.widget video,.videoplayer.widget object,.videoplayer.widget .video embed {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: #000
+}
+
+.videoplayer.fullscreen.widget .controls,.videoplayer.fullscreen.widget .share-container,.videoplayer.browser-fullscreen.widget .controls,.videoplayer.browser-fullscreen.widget .share-container,.videoplayer.fullscreen.widget button.play,.videoplayer.browser-fullscreen.widget button.play {
+    z-index: 100001
+}
+
+.videoplayer.widget .fullscreen {
+    height: 24px;
+    width: 24px;
+    background-position: -120px -0;
+    margin-left: 3px
+}
+
+.videoplayer.widget .controls.four-buttons .fullscreen {
+    margin-left: 5px
+}
+
+.videoplayer.widget .fullscreen:hover {
+    background-position: -120px -24px
+}
+
+.videoplayer.widget .fullscreen.active {
+    background-position: -144px -0
+}
+
+.videoplayer.widget .fullscreen.active:hover {
+    background-position: -144px -24px
+}
+
+.videoplayer.widget.fullscreen .btn-fullscreen-exit {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 270px;
+    height: 38px;
+    z-index: 100002;
+    background: url(https://www.1414.de/ff-static/images/bild_player/btn_exit_fullscreen.png)
+}
+
+.videoplayer.widget.fullscreen .btn-fullscreen-exit:hover {
+    cursor: pointer;
+    background: url(https://www.1414.de/ff-static/images/bild_player/btn_exit_fullscreen_hover.png)
+}
+
+.videoplayer.widget .btn-fullscreen-exit,.videoplayer.widget.idle .btn-fullscreen-exit {
+    display: none
+}
+
+.videoplayer.widget.playing .controls {
+    display: block
+}
+
+.videoplayer.widget.idle .controls,.videoplayer.widget.native .controls,.videoplayer.widget .controls {
+    display: none
+}
+
+.videoplayer.widget .controls {
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    bottom: 20px;
+    opacity: 1;
+    position: absolute;
+    width: 100%;
+    z-index: 2
+}
+
+.videoplayer.widget .box-left {
+    float: left;
+    margin-left: 20px;
+    height: 24px;
+    width: 24px;
+    background: url(https://www.1414.de/ff-static/assets/bild_player/videobild-widget-sprite-9a191d9f6df8f7fdb71ffebb7a9863fd.png) -1196px 0
+}
+
+.videoplayer.widget.live .controls .box-left {
+    width: 72px;
+    margin-left: 16px;
+    background-position: -1196px -24px
+}
+
+.videoplayer.widget.comercial .box-left {
+    display: none
+}
+
+.videoplayer.widget .box-middle {
+    position: absolute;
+    left: 54px;
+    right: 140px;
+    height: 24px
+}
+
+.videoplayer.widget.mini.comercial .box-middle,.videoplayer.widget.micro.comercial .box-middle {
+    left: 10px;
+    right: 85px
+}
+
+.videoplayer.widget .box-background {
+    height: 100%;
+    width: 100%;
+    opacity: .6;
+    background-color: #000;
+    position: absolute;
+    z-index: 0
+}
+
+.videoplayer.widget .round-corners {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px
+}
+
+.videoplayer.widget .controls.four-buttons .box-middle {
+    right: 165px
+}
+
+.videoplayer.widget.live .controls .box-middle {
+    left: 115px
+}
+
+.videoplayer.widget .comercial-text {
+    color: #fff;
+    opacity: 1;
+    position: absolute;
+    left: 9px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11px;
+    top: 5px
+}
+
+.videoplayer.widget .box-right {
+    float: right;
+    margin-right: 23px;
+    height: 24px;
+    width: 86px;
+    background: url(https://www.1414.de/ff-static/assets/bild_player/videobild-widget-sprite-9a191d9f6df8f7fdb71ffebb7a9863fd.png) -273px 0
+}
+
+.videoplayer.widget .controls.four-buttons .box-right {
+    width: 115px;
+    background: url(https://www.1414.de/ff-static/assets/bild_player/videobild-widget-sprite-9a191d9f6df8f7fdb71ffebb7a9863fd.png) -359px 0
+}
+
+.videoplayer.widget .controls.two-buttons .box-right {
+    width: 57px;
+    background: url(https://www.1414.de/ff-static/assets/bild_player/videobild-widget-sprite-9a191d9f6df8f7fdb71ffebb7a9863fd.png) -216px 0
+}
+
+.videoplayer.widget .box-volume {
+    position: absolute;
+    right: 25px;
+    bottom: 50px;
+    width: 20px;
+    height: 80px
+}
+
+.videoplayer.widget .controls button {
+    background-image: url(https://www.1414.de/ff-static/assets/bild_player/videobild-widget-sprite-9a191d9f6df8f7fdb71ffebb7a9863fd.png);
+    background-color: transparent;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 0;
+    border: 0
+}
+
+.videoplayer.widget .controls button:focus {
+    outline: 0;
+    border: 0
+}
+
+.videoplayer.widget .play-pause-toggle {
+    float: left;
+    height: 24px;
+    width: 24px;
+    background-position: -0 -0
+}
+
+.videoplayer.widget.live .controls .play-pause-toggle {
+    margin-left: 4px
+}
+
+.videoplayer.widget .play-pause-toggle:hover {
+    background-position: -0 -24px
+}
+
+.videoplayer.widget .play-pause-toggle.playing {
+    background-position: -24px -0
+}
+
+.videoplayer.widget .play-pause-toggle.playing:hover {
+    background-position: -24px -24px
+}
+
+.videoplayer.widget .mute {
+    width: 24px;
+    height: 24px;
+    background-position: -48px -0;
+    margin-left: 3px
+}
+
+.videoplayer.widget .mute:hover {
+    background-position: -48px -24px
+}
+
+.videoplayer.widget .mute.muted {
+    background-position: -72px -0
+}
+
+.videoplayer.widget .mute.muted:hover {
+    background-position: -72px -24px
+}
+
+.videoplayer.widget .hd {
+    width: 24px;
+    height: 24px;
+    background-position: -168px -0
+}
+
+.videoplayer.widget .controls.four-buttons .hd {
+    margin-left: 3px
+}
+
+.videoplayer.widget .hd:hover {
+    background-position: -168px -24px
+}
+
+.videoplayer.widget .hd.active {
+    background-position: -192px -0
+}
+
+.videoplayer.widget .hd.active:hover {
+    background-position: -192px -24px
+}
+
+.videoplayer.widget .like {
+    height: 24px;
+    width: 24px;
+    margin-left: 4px;
+    background-position: -96px -0
+}
+
+.videoplayer.widget .like.disable {
+    display: none
+}
+
+.videoplayer.widget .like:hover {
+    background-position: -96px -24px
+}
+
+.videoplayer.widget .progress-bar {
+    position: absolute;
+    height: 5px;
+    border-color: white;
+    bottom: 9px;
+    left: 10px;
+    right: 10px;
+    margin: 8px 0 0 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid white
+}
+
+.videoplayer.widget .progress-bar .progress-bar-background {
+    background-color: #FFF;
+    opacity: .15;
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1
+}
+
+.videoplayer.widget .progress-bar .progress-bar-load {
+    background-color: #FFF;
+    opacity: .35;
+    position: absolute;
+    height: 5px;
+    width: 0;
+    left: 0;
+    top: 0;
+    z-index: 2
+}
+
+.ie8 .videoplayer.widget .progress-bar .progress-bar-load {
+    background-color: #7c7c7c
+}
+
+.videoplayer.widget.live .progress-bar .progress-bar-load {
+    width: 100%
+}
+
+.videoplayer.widget.live .progress-bar .progress-bar-slider {
+    display: none
+}
+
+.videoplayer.widget .progress-bar .progress-bar-play {
+    background-color: #FFF;
+    opacity: .5;
+    position: absolute;
+    height: 5px;
+    width: 0;
+    left: 0;
+    top: 0;
+    z-index: 3
+}
+
+.ie8 .videoplayer.widget .progress-bar .progress-bar-play {
+    background-color: #b7b7b7
+}
+
+.videoplayer.widget .progress-bar .progress-bar-slider {
+    display: block;
+    position: absolute;
+    background: 0;
+    bottom: 10px;
+    left: 0;
+    width: 32px;
+    margin-left: -15px
+}
+
+.videoplayer.widget .progress-bar .current-time {
+    display: block;
+    background-color: white;
+    color: #000;
+    height: 12px;
+    font-family: Arial;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: left;
+    padding: 2px
+}
+
+.videoplayer.widget .progress-bar .time-pointer {
+    height: 4px;
+    width: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    background: url(https://www.1414.de/ff-static/assets/bild_player/videobild-widget-sprite-9a191d9f6df8f7fdb71ffebb7a9863fd.png) -474px 0
+}
+
+.videoplayer.widget .volume-slider {
+    position: relative;
+    height: 68px;
+    width: 5px;
+    margin: 5px 0 5px 7px;
+    z-index: 1;
+    border: 1px solid #FFF
+}
+
+.videoplayer.widget .volume-slider .volume-slider-foreground {
+    background-color: #FFF;
+    opacity: .35;
+    width: 5px;
+    left: 0;
+    bottom: 0;
+    position: absolute
+}
+
+.videoplayer.widget .share-container {
+    height: 30px;
+    position: absolute;
+    width: 170px;
+    bottom: 55px;
+    z-index: 3;
+    right: 52px
+}
+
+.videoplayer.widget .share-container .sb-to-fill {
+    position: absolute;
+    left: 30px
+}
+
+.videoplayer.widget .share-container .social-button {
+    top: 5px;
+    left: 5px;
+    z-index: 2;
+    position: absolute
+}
+
+.videoplayer.widget .share-container-background {
+    opacity: .5;
+    background-color: #FFF;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0
+}
