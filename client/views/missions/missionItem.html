@@ -6,7 +6,7 @@
                     <h3>{{name}}</h3>
                 </div>
                 <div class="col-lg-6">
-                    <a class="pull-right btn btn-red" href="{{pathFor route='addPhoto' query='mission_id={{_id}}'}}">Jetzt teilnehmen</a>
+                    <a class="pull-right btn btn-red" href="{{addMissionPhoto _id}}">Jetzt teilnehmen</a>
                     {{#unless ended}}
                         <div class="mission-rounded">
                             <div class="counts">
@@ -53,7 +53,7 @@
                     {{#if active}}
                         <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{pathFor route='addPhoto' query='mission_id={{_id}}'}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto _id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
@@ -63,7 +63,7 @@
                     {{#if active}}
                         <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{pathFor route='addPhoto' query='mission_id={{_id}}'}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto _id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
@@ -73,7 +73,7 @@
                     {{#if active}}
                         <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{pathFor route='addPhoto' query='mission_id={{_id}}'}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto _id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
@@ -83,7 +83,7 @@
                     {{#if active}}
                         <div data-ng-if="mission.restrictions.active" class="ng-scope">
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{pathFor route='addPhoto' query='mission_id={{_id}}'}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto _id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
@@ -99,8 +99,8 @@
                             {{#unless ended}}
                                 <div>
                                     <img alt="Ic laufzeit 60x50" src="/img/ic_laufzeit_60x50.png">
-                                    <span class="value ng-binding">14</span>
-                                    <span class="mission-value-label ng-binding">Tage</span>
+                                    <span class="value ng-binding">{{timeLeft to 'number'}}</span>
+                                    <span class="mission-value-label ng-binding">{{timeLeft to 'period'}}</span>
                                 </div>
                             {{/unless}}
                         </div>

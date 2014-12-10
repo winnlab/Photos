@@ -1,0 +1,57 @@
+<template name="missionListItem">
+    <div>
+        <div class="mission-teaser">
+            {{#if $eq mode 'upload'}}
+            <a href="{{addMissionPhoto item._id}}">
+                <img class="mission-teaser-img" src="/uploads/missions/thumb_fill_640x220_{{item.listBg.name}}_header_image_{{item.listBg.time}}.jpg">
+            </a>
+            {{/if}}
+            {{#if $neq mode 'upload'}}
+            <a href="{{pathFor 'missionItem'}}">
+                <img class="mission-teaser-img" src="/uploads/missions/thumb_fill_640x220_{{item.listBg.name}}_header_image_{{item.listBg.time}}.jpg">
+            </a>
+            {{/if}}
+            <div class="mission-subtitle">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <ul class="figures">
+                            <li>
+                                <img alt="Ic mission fotos klein 38x30" class="figure-icon" src="/img/ic_mission_fotos_klein_38x30.png">
+                                <h6>
+                                    <span class="count ng-binding">{{item.uploadsQty}}</span>
+                                    <span class="topic">Uploads</span>
+                                </h6>
+                            </li>
+                            <li>
+                                <img alt="Ic mission zeit klein 38x30" class="figure-icon" src="/img/ic_mission_zeit_klein_38x30.png">
+                                <h6>
+                                    <span class="count ng-binding">{{timeLeft item.to 'number'}}</span>
+                                    <span class="topic ng-binding">{{timeLeft item.to 'period'}}</span>
+                                </h6>
+                            </li>
+                            <li>
+                                <img alt="Ic mission gewinn klein 38x30" class="figure-icon" src="/img/ic_mission_gewinn_klein_38x30.png">
+                                <h6 ng-if="mission.reward.type == 'Geld'" class="ng-scope">
+                                    <span class="count ng-binding">{{#if item.prizeQty}}{{item.prizeQty}}x{{/if}}{{item.prize}}</span>
+                                    <span class="topic">{{#if $eq item.prizeType 'money'}}EURO{{/if}}{{#if $eq item.prizeType 'coupons'}}GUTSCHEINE{{/if}}</span>
+                                </h6>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pull-right text-right">
+                        {{#if $eq mode 'upload'}}
+                        <a class="select-link" href="{{addMissionPhoto item._id}}">
+                            <button class="btn btn-red">Mission auswählen</button>
+                        </a>
+                        {{/if}}
+                        {{#if $neq mode 'upload'}}
+                        <a class="select-link" href="{{pathFor 'missionItem'}}">
+                            <button class="btn btn-red">Zur Mission</button>
+                        </a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

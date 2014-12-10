@@ -2,12 +2,39 @@
     <div class="jumbotron mission-jumbotron">
         <div class="container">
             <div class="row headline">
-                <a class="pull-left upload-back-link ng-hide" href="/photos/new">
+                <a class="pull-left upload-back-link {{#if $neq mode 'upload'}}hide{{/if}}" href="/photos/new">
                     <img alt="Ic arrow zurueck 40x40" src="/img/ic_arrow_zurueck_40x40.png">zurück
                 </a>
                 <img alt="Ic mission aufmacher 92x90" class="mission-headline" src="/img/ic_mission_aufmacher_92x90.png" />
-                <span ng-if="mode != 'upload'" class="ng-scope">Missionen</span>
-                <span ng-if="mode == 'upload'" class="ng-scope">Bitte wähle eine Mission</span>
+                {{#if $neq mode 'upload'}}
+                    <span ng-if="mode != 'upload'" class="ng-scope">Missionen</span>
+                {{/if}}
+                {{#if $eq mode 'upload'}}
+                    <span ng-if="mode == 'upload'" class="ng-scope">Bitte wähle eine Mission</span>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="teaser-underline"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 ng-scope">
+                {{#each $mapped missions}}
+                    {{#if $even $index}}
+                        {{#with item=this mode=mode}}
+                            {{> missionListItem}}
+                        {{/with}}
+                    {{/if}}
+                {{/each}}
+            </div>
+            <div class="col-lg-6 ng-scope">
+                {{#each $mapped missions}}
+                    {{#if $odd $index}}
+                        {{#with item=this mode=mode}}
+                            {{> missionListItem}}
+                        {{/with}}
+                    {{/if}}
+                {{/each}}
             </div>
         </div>
     </div>
