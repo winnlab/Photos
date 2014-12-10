@@ -21,18 +21,14 @@
             <div class="col-lg-6 ng-scope">
                 {{#each $mapped missions}}
                     {{#if $even $index}}
-                        {{#with item=this mode=mode}}
-                            {{> missionListItem}}
-                        {{/with}}
+                        {{> missionListItem mode=mode}}
                     {{/if}}
                 {{/each}}
             </div>
             <div class="col-lg-6 ng-scope">
                 {{#each $mapped missions}}
                     {{#if $odd $index}}
-                        {{#with item=this mode=mode}}
-                            {{> missionListItem}}
-                        {{/with}}
+                        {{> missionListItem mode=mode}}
                     {{/if}}
                 {{/each}}
             </div>
