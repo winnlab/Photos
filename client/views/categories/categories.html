@@ -1,3 +1,23 @@
 <template name="categories">
     {{> missionsBanner}}
+
+    <div data-category-menu="" class="darkBg"><div class="container">
+        <nav id="category-navbar" class="navbar-fixed">
+            <div class="container navbar-wrapper">
+                <ul class="nav navbar-nav" style="width: 1280px">
+                    {{#each categories}}
+                        <li>
+                            <a class="{{isActive type}}" href="{{pathFor 'categories'}}">
+                                {{name}}
+                            </a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+</div>
+
+    {{> pix}}
 </template>

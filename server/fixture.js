@@ -50,4 +50,46 @@ if (Missions.find().count() === 0) {
         ended: false,
         active: true
     });
+
+    Categories.insert({
+        name: 'Mein 1414',
+        type: 'mein1414',
+        position: 0
+    });
+
+    Categories.insert({
+        name: 'Neueste',
+        type: 'neueste',
+        position: 1
+    });
+
+    Categories.insert({
+        name: 'Beste (7 Tage)',
+        type: 'top100',
+        position: 2
+    });
+
+    Categories.insert({
+        name: 'Gewinner',
+        type: 'gw1414',
+        position: 3
+    });
+
+    Categories.insert({
+        name: 'Meist kommentiert',
+        type: 'most-commented',
+        position: 4
+    });
+
+    Categories.insert({
+        name: 'Videos',
+        type: 'videos',
+        position: 5
+    });
+
+    Categories.insert({
+        name: 'Best Clips',
+        type: 'bestclips',
+        position: 6
+    });
 }
