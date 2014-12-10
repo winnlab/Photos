@@ -1,0 +1,74 @@
+<template name="header">
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top ff-nav">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+
+                    <ul class="nav navbar-nav">
+                        <li class="photos">
+                            <a href="{{pathFor 'home'}}" class="{{activeRouteClass 'home' 'categories'}}">Start</a>
+                        </li>
+                        <li class="missions">
+                            <a href="{{pathFor 'missions'}}" class="{{activeRouteClass 'missions' 'missionItem'}}">Missionen</a>
+                        </li>
+                        <li class="kategorien">
+                            <a href="{{pathFor 'kategorien'}}" class="{{activeRouteClass 'kategorien'}}">Kategorien</a>
+                        </li>
+                        <li class="leserreporter">
+                            <a href="{{pathFor 'leserreporter'}}" class="{{activeRouteClass 'leserreporter'}}">Leser-Reporter</a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="search">
+                            <a href="" class="search sprite-search_inaktiv_30x30"></a>
+                        </li>
+
+                        <li class="user">
+                            {{#if currentUser}}
+                            {{else}}
+                                <a class="user-bar-caption visible-lg hidden-sm hidden-xs logged-out" href=""><strong>Login</strong> / Neu Anmelden</a>
+                            {{/if}}
+                        </li>
+
+                        <li class="dropdown info">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="info-sign">i</span>
+                            </a>
+                            <ul class="dropdown-menu info-menu" role="menu">
+                                {{#if currentUser}}
+                                    <li>
+                                        <a ng-href="/users/Ansyg" href="/users/Ansyg"><strong>Profil anzeigen</strong></a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li ng-if="currentUser" class="ng-scope">
+                                        <a ng-href="/users/Ansyg/edit" href="/users/Ansyg/edit">Einstellungen</a>
+                                    </li>
+                                {{else}}
+                                    <li><a href="/about"><strong>Über 1414</strong></a></li>
+                                {{/if}}
+
+                                <li class="divider"></li>
+                                <li><a href="/about/faq">Hilfe</a></li>
+                                <li><a href="/about/impressum">Impressum</a></li>
+                                <li><a href="/about/datenschutz">Datenschutz</a></li>
+                                <li><a href="/about/agb">AGB</a></li>
+
+                                {{#if currentUser}}
+                                    <li class="divider"></li>
+                                    <li><a href="/auth/logout">Logout</a></li>
+                                {{/if}}
+                            </ul>
+                        </li>
+                        {{#if currentUser}}
+                            <li class="upload">
+                                <a href="/photos/new">Upload</a>
+                            </li>
+                        {{/if}}
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+</template>
