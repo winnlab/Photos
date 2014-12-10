@@ -1,4 +1,4 @@
 Photos
 ======
 
-Apps for photo changes
+Apps for uploading photo.
