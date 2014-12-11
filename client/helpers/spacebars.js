@@ -20,8 +20,30 @@ Template.registerHelper('addMissionPhoto', function (id) {
 })
 
 Template.registerHelper('timeLeft', function (to, type) {
-    var diff = to - Date.now();
-    return diff;
+    var diff = (to - Date.now()) / (3600 * 1000),
+        number,
+        period;
+
+    switch (false) {
+        case !(diff < 24):
+            number = Math.ceil(diff);
+            period = 'Stund' + (number != 1 ? 'en' : '');
+            break;
+        case !(diff < 24 * 30):
+            number = Math.ceil(diff / 24);
+            period = 'Tag' + (number != 1 ? 'e' : '');
+            break;
+        case !(diff < 24 * 30 * 12):
+            number = Math.ceil(diff / (24 * 30));
+            period = 'Monat' + (number != 1 ? 'e' : '');
+            break;
+        default:
+            number = Math.ceil(diff / (24 * 30 * 12));
+            period = 'Jahr' + (number != 1 ? 'e' : '');
+            break;
+    }
+
+    return type == 'number' ? number : (type == 'period' ? period : number + period);
 });
 
 Template.registerHelper('$even', function (a) {

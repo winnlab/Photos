@@ -5,8 +5,8 @@ if (Missions.find().count() === 0) {
     // insert missions
     Missions.insert({
         name: '„Dein schönstes Urlaubsvideo“',
-        from: new Date(now - 5 * 3600 * 1000).getTime(),
-        to: new Date(now + 5 * 3600 * 1000).getTime(),
+        from: new Date(now - 5 * 24 * 3600 * 1000).getTime(),
+        to: new Date(now + 5 * 24 * 3600 * 1000).getTime(),
         uploadsQty: 30,
         description: 'Schon wieder Fernweh? Wir auch! Und damit wir auch in den kalten Wintermonaten in Urlaubsstimmung bleiben, wollen wir eure schönsten Urlaubsvideos sehen und in Gedanken schon mal das nächste Flugticket buchen. Ob beim Surfen am Strand von Mexico, Klettern in der Bergwelt Südtirols oder eurem Roadtrip durch die Südstaaten, zeigt uns, was ihr in eurem letzten Urlaub erlebt habt und teilt eure coolsten Abenteuer in bewegenden 30-Sekündern mit uns und der Community. Für tolle Urlaubstipps sind wir mehr als dankbar und belohnen die besten drei Videos am Ende der Mission mit je 100 Euro für die Urlaubskasse.',
         bg: {
@@ -31,8 +31,8 @@ if (Missions.find().count() === 0) {
 
     Missions.insert({
         name: '„Zahlen, bitte“',
-        from: new Date(now - 15 * 3600 * 1000).getTime(),
-        to: new Date(now + 15 * 3600 * 1000).getTime(),
+        from: new Date(now - 15 * 24 * 3600 * 1000).getTime(),
+        to: new Date(now + 15 * 24 * 3600 * 1000).getTime(),
         uploadsQty: 54,
         description: 'One, two, three - as easy as do-re-mi… Jap, so einfach ist das. Wir wollen endlich Zahlen sehen. Und wer damals in Mathe gut aufgepasst hat, kennt sie alle. Sollte euch also auf dem Weg zur Arbeit, beim Shoppen oder wo auch immer ihr euch so rumtreibt, eine heiße Nummer ins Auge fallen, zückt euer Smartphone und ladet sie in die Mission. Für die, die zahlenmäßig überlegen sind und die schönsten Fotos machen, ist in gut einer Woche Zahltag, denn die Jury belohnt ihre Nummer 1, 2 und 3 am Ende mit je 50 Euro!',
         bg: {
@@ -47,7 +47,7 @@ if (Missions.find().count() === 0) {
         prizeQty: 3,
         prizeType: 'coupons',
         sponsor: null,
-        ended: false,
+        ended: true,
         active: true
     });
 
