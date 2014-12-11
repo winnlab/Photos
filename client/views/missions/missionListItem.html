@@ -2,14 +2,14 @@
     <div>
         <div class="mission-teaser">
             {{#if $eq mode 'upload'}}
-            <a href="{{addMissionPhoto ../_id}}">
-                <img class="mission-teaser-img" src="/uploads/missions/thumb_fill_640x220_{{../listBg.name}}_header_image_{{../listBg.time}}.jpg">
-            </a>
+                <a href="{{addMissionPhoto ../_id}}">
+                    <img class="mission-teaser-img" src="/uploads/missions/thumb_fill_640x220_{{../listBg.name}}_header_image_{{../listBg.time}}.jpg">
+                </a>
             {{/if}}
             {{#if $neq mode 'upload'}}
-            <a href="{{pathFor 'missionItem' _id=../_id}}">
-                <img class="mission-teaser-img{{#if ../ended}} mission-teaser-img-ended{{/if}}" src="/uploads/missions/thumb_fill_640x220_{{../listBg.name}}_header_image_{{../listBg.time}}.jpg">
-            </a>
+                <a href="{{pathFor 'missionItem' _id=../_id}}">
+                    <img class="mission-teaser-img{{#if ../ended}} mission-teaser-img-ended{{/if}}" src="/uploads/missions/thumb_fill_640x220_{{../listBg.name}}_header_image_{{../listBg.time}}.jpg">
+                </a>
             {{/if}}
             <div class="mission-subtitle">
                 <div class="clearfix">

@@ -1,0 +1,38 @@
+<template name="about">
+    <div class="big-teaser big-mission-teaser about-teaser">
+        <div class="carousel-inner">
+            <div class="item active">
+                <img alt="Leserreporter bg" class="teaser-image" src="/img/leserreporter-bg.png">
+            </div>
+        </div>
+        <div class="menu-overline visible-lg"></div>
+    </div>
+
+    <nav class="navbar-fixed" id="category-navbar">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                {{#each page}}
+                    <li>
+                        <a class="{{isActive link}}" href="{{pathFor 'about'}}">{{title}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </nav>
+
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                {{#each page}}
+                    {{#if isActive link}}
+                        <div class="col-xs-12">
+                            <h1>{{title}}</h1>
+                            <div class="page-content">{{{description}}}</div>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+</template>
