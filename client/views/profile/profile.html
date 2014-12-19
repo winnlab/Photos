@@ -1,0 +1,14 @@
+<template name="profile">
+    {{> profilePanel}}
+    <div class="plain" id="gallery-container">
+        {{#if userInfo.uploads}}
+            {{> pix}}
+        {{else}}
+            <div class="empty-placeholder">
+                <div class="message">
+                    <p>Dieser User hat noch nichts hochgeladen.</p>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</template>

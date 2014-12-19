@@ -1,0 +1,12 @@
+<template name="followings">
+    {{> profilePanel}}
+
+    <div class="container user-list">
+        {{#unless users.length}}
+            <div class="message">
+                Dieser User folgt noch niemandem.
+            </div>
+        {{/unless}}
+        {{> followUser}}
+    </div>
+</template>

@@ -53,3 +53,27 @@ Template.registerHelper('$even', function (a) {
 Template.registerHelper('$odd', function (a) {
     return a % 2 !== 0;
 });
+
+Template.registerHelper('isFirefox', function () {
+    return navigator.userAgent.indexOf("Firefox") > -1;
+});
+
+Template.registerHelper('avatar', function (_id, size, isBg) {
+    if (typeof size === 'object') {
+        size = null;
+    }
+    if (typeof isBg === 'object') {
+        isBg = null;
+    }
+    var avatar = _id && Avatars.findOne({ _id: _id }),
+        options = size ? { store: size } : null;
+    return avatar ? avatar.url(options) : (isBg ? '/img/default_user_background.jpg' : '/img/generic-avatar_transparent.png');
+});
+
+Template.registerHelper('Session', function (input) {
+    return Session.get(input);
+});
+
+Template.registerHelper('$isChecked', function (a, b) {
+    return a == b ? { checked: true } : null;
+});

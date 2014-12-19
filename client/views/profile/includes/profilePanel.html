@@ -1,0 +1,74 @@
+<template name="profilePanel">
+    <div class="user-panel blurrable" data-user-panel="">
+        <div class="blurBg {{#if isFirefox}}firefox{{/if}}" style="clip: rect(0px 1351px 635px 0px);">
+            <img src="{{avatar userInfo.avatar._id 'avatars' true}}" />
+        </div>
+        <div class="avatar">
+            <img src="{{avatar userInfo.avatar._id 'avatars'}}" />
+        </div>
+        <div class="username">
+            {{userInfo.username}}
+        </div>
+        <div class="user-settings text-center">
+            {{#if currentUser}}
+                {{#if $eq currentUser.username userInfo.username}}
+                    <a class="profile-button" href="/users/{{userInfo.username}}/edit">Einstellungen</a>
+                {{else}}
+                    <a data-username="{{userInfo.username}}" href="/users/{{userInfo.username}}/followings" class="followingMe profile-button{{#if $isFollowed userInfo._id}} disabled{{/if}}">
+                        {{#if $isFollowed userInfo._id}}
+                            Folge ich
+                        {{else}}
+                            Folgen
+                        {{/if}}
+                    </a>
+                {{/if}}
+            {{/if}}
+        </div>
+        <div class="user-stats">
+            <div class="wrapper clearfix with-badges">
+                <div class="stat uploads {{activeRouteClass 'profile'}}">
+                    <a class="stat-wrapper" href="/users/{{userInfo.username}}">
+                        <span class="stat-count">{{#if userInfo.uploads}}{{userInfo.uploads}}{{else}}0{{/if}}</span>
+                        <span class="stat-label">Uploads</span>
+                    </a>
+                </div>
+                <div class="stat following {{activeRouteClass 'followings'}}">
+                    <a class="stat-wrapper" href="/users/{{userInfo.username}}/followings">
+                        <span class="stat-count">
+                            {{#if userInfo.followings.length}}
+                                {{userInfo.followings.length}}
+                            {{else}}
+                                0
+                            {{/if}}
+                        </span>
+                        <span class="stat-label">Folge ich</span>
+                    </a>
+                </div>
+                <div class="stat followers {{activeRouteClass 'followers'}}">
+                    <a class="stat-wrapper" href="/users/{{userInfo.username}}/followers">
+                        <span class="stat-count">
+                            {{#if userInfo.followers.length}}
+                                {{userInfo.followers.length}}
+                            {{else}}
+                                0
+                            {{/if}}
+                        </span>
+                        <span class="stat-label">Folgen mir</span>
+                    </a>
+                </div>
+                <div class="stat badges {{activeRouteClass 'badges'}}">
+                    <a class="stat-wrapper" href="/users/{{userInfo.username}}/badges">
+                        <span class="stat-count">
+                            {{#if userInfo.badgesQty}}
+                                {{userInfo.badgesQty}}
+                            {{else}}
+                                0
+                            {{/if}}
+                        </span>
+                        <span class="stat-label">Erfolge</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -21,12 +21,19 @@
                             <a href="" class="search sprite-search_inaktiv_30x30"></a>
                         </li>
 
-                        <li class="user">
-                            {{#if currentUser}}
-                            {{else}}
-                                <a class="user-bar-caption visible-lg hidden-sm hidden-xs logged-out" href=""><strong>Login</strong> / Neu Anmelden</a>
-                            {{/if}}
-                        </li>
+                        {{#if currentUser}}
+                            <li class="user">
+                                <div class="pull-left">
+                                    <div class="user-avatar">
+                                        <a href="/users/{{currentUser.username}}">
+                                            <img class="avatar-image" src="{{avatar currentUser.avatar._id}}" width="50" height="50">
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        {{else}}
+                            {{> loginButtons}}
+                        {{/if}}
 
                         <li class="dropdown info">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -35,11 +42,11 @@
                             <ul class="dropdown-menu info-menu" role="menu">
                                 {{#if currentUser}}
                                     <li>
-                                        <a ng-href="/users/Ansyg" href="/users/Ansyg"><strong>Profil anzeigen</strong></a>
+                                        <a ng-href="/users/{{username}}" href="/users/Ansyg"><strong>Profil anzeigen</strong></a>
                                     </li>
                                     <li class="divider"></li>
                                     <li ng-if="currentUser" class="ng-scope">
-                                        <a ng-href="/users/Ansyg/edit" href="/users/Ansyg/edit">Einstellungen</a>
+                                        <a ng-href="/users/{{username}}/edit" href="/users/Ansyg/edit">Einstellungen</a>
                                     </li>
                                 {{else}}
                                     <li><a href="/about/faq"><strong>Über Photos</strong></a></li>
@@ -53,7 +60,7 @@
 
                                 {{#if currentUser}}
                                     <li class="divider"></li>
-                                    <li><a href="/auth/logout">Logout</a></li>
+                                    <li><a class="logout" href="/auth/logout">Logout</a></li>
                                 {{/if}}
                             </ul>
                         </li>
