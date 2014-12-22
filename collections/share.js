@@ -2,33 +2,40 @@ Share = new Mongo.Collection('shares');
 
 Meteor.methods({
     addShare: function (shareData, source) {
-        var userId = Meteor.userId(),
+        var user = Meteor.user(),
+            userId = user._id,
             data = _.extend(
-                _.pick(shareData, 'missionId', 'categoryId', 'description', 'tags'), {
+                _.pick(shareData, 'missionId', 'categoryId', 'description', 'tags', 'type'), {
                     source: _.pick(source, '_id', 'collectionName')
                 }, {
                     userId: userId,
+                    username: user.username,
                     time: Date.now(),
                     likes: [],
                     edChoice: 0,
                     main: 0,
                     winner: 0
                 }
-            );
+            ),
+            share = Share.insert(data);
 
-        return Share.insert(data);
+        Meteor.users.update({ _id: userId }, {
+            $inc: { uploads: 1 }
+        });
+
+        return share;
     }
 });
 
 ShareFiles = new FS.Collection('shares', {
     stores: [
-        new FS.Store.FileSystem('thumb', {
+        new FS.Store.FileSystem('shareThumbs', {
             transformWrite: function(fileObj, readStream, writeStream) {
                 // Transform the image into a 296xAuto thumbnail
                 gm(readStream, fileObj.name()).autoOrient().resize('296').stream().pipe(writeStream);
             }
         }),
-        new FS.Store.FileSystem('resize', {
+        new FS.Store.FileSystem('shares', {
             transformWrite: function(fileObj, readStream, writeStream) {
                 // Transform the image into a 960xAuto image
                 gm(readStream, fileObj.name()).autoOrient().resize('960').stream().pipe(writeStream);

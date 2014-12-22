@@ -1519,15 +1519,8 @@
     width: 11px
 }
 
-.gallery .photo-thumb .thumb-overlay .caption .message h6 span.ratings-count {
-    font-family: 'HelveticaNeue-Light','Helvetica Neue Light','HelveticaNeue',Helvetica,Arial,sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    font-size: 14px;
-    float: right;
-    margin-right: 10px
+.gallery .photo-thumb .thumb-overlay .caption .message h6 span.rating,.gallery .photo-thumb .thumb-overlay .caption .message h6 span.ratings-count {
+    vertical-align: middle
 }
 
 .gallery .photo-thumb .thumb-overlay .caption .message p {

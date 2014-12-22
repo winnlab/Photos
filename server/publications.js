@@ -12,6 +12,22 @@ Meteor.publish('missionsBanner', function () {
     });
 });
 
+Meteor.publish('missionsList', function () {
+    return Missions.find({}, {
+        description: 0
+    });
+});
+
+Meteor.publish('missionItem', function (missionId) {
+    return Missions.find({ _id: missionId });
+});
+
+Meteor.publish('missionName', function () {
+    return Missions.find({}, {
+        fields: { name: 1 }
+    });
+});
+
 Meteor.publish('categories', function () {
     return Categories.find()
 });
@@ -44,6 +60,19 @@ Meteor.publish('usersList', function() {
         fields: {
             username: 1,
             avatar: 1
+        }
+    });
+});
+
+Meteor.publish('share', function (query, options) {
+    return Share.find(query || {}, options || {});
+});
+
+Meteor.publish('shareSource', function () {
+    return ShareFiles.find({}, {
+        fields: {
+            original: 0,
+            uploadedAt: 0
         }
     });
 });

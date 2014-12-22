@@ -74,6 +74,10 @@ Template.registerHelper('Session', function (input) {
     return Session.get(input);
 });
 
+Template.registerHelper('log', function (name) {
+    console.log(name ? this[name] : this);
+});
+
 Template.registerHelper('$isChecked', function (a, b) {
     return a == b ? { checked: true } : null;
 });

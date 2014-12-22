@@ -1,0 +1,46 @@
+<template name="addPhoto">
+    <div class="container">
+        <div class="license-switch">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        Wähle hier aus, wohin Dein Foto oder Video gesendet werden soll:
+                    </p>
+                </div>
+            </div>
+            <div class="license-switch-options">
+                <div class="row">
+                    <div class="col-lg-4 col-xs-12">
+                        <div class="chooseLicense mission rounded{{#if $eq license 'mission'}} active{{/if}}">
+                            <img alt="Ic senden an mission aktiv 62x60" class="pull-left{{#if $neq license 'mission'}} hide{{/if}}" src="/img/ic_senden_an_mission_aktiv_62x60.png">
+                            <img alt="Ic senden an mission 62x60" class="pull-left{{#if $eq license 'mission'}} hide{{/if}}" src="/img/ic_senden_an_mission_62x60.png">
+                            <h5>Mission</h5>
+                            <h6>Nimm die Herausforderung an</h6>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xs-12">
+                        <div class="chooseLicense community rounded{{#if $eq license 'community'}} active{{/if}}">
+                            <img alt="Ic senden an community aktiv 62x60" class="pull-left{{#if $neq license 'community'}} hide{{/if}}" src="/img/ic_senden_an_community_aktiv_62x60.png">
+                            <img alt="Ic senden an community 62x60" class="pull-left{{#if $eq license 'community'}} hide{{/if}}" src="/img/ic_senden_an_community_62x60.png">
+                            <h5>1414-Community</h5>
+                            <h6 data-ng-if="fsw.VIDEO_ENABLED" class="ng-scope">Zeig Dein Foto oder Video und lasse es bewerten</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="upload-mission-details{{#if $neq license 'mission'}} hide{{/if}}">
+            <div class="row">
+                <div class="col-lg-12">
+                    <label>Deine ausgewählte Mission:</label>
+                    <a class="pull-right btn btn-default btn-300" href="/missions?upload=true">Mission wechseln</a>
+                    <h1 class="mission-title ng-binding">{{missionName}}</h1>
+                </div>
+            </div>
+        </div>
+
+        {{> photoUploadForm}}
+
+    </div>
+</template>
