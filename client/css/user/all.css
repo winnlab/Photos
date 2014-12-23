@@ -1700,6 +1700,10 @@
     height: 100%
 }
 
+.overlay .carousel-inner > .item {
+    height: 100%;
+}
+
 .overlay .carousel-slide-content .photo-container {
     position: relative;
     text-align: center
@@ -2225,6 +2229,10 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 40px 32px
+}
+
+.overlay .slide-container-footer .photo-actions .photo-action-button a i.photo-like {
+    background-image: url(/img/ic_rate_34x30.png);
 }
 
 .overlay .slide-container-footer .photo-actions .photo-action-button a i.photo-comment {

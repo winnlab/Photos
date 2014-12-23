@@ -10,7 +10,10 @@
         <div class="upload-form-container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="upload-photo-section">
+                    <div class="upload-photo-section clearfix">
+                        {{#if $eq status 'uploaded'}}
+                            <h3 class='text-center'>Das Bild wurde hochgeladen</h3>
+                        {{/if}}
                         <div class="upload-preview-container">
                             <img class="preview-media-object">
                             <video autoplay="" class="preview-media-object hide" controls=""></video>
@@ -81,8 +84,12 @@
                     </label>
                 </div>
                 <div class="col-lg-4 col-xs-12">
-                    <button type="submit" class="btn btn-lg btn-red start col-xs-12">
-                        Hochladen
+                    <button type="submit" class="btn btn-lg btn-red start col-xs-12{{#if $eq status 'loading'}} disabled{{/if}}">
+                        {{#if $eq status 'loading'}}
+                            Laden...
+                        {{else}}
+                            Hochladen
+                        {{/if}}
                     </button>
                 </div>
             </div>

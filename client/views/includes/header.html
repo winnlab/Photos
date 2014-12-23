@@ -42,11 +42,11 @@
                             <ul class="dropdown-menu info-menu" role="menu">
                                 {{#if currentUser}}
                                     <li>
-                                        <a ng-href="/users/{{username}}" href="/users/Ansyg"><strong>Profil anzeigen</strong></a>
+                                        <a href="/users/{{currentUser.username}}" ><strong>Profil anzeigen</strong></a>
                                     </li>
                                     <li class="divider"></li>
                                     <li ng-if="currentUser" class="ng-scope">
-                                        <a ng-href="/users/{{username}}/edit" href="/users/Ansyg/edit">Einstellungen</a>
+                                        <a href="/users/{{currentUser.username}}/edit">Einstellungen</a>
                                     </li>
                                 {{else}}
                                     <li><a href="/about/faq"><strong>Über Photos</strong></a></li>

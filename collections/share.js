@@ -4,14 +4,16 @@ Meteor.methods({
     addShare: function (shareData, source) {
         var user = Meteor.user(),
             userId = user._id,
+            missionId = _.pick(shareData, 'missionId').missionId,
             data = _.extend(
-                _.pick(shareData, 'missionId', 'categoryId', 'description', 'tags', 'type'), {
+                _.pick(shareData, 'missionId', 'themeId', 'description', 'tags', 'type'), {
                     source: _.pick(source, '_id', 'collectionName')
                 }, {
                     userId: userId,
                     username: user.username,
                     time: Date.now(),
                     likes: [],
+                    likesQty: 0,
                     edChoice: 0,
                     main: 0,
                     winner: 0
@@ -22,6 +24,12 @@ Meteor.methods({
         Meteor.users.update({ _id: userId }, {
             $inc: { uploads: 1 }
         });
+
+        if (missionId) {
+            Missions.update({ _id: missionId }, {
+                $inc: { uploadsQty: 1 }
+            });
+        }
 
         return share;
     }

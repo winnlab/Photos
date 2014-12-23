@@ -70,6 +70,18 @@ Template.registerHelper('avatar', function (_id, size, isBg) {
     return avatar ? avatar.url(options) : (isBg ? '/img/default_user_background.jpg' : '/img/generic-avatar_transparent.png');
 });
 
+Template.registerHelper('userAvatar', function (userId) {
+    var user = Meteor.users.findOne({ _id: userId }),
+        avatar = user.avatar._id && Avatars.findOne({ _id: user.avatar._id });
+    return avatar ? avatar.url() : '/img/generic-avatar_transparent.png';
+});
+
+Template.registerHelper('getImage', function (_id, store) {
+    var img = ShareFiles.findOne({ _id: _id }),
+    options = store ? { store: store } : null;
+    return img ? img.url(options) : '/img/generic-avatar_transparent.png';
+});
+
 Template.registerHelper('Session', function (input) {
     return Session.get(input);
 });

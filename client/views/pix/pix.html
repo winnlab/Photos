@@ -2,10 +2,10 @@
 
     {{#if displayFilters}}
         <div class="container order-selection">
-            <a class="pull-right order-selector order-newest">
+            <a data-sort="top" class="pull-right order-selector order-newest {{#if $.Session.equals 'sortBy' 'top'}}active{{/if}}">
                 Best bewertet
             </a>
-            <a class="pull-right order-selector order-newest active">
+            <a data-sort="latest" class="pull-right order-selector order-newest {{#if $.Session.equals 'sortBy' 'latest'}}active{{/if}}">
                 Neueste
             </a>
         </div>
@@ -17,13 +17,13 @@
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
                     {{#each $mapped ../shares}}
                         {{#if inColumn ../key $index}}
-                            <div class="photo-thumb">
+                            <div class="photo-thumb showShare" data-id="{{_id}}">
                                 <div class="thumb-overlay">
                                     <div class="caption">
                                         <div class="avatar pull-left">
                                             <div class="user-avatar">
                                                 <a href="/users/{{username}}">
-                                                    <img class="avatar-image" src="{{avatar userId}}" width="58" height="58">
+                                                    <img class="avatar-image" src="{{userAvatar userId}}" width="58" height="58">
                                                 </a>
                                             </div>
                                         </div>
@@ -47,4 +47,8 @@
             {{/each}}
         </div>
     </div>
+
+    {{#if show}}
+        {{> carousel shares=shares currentId=show active=active}}
+    {{/if}}
 </template>

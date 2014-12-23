@@ -18,6 +18,10 @@ Meteor.publish('missionsList', function () {
     });
 });
 
+Meteor.publish('about', function () {
+    return About.find({});
+});
+
 Meteor.publish('missionItem', function (missionId) {
     return Missions.find({ _id: missionId });
 });

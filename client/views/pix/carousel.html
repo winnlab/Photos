@@ -1,0 +1,211 @@
+<template name="carousel">
+    <div class="overlay overlay-closable-area">
+        <div class="overlay-content">
+            <a class="close"></a>
+
+            <div class="photo-carousel">
+                {{#unless currentUser}}
+                    <div>
+                        <div id="conversion-banner" class="container hidden-xs hidden-sm">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 conversion-banner-image"></div>
+                                <div class="col-lg-7 col-md-7">
+                                    <a href="" class="pull-right conversion-banner-close"></a>
+                                    <p class="conversion-banner-text">
+                                        Geh mit uns auf Mission:<br>
+                                        Stell dich täglich neuen Foto- und Video-Herausforderungen!
+                                    </p>
+                                    <ul class="list-inline list-unstyled conversion-banner-buttons">
+                                        <li><a href="" class="to-register-button">Kostenlos registrieren</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/unless}}
+
+                <div id="photoCarousel" class="carousel slide">
+                    {{#if manySlides}}
+                        <a class="left carousel-control" {{containerSize}} data-slide="prev"></a>
+                        <a class="right carousel-control" {{containerSize}} data-slide="next"></a>
+                    {{/if}}
+                    <div class="carousel-inner">
+                        {{#each shares}}
+                            <!--
+                                classes:
+                                    entering / leaving
+                                    left / right
+                                    active
+
+                                .photo-container-wrapper (height / line-height from js)
+                            -->
+                            <div class="item {{#if $eq _id ../currentId}}active{{/if}}">
+                                <div class="carousel-slide-content col-lg-12 col-xs-12 col-sm-12 col-md-12">
+                                    <div class="photo-container">
+                                        <div class="photo-container-wrapper" {{containerSize}}>
+                                            <img class="zoombox-image slide-image" src="{{getImage source._id 'shares'}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="slide-container-footer">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-md-offset-0 col-sm-2 col-sm-offset-1 col-xs-2 col-xs-offset-1">
+                                            <div class="pull-right">
+                                                <div class="user-avatar" ng-class="{'loading': !imageLoaded, 'defaultAvatar' : defaultAvatar}">
+                                                    <a href="/users/{{username}}">
+                                                        <img class="avatar-image" src="{{userAvatar userId}}" width="50" height="50">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6 col-sm-8 caption-content">
+                                            <div class="caption">
+                                                <h4>
+                                                    <a class="nickname" href="/users/{{username}}">{{username}}</a>
+                                                    <span class="date-indication">{{since time}}</span>
+                                                </h4>
+                                                {{#if $gt likesQty 0}}
+                                                    <div class="like-overview">
+                                                        <span class="ng-binding">{{likesQty}}</span>
+                                                        <span ng-bind="label" class="ng-binding">User{{#if $gt likesQty 1}}n{{/if}} gefällt das</span>
+                                                    </div>
+                                                {{/if}}
+                                                <div>
+                                                    <p class="ellipsis">
+                                                        <span class="ellipsis-preview">{{cutString description 75}}</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <ul class="tags list-unstyled list-inline">
+                                                {{#each tags}}
+                                                    <li class="tag">
+                                                        <a href="/photos/search/{{.}}">{{.}}</a>
+                                                    </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-12 col-sm-offset-3 col-xs-12 col-xs-offset-3 col-md-offset-0 photo-actions">
+                                            <ul class="list-unstyled list-inline">
+                                                <!-- like button -->
+                                                {{#if currentUser}}
+                                                    <li class="photo-action-button">
+                                                        <a class="toggleLike {{#if isLiked}}active{{/if}}" href="">
+                                                            <i class="photo-like"></i>
+                                                        </a>
+                                                    </li>
+                                                {{/if}}
+
+                                                <!-- share button -->
+                                                <li class="photo-action-button">
+                                                    <a data-action="share" class="togglePhotoAction {{#if $eq photoAction 'share'}}active{{/if}}" href="">
+                                                        <i class="photo-share"></i>
+                                                        <span class="button-content"></span>
+                                                    </a>
+                                                </li>
+
+                                                <!-- flag button -->
+                                                {{#if currentUser}}
+                                                    {{#unless $eq currentUser._id userId}}
+                                                        <li class="photo-action-button">
+                                                            <a data-action="flag" class="togglePhotoAction {{#if $eq photoAction 'flag'}}active{{/if}}" href="">
+                                                                <i class="photo-flag"></i>
+                                                                <span class="button-content ng-binding" ng-bind="content"></span>
+                                                            </a>
+                                                        </li>
+                                                    {{/unless}}
+                                                {{/if}}
+
+                                                <!-- delete button -->
+                                                {{#if $eq currentUser._id userId}}
+                                                    <li class="photo-action-button">
+                                                        <a data-action="delete" class="togglePhotoAction {{#if $eq photoAction 'delete'}}active{{/if}}" href="">
+                                                            <i class="photo-delete"></i>
+                                                            <span class="button-content ng-binding" ng-bind="content"></span>
+                                                        </a>
+                                                    </li>
+                                                {{/if}}
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs visible-md visible-lg"></div>
+                                    </div>
+
+                                    <div class="photo-overlay share-screen {{#if $neq photoAction 'share'}}hide{{/if}}">
+                                        <ul class="photo-share-bar">
+                                            <li>
+                                                <a class="openSharer" data-product="facebook" href=""><img src="/img/ic_facebook_aktiv_40x40.png"></a>
+                                            </li>
+                                            <li>
+                                                <a class="openSharer" data-product="twitter" href=""><img src="/img/ic_twitter_aktiv_40x40.png"></a>
+                                            </li>
+                                            <li>
+                                                <a class="openSharer" data-product="googleplus" href=""><img src="/img/ic_google_aktiv_40x40.png"></a>
+                                            </li>
+                                            <li>
+                                                <a class="openSharer" data-product="link" href=""><img src="/img/ic_link_aktiv_40x40.png"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="photo-overlay delete-screen {{#if $neq photoAction 'delete'}}hide{{/if}}">
+                                        <div>
+                                            <p class="success-msg ng-binding {{#unless deleteSuccessMessage}}hide{{/unless}}">
+                                                {{deleteSuccessMessage}}
+                                            </p>
+                                            <p class="error-msg ng-binding {{#unless deleteErrorMessage}}hide{{/unless}}">
+                                                {{deleteErrorMessage}}
+                                            </p>
+                                            <div class="{{#if $or deleteErrorMessage deleteSuccessMessage}}hide{{/if}}">
+                                                <p class="button-caption ng-binding">Foto wirklich löschen?</p>
+
+                                                <div class="clearfix actions">
+                                                    <a class="btn btn-default btn-lg pull-right">Ja, wirklich löschen</a>
+                                                    <a class="btn btn-default btn-lg pull-left">Nein, Foto nicht löschen</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="photo-overlay flagging-screen {{#if $neq photoAction 'flag'}}hide{{/if}}">
+                                        <div>
+                                            <p class="success-msg ng-binding {{#unless flagSuccessMessage}}hide{{/unless}}">
+                                                {{flagSuccessMessage}}
+                                            </p>
+
+                                            <div class="{{#if flagSuccessMessage}}hide{{/if}}">
+                                                <p class="button-caption ng-binding">Foto melden:</p>
+
+                                                <div class="container">
+                                                    <ul class="flagging-options">
+                                                        <li class="col-xs-12 col-md-4 col-lg-3">
+                                                            <a data-reason="copyright" class="btn btn-default btn-lg flagging-reason">Urheberrechtsverletzung</a>
+                                                        </li>
+
+                                                        <li class="col-xs-12 col-md-2 col-lg-3">
+                                                            <a data-reason="porn" class="btn btn-default btn-lg flagging-reason">Pornografie</a>
+                                                        </li>
+
+                                                        <li class="col-xs-12 col-md-2 col-lg-3">
+                                                            <a data-reason="privacy" class="btn btn-default btn-lg flagging-reason">Privatsphäre verletzt</a>
+                                                        </li>
+
+                                                        <li class="col-xs-12 col-md-2 col-lg-3">
+                                                            <a data-reason="other" class="btn btn-default btn-lg flagging-reason">Anderer Grund</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

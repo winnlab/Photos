@@ -38,7 +38,8 @@ Template.photoUploadForm.rendered = function () {
     }).on('success.form.bv', function (ev) { ev.preventDefault() });
 
 }
-var photoData = {},
+var status = new ReactiveVar('waiting'),
+    photoData = {},
     getFormData = function ($form) {
         var data = getFormObj($form),
             query = Router.current().params.query;
@@ -49,11 +50,24 @@ var photoData = {},
 
         return _.extend(data, {
             missionId: query && query.missionId,
-            categoryId: false,
+            themeId: false,
             type: photoData.fileType
         });
+    },
+    resetForm = function (form) {
+        form.reset();
+        $('img.preview-media-object').attr('src', '');
+        status.set('uploaded');
+        setTimeout(function () {
+            console.log(status.get());
+        }, 1000);
     };
 
+Template.photoUploadForm.helpers({
+    status: function () {
+        return status.get();
+    }
+})
 
 Template.photoUploadForm.events({
     'change #file': function (ev) {
@@ -65,6 +79,8 @@ Template.photoUploadForm.events({
         if (!file) {
             return false;
         }
+        console.log('file changed');
+        status.set('waiting');
 
         reader.onload = (function(e) {
             if (file.type.indexOf('image') !== -1) {
@@ -84,6 +100,8 @@ Template.photoUploadForm.events({
             userId = Meteor.userId(),
             fileObj;
 
+        status.set('loading');
+
         if (photoData.file && $form.data('bootstrapValidator').isValid()) {
             fileObj = new FS.File(file);
             fileObj.userId = userId;
@@ -99,6 +117,7 @@ Template.photoUploadForm.events({
                         if (err) {
                             console.error(err);
                         }
+                        resetForm(ev.target);
                     }
                 );
             });

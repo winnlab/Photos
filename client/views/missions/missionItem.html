@@ -3,36 +3,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h3>{{name}}</h3>
+                    <h3>{{mission.name}}</h3>
                 </div>
                 <div class="col-lg-6">
-                    <a class="pull-right btn btn-red" href="{{addMissionPhoto _id}}">Jetzt teilnehmen</a>
-                    {{#unless ended}}
+                    <a class="pull-right btn btn-red" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
+                    {{#unless mission.ended}}
                         <div class="mission-rounded">
                             <div class="counts">
-                                <h6>{{timeLeft to 'number'}}</h6>
-                                <span class="uppercase ng-binding">{{timeLeft to 'period'}}</span>
+                                <h6>{{timeLeft mission.to 'number'}}</h6>
+                                <span class="uppercase">{{timeLeft mission.to 'period'}}</span>
                             </div>
                         </div>
                         <div class="mission-rounded">
                             <div class="counts">
-                                <div class="ng-scope">
-                                    <h6>{{#if prizeQty}}{{prizeQty}}x{{/if}}{{prize}}</h6>
-                                    <span class="uppercase">
-                                        {{#if $eq prizeType 'money'}}
-                                            EURO
-                                        {{/if}}
-                                        {{#if $eq prizeType 'coupons'}}
-                                            GUTSCHEINE
-                                        {{/if}}
-                                    </span>
-                                </div>
+                                <h6>{{#if mission.prizeQty}}{{mission.prizeQty}}x{{/if}}{{mission.prize}}</h6>
+                                <span class="uppercase">
+                                    {{#if $eq mission.prizeType 'money'}}
+                                        EURO
+                                    {{/if}}
+                                    {{#if $eq mission.prizeType 'coupons'}}
+                                        GUTSCHEINE
+                                    {{/if}}
+                                </span>
                             </div>
                         </div>
                     {{/unless}}
                     <div class="mission-rounded">
                         <div class="counts">
-                            <h6>{{uploadsQty}}</h6>
+                            <h6>{{mission.uploadsQty}}</h6>
                             <span class="uppercase">Uploads</span>
                         </div>
                     </div>
@@ -44,46 +42,46 @@
     <div class="big-mission-teaser big-teaser">
         <div class="carousel-inner">
             <div class="item active">
-                <img alt="{{name}}" class="teaser-image visible-lg" src="/uploads/missions/thumb_fill_1680x578_{{bg.name}}_brand_logo_{{bg.time}}.jpg" />
-                <img alt="{{name}}" class="teaser-image visible-md" src="/uploads/missions/thumb_fill_1200x413_{{bg.name}}_brand_logo_{{bg.time}}.jpg" />
-                <img alt="{{name}}" class="teaser-image visible-sm" src="/uploads/missions/thumb_fill_992x341_{{bg.name}}_brand_logo_{{bg.time}}.jpg" />
-                <img alt="{{name}}" class="teaser-image visible-xs" src="/uploads/missions/thumb_fill_768x264_{{bg.name}}_brand_logo_{{bg.time}}.jpg" />
+                <img alt="{{mission.name}}" class="teaser-image visible-lg" src="/uploads/missions/thumb_fill_1680x578_{{mission.bg.name}}_brand_logo_{{mission.bg.time}}.jpg" />
+                <img alt="{{mission.name}}" class="teaser-image visible-md" src="/uploads/missions/thumb_fill_1200x413_{{mission.bg.name}}_brand_logo_{{mission.bg.time}}.jpg" />
+                <img alt="{{mission.name}}" class="teaser-image visible-sm" src="/uploads/missions/thumb_fill_992x341_{{mission.bg.name}}_brand_logo_{{mission.bg.time}}.jpg" />
+                <img alt="{{mission.name}}" class="teaser-image visible-xs" src="/uploads/missions/thumb_fill_768x264_{{mission.bg.name}}_brand_logo_{{mission.bg.time}}.jpg" />
                 <div class="carousel-caption visible-lg light">
-                    <h3>{{name}}</h3>
-                    {{#if active}}
+                    <h3>{{mission.name}}</h3>
+                    {{#if mission.active}}
                         <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto _id}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
                 </div>
                 <div class="carousel-caption visible-md light">
-                    <h3>{{name}}</h3>
-                    {{#if active}}
+                    <h3>{{mission.name}}</h3>
+                    {{#if mission.active}}
                         <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto _id}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
                 </div>
                 <div class="carousel-caption visible-sm light">
-                    <h3>{{name}}</h3>
-                    {{#if active}}
+                    <h3>{{mission.name}}</h3>
+                    {{#if mission.active}}
                         <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto _id}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
                 </div>
                 <div class="carousel-caption visible-xs light">
-                    <h3>{{name}}</h3>
-                    {{#if active}}
-                        <div data-ng-if="mission.restrictions.active" class="ng-scope">
+                    <h3>{{mission.name}}</h3>
+                    {{#if mission.active}}
+                        <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto _id}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
@@ -96,23 +94,23 @@
                 <div class="container">
                     <div class="row mission-details">
                         <div class="mission-value col-sm-4">
-                            {{#unless ended}}
+                            {{#unless mission.ended}}
                                 <div>
                                     <img alt="Ic laufzeit 60x50" src="/img/ic_laufzeit_60x50.png">
-                                    <span class="value ng-binding">{{timeLeft to 'number'}}</span>
-                                    <span class="mission-value-label ng-binding">{{timeLeft to 'period'}}</span>
+                                    <span class="value">{{timeLeft mission.to 'number'}}</span>
+                                    <span class="mission-value-label">{{timeLeft mission.to 'period'}}</span>
                                 </div>
                             {{/unless}}
                         </div>
                         <div class="mission-value col-sm-4">
                             <img alt="Ic gewinn 60x50" src="/img/ic_gewinn_60x50.png">
                             <span class="counts">
-                                <span class="value">{{#if prizeQty}}{{prizeQty}}x{{/if}}{{prize}}</span>
+                                <span class="value">{{#if mission.prizeQty}}{{mission.prizeQty}}x{{/if}}{{mission.prize}}</span>
                                 <span class="mission-value-label">
-                                    {{#if $eq prizeType 'money'}}
+                                    {{#if $eq mission.prizeType 'money'}}
                                         Euro
                                     {{/if}}
-                                    {{#if $eq prizeType 'coupons'}}
+                                    {{#if $eq mission.prizeType 'coupons'}}
                                         Gutscheine
                                     {{/if}}
                                 </span>
@@ -120,30 +118,29 @@
                         </div>
                         <div class="mission-value col-sm-4">
                             <img alt="Ic einsendungen 60x50" src="/img/ic_einsendungen_60x50.png" />
-                            <span class="value ng-binding">{{uploadsQty}}</span>
+                            <span class="value ng-binding">{{mission.uploadsQty}}</span>
                             <span class="mission-value-label">Uploads</span>
                         </div>
                     </div>
 
-                    <div class="row{{#if sponsor}} sponsor{{/if}}">
+                    <div class="row{{#if mission.sponsor}} sponsor{{/if}}">
                         <div class="col-lg-6 col-xs-12 top">
-                            <!-- ngIf: mission.description.text.length >= 800 -->
-                            {{#if $lt description.length 800}}
+                            {{#if $lt mission.description.length 800}}
                                 <div>
-                                    <p id="mission-description">{{description}}</p>
+                                    <p id="mission-description">{{mission.description}}</p>
                                     <p class="external-link">
-                                        {{#if $and sponsor sponsor.linkText}}
-                                            <a href="{{sponsor.link}}" target="_blank">{{sponsor.linkText}}</a>
+                                        {{#if $and mission.sponsor mission.sponsor.linkText}}
+                                            <a href="{{mission.sponsor.link}}" target="_blank">{{mission.sponsor.linkText}}</a>
                                         {{/if}}
                                     </p>
                                 </div>
                             {{/if}}
                         </div>
                         <div class="col-lg-6 col-xs-12 logo-wrapper">
-                            {{#if sponsor}}
+                            {{#if mission.sponsor}}
                                 <div class="logo">
-                                    <a href="{{sponsor.link}}" target="_blank">
-                                        <img alt="{{sponsor.name}}" src="/uploads/missions/sponsor_icon/{{sponsor.icon}}" />
+                                    <a href="{{mission.sponsor.link}}" target="_blank">
+                                        <img alt="{{mission.sponsor.name}}" src="/uploads/missions/sponsor_icon/{{mission.sponsor.icon}}" />
                                     </a>
                                 </div>
                             {{/if}}
@@ -153,5 +150,7 @@
             </div>
         </div>
     </div>
-
+    {{#if mission.uploadsQty}}
+        {{> pix shares=shares displayFilters=displayFilters}}
+    {{/if}}
 </template>

@@ -1,4 +1,5 @@
 var columns = new ReactiveVar([]),
+    active = new ReactiveVar(),
     getColumns = function () {
         var winWidth = $(window).width(),
             arr = [],
@@ -21,27 +22,37 @@ var columns = new ReactiveVar([]),
     };
 
 Template.pix.helpers({
-    avatar: function (userId) {
-        var user = Meteor.users.findOne({ _id: userId }),
-            avatar = user.avatar._id && Avatars.findOne({ _id: user.avatar._id });
-        return avatar ? avatar.url() : '/img/generic-avatar_transparent.png';
-    },
-    getImage: function (_id, store) {
-        var img = ShareFiles.findOne({ _id: _id }),
-            options = store ? { store: store } : null;
-        return img ? img.url(options) : '/img/generic-avatar_transparent.png';
-    },
     columns: function () {
         return columns.get();
     },
     inColumn: function (i, j) {
         var columnsQty = columns.get().length;
         return (i + (columnsQty - j)) % columnsQty == 0;
+    },
+    show: function () {
+        return active.get();
+    },
+    active: function () {
+        return active;
+    }
+});
+
+Template.pix.events({
+    'click .order-selector': function (e) {
+        e.preventDefault();
+        Session.set('sortBy', e.target.attributes['data-sort'].value);
+    },
+    'click .showShare': function (ev) {
+        active.set(ev.currentTarget.attributes['data-id'].value);
     }
 });
 
 Template.pix.rendered = function () {
     getColumns();
+    active.set(false);
+    if (!Session.get('sortBy')) {
+        Session.set('sortBy', 'latest');
+    }
 }
 
 Template.pix.created = function() {
