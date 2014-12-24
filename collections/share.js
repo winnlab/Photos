@@ -38,16 +38,16 @@ Meteor.methods({
 ShareFiles = new FS.Collection('shares', {
     stores: [
         new FS.Store.FileSystem('shareThumbs', {
-            transformWrite: function(fileObj, readStream, writeStream) {
-                // Transform the image into a 296xAuto thumbnail
-                gm(readStream, fileObj.name()).autoOrient().resize('296').stream().pipe(writeStream);
-            }
+            // transformWrite: function(fileObj, readStream, writeStream) {
+            //     // Transform the image into a 296xAuto thumbnail
+            //     gm(readStream, fileObj.name()).autoOrient().resize('296').stream().pipe(writeStream);
+            // }
         }),
         new FS.Store.FileSystem('shares', {
-            transformWrite: function(fileObj, readStream, writeStream) {
-                // Transform the image into a 960xAuto image
-                gm(readStream, fileObj.name()).autoOrient().resize('960').stream().pipe(writeStream);
-            }
+            // transformWrite: function(fileObj, readStream, writeStream) {
+            //     // Transform the image into a 960xAuto image
+            //     gm(readStream, fileObj.name()).autoOrient().resize('960').stream().pipe(writeStream);
+            // }
         })
     ],
     filter: {

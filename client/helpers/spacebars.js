@@ -72,7 +72,7 @@ Template.registerHelper('avatar', function (_id, size, isBg) {
 
 Template.registerHelper('userAvatar', function (userId) {
     var user = Meteor.users.findOne({ _id: userId }),
-        avatar = user.avatar._id && Avatars.findOne({ _id: user.avatar._id });
+        avatar = user.avatar && user.avatar._id && Avatars.findOne({ _id: user.avatar._id });
     return avatar ? avatar.url() : '/img/generic-avatar_transparent.png';
 });
 

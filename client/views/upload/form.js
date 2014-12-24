@@ -1,10 +1,4 @@
 Template.photoUploadForm.rendered = function () {
-    // Desc text validation
-    // Bitte gib eine Beschreibung an
-
-    // Tags text validation
-    // Bitte gib mindestens drei Tags an
-
     $('.uploadForm').bootstrapValidator({
         message: 'Dieser Wert ist ungültig',
         trigger: null,
@@ -36,11 +30,11 @@ Template.photoUploadForm.rendered = function () {
             }
         }
     }).on('success.form.bv', function (ev) { ev.preventDefault() });
-
 }
+
 var status = new ReactiveVar('waiting'),
     photoData = {},
-    getFormData = function ($form) {
+    getFormData = function ($form, template) {
         var data = getFormObj($form),
             query = Router.current().params.query;
 
@@ -49,8 +43,8 @@ var status = new ReactiveVar('waiting'),
         });
 
         return _.extend(data, {
-            missionId: query && query.missionId,
-            themeId: false,
+            missionId: (query && query.missionId) || null,
+            themeId: (template.data && template.data.themeId) || null,
             type: photoData.fileType
         });
     },
@@ -58,9 +52,6 @@ var status = new ReactiveVar('waiting'),
         form.reset();
         $('img.preview-media-object').attr('src', '');
         status.set('uploaded');
-        setTimeout(function () {
-            console.log(status.get());
-        }, 1000);
     };
 
 Template.photoUploadForm.helpers({
@@ -79,7 +70,7 @@ Template.photoUploadForm.events({
         if (!file) {
             return false;
         }
-        console.log('file changed');
+
         status.set('waiting');
 
         reader.onload = (function(e) {
@@ -93,7 +84,7 @@ Template.photoUploadForm.events({
         reader.readAsDataURL(file);
     },
 
-    'submit .uploadForm': function (ev) {
+    'submit .uploadForm': function (ev, template) {
         ev.preventDefault();
         var $form = $(ev.target),
             file = $('#file')[0].files[0],
@@ -111,7 +102,7 @@ Template.photoUploadForm.events({
                     console.error(err);
                 }
                 Meteor.call('addShare',
-                    getFormData($form),
+                    getFormData($form, template),
                     _.pick(shareFile, '_id', 'collectionName'),
                     function (err) {
                         if (err) {

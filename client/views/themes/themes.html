@@ -1,0 +1,23 @@
+<template name="themes">
+    <div class="container category">
+        <h2 class="main-header categories-header">
+            <span class="back pull-left" ng-click="toHomepage()"></span>
+            Kategorien
+        </h2>
+
+        <div class="categories-wrapper">
+            <div class="row categories">
+                {{#each themes}}
+                    <div class="col-lg-4 col-sm-4 col-xs-6">
+                        <a class="cat" href="{{pathFor 'themeItem'}}">
+                            <img class="img-responsive preview" src="/img/square_placeholder.jpg">
+                            <div class="bg" style="background-image: url({{bg}});"></div>
+                            <h3 class="title"><span>{{name}}</span></h3>
+                        </a>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+
+    </div>
+</template>

@@ -1,0 +1,14 @@
+<template name="themeUpload">
+
+    <div class="container">
+        <div class="category-indicator">
+            <div data-ng-show="category" class="upload-header">
+                <h2>Deine ausgewählte Kategorie:</h2>
+                <h1>{{theme.name}}</h1>
+            </div>
+        </div>
+
+        {{> photoUploadForm themeId=theme._id}}
+    </div>
+
+</template>

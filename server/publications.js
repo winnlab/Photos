@@ -72,11 +72,15 @@ Meteor.publish('share', function (query, options) {
     return Share.find(query || {}, options || {});
 });
 
-Meteor.publish('shareSource', function () {
-    return ShareFiles.find({}, {
+Meteor.publish('shareSource', function (query) {
+    return ShareFiles.find(query || {}, {
         fields: {
             original: 0,
             uploadedAt: 0
         }
     });
 });
+
+Meteor.publish('themes', function (query) {
+    return Themes.find(query || {});
+})
