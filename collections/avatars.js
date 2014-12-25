@@ -24,11 +24,7 @@ Avatars.allow({
     insert: function (userId) {
         return !!userId;
     },
-    update: function (userId, doc) {
-        return userId === doc.userId;
-    },
-    remove: function (userId, doc) {
-        return userId === doc.userId;
-    },
+    update: isUserOwn,
+    remove: isUserOwn,
     download: function () { return true; }
 });

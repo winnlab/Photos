@@ -76,21 +76,15 @@ if (Missions.find().count() === 0) {
     });
 
     Categories.insert({
-        name: 'Meist kommentiert',
-        type: 'most-commented',
-        position: 4
-    });
-
-    Categories.insert({
         name: 'Videos',
         type: 'videos',
-        position: 5
+        position: 4
     });
 
     Categories.insert({
         name: 'Best Clips',
         type: 'bestclips',
-        position: 6
+        position: 5
     });
 
     About.insert({

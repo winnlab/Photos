@@ -19,3 +19,5 @@ cfs:ejson-file
 rgoomar:bootstrap-validator
 reactive-var
 
+momentjs:moment
+rzymek:moment-locale-de

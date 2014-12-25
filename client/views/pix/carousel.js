@@ -1,5 +1,6 @@
 var $carousel,
     imgWrapperHeight = new ReactiveVar(),
+    photoAction = new ReactiveVar(),
     imgSize = function () {
         var footer = $(".slide-container-footer:visible"),
             footerHeight = footer.length ? footer.outerHeight() : 0,
@@ -9,13 +10,16 @@ var $carousel,
 
 Template.carousel.helpers({
     photoAction: function () {
-        return null;
+        return photoAction.get();
     },
     since: function (time) {
-        return 'vor 4 Tagen';
+        return moment(time).fromNow();
     },
     manySlides: function () {
         return true;
+    },
+    isLiked: function (likes) {
+        return likes.indexOf(Meteor.userId()) !== -1;
     },
     // Variables
     deleteSuccessMessage: function () {
@@ -45,22 +49,27 @@ Template.carousel.events({
         template.data.active.set(false);
     },
 
-    'click .carousel-control': function (ev) {
+    'click .carousel-control': function (ev, template) {
+        photoAction.set(null);
         $carousel.carousel($(ev.target).data('slide'));
     },
 
     'click .toggleLike': function (ev) {
         ev.preventDefault();
+        var id = $(ev.target).parents('.item')[0].attributes['data-id'].value;
+        Meteor.call('toggleLike', id);
     },
 
     'click .togglePhotoAction': function (ev) {
         ev.preventDefault();
+        var currentAction = photoAction.get(),
+            action = ev.currentTarget.attributes['data-action'].value;
+        photoAction.set(action !== currentAction ? action : null);
     },
 
     'click .openSharer': function(ev) {
         ev.preventDefault();
-
-        var product = $(ev.target).data('product'),
+        var product = $(ev.currentTarget).data('product'),
             url = Router.current().originalUrl,
             $window = window;
 
@@ -91,12 +100,22 @@ Template.carousel.events({
      * Delete
      */
 
-    'click .delete-btn': function () {
+    'click .delete-btn': function (ev, template) {
+        ev.preventDefault();
+        var shareId = $(ev.target).parents('.item')[0].attributes['data-id'].value;
 
+        Meteor.call('removeShare', shareId, function (err) {
+            if (err) {
+                console.error(err);
+            }
+            photoAction.set(null);
+            template.data.active.set(false);
+        });
     },
 
-    'click .cancel-btn': function () {
-
+    'click .cancel-delete-btn': function (ev) {
+        ev.preventDefault();
+        photoAction.set(null);
     },
 
     /**
@@ -111,14 +130,17 @@ Template.carousel.events({
 
 Template.carousel.rendered = function () {
     imgSize();
+    photoAction.set(null);
     $carousel = $('#photoCarousel');
-    $carousel.carousel()
+    $carousel.carousel({ interval: false });
 }
 
 Template.carousel.created = function() {
     $(window).on('resize', imgSize);
+    $('body').addClass('noScroll');
 };
 
 Template.carousel.destroyed = function() {
+    $('body').removeClass('noScroll');
     $(window).off('resize');
 };

@@ -1208,7 +1208,7 @@
     left: 0;
     background-color: white;
     width: 100%;
-    z-index: 1100;
+    z-index: 1940;
     padding-top: 25px
 }
 
@@ -2235,6 +2235,10 @@
     background-image: url(/img/ic_rate_34x30.png);
 }
 
+.overlay .slide-container-footer .photo-actions .photo-action-button a.active .photo-like {
+    background-image: url(/img/ic_rate_34x30_on.png);
+}
+
 .overlay .slide-container-footer .photo-actions .photo-action-button a i.photo-comment {
     background-image: url(/img/ic_comment_50x43.png);
     background-position: center 12px
@@ -2260,7 +2264,7 @@
     background-image: url(/img/ic_photodetail_tags_35x35.png)
 }
 
-.overlay .slide-container-footer .photo-actions .photo-action-button a.active,.overlay .slide-container-footer .photo-actions .photo-action-button a:hover {
+.overlay .slide-container-footer .photo-actions .photo-action-button a:hover {
     opacity: .5;
     -khtml-opacity: .5;
     -moz-opacity: .5;

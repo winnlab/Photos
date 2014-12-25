@@ -1,10 +1,29 @@
 Share = new Mongo.Collection('shares');
 
+var shareCounting = function (ids, inc) {
+    if (ids.userId) {
+        Meteor.users.update({ _id: ids.userId }, {
+            $inc: { uploads: inc }
+        });
+    }
+    if (ids.missionId) {
+        Missions.update({ _id: ids.missionId }, {
+            $inc: { uploadsQty: inc }
+        });
+    }
+    if (ids.themeId) {
+        Themes.update({ _id: ids.themeId }, {
+            $inc: { 'meta.photos_count': inc }
+        });
+    }
+}
+
 Meteor.methods({
     addShare: function (shareData, source) {
         var user = Meteor.user(),
             userId = user._id,
             missionId = _.pick(shareData, 'missionId').missionId,
+            themeId = _.pick(shareData, 'themeId').themeId,
             data = _.extend(
                 _.pick(shareData, 'missionId', 'themeId', 'description', 'tags', 'type'), {
                     source: _.pick(source, '_id', 'collectionName')
@@ -21,17 +40,61 @@ Meteor.methods({
             ),
             share = Share.insert(data);
 
-        Meteor.users.update({ _id: userId }, {
-            $inc: { uploads: 1 }
-        });
-
-        if (missionId) {
-            Missions.update({ _id: missionId }, {
-                $inc: { uploadsQty: 1 }
-            });
-        }
+        shareCounting({
+            userId: userId,
+            missionId: missionId,
+            themeId: themeId
+        }, 1);
 
         return share;
+    },
+
+    removeShare: function (shareId) {
+        var share = Share.findOne({ _id: shareId });
+        if (!share) {
+            throw new Meteor.Error(404, 'Not found such share');
+        }
+        if (share.userId !== this.userId) {
+            throw new Meteor.Error(403);
+        }
+        Share.remove({ _id: shareId });
+        ShareFiles.remove({ _id: share.source._id });
+        shareCounting({
+            userId: share.userId,
+            missionId: share.missionId,
+            themeId: share.themeId
+        }, -1);
+        return share;
+    },
+
+    toggleLike: function (shareId) {
+        var share = Share.findOne({ _id: shareId }, {
+                fields: { _id: 1 }
+            }),
+            userId = Meteor.userId(),
+            isLiked = Share.findOne({
+                _id: shareId,
+                likes: userId
+            }, {
+                fields: { _id: 1 }
+            });
+        if (!share) {
+            throw new Meteor.Error(404, 'Not found such share');
+        }
+        if (!userId) {
+            throw new Meteor.Error(401, 'Not authenticated');
+        }
+        if (isLiked) {
+            Share.update({ _id: shareId }, {
+                $pull: { likes: userId },
+                $inc: { likesQty: -1 }
+            })
+        } else {
+            Share.update({ _id: shareId }, {
+                $push: { likes: userId },
+                $inc: { likesQty: 1 }
+            })
+        }
     }
 });
 
@@ -61,11 +124,7 @@ ShareFiles.allow({
     insert: function (userId) {
         return !!userId;
     },
-    update: function (userId, doc) {
-        return userId === doc.userId;
-    },
-    remove: function (userId, doc) {
-        return userId === doc.userId;
-    },
+    update: isUserOwn,
+    remove: isUserOwn,
     download: function () { return true; }
 });

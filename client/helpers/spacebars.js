@@ -70,10 +70,13 @@ Template.registerHelper('avatar', function (_id, size, isBg) {
     return avatar ? avatar.url(options) : (isBg ? '/img/default_user_background.jpg' : '/img/generic-avatar_transparent.png');
 });
 
-Template.registerHelper('userAvatar', function (userId) {
+Template.registerHelper('userAvatar', function (userId, color) {
+    if (typeof color === 'object') {
+        color = null;
+    }
     var user = Meteor.users.findOne({ _id: userId }),
-        avatar = user.avatar && user.avatar._id && Avatars.findOne({ _id: user.avatar._id });
-    return avatar ? avatar.url() : '/img/generic-avatar_transparent.png';
+        avatar = user && user.avatar && user.avatar._id && Avatars.findOne({ _id: user.avatar._id });
+    return avatar ? avatar.url() : color ? '/img/generic-avatar_white.png' : '/img/generic-avatar_transparent.png';
 });
 
 Template.registerHelper('getImage', function (_id, store) {
