@@ -1,14 +1,16 @@
 <template name="pix">
 
     {{#if displayFilters}}
-        <div class="container order-selection">
-            <a data-sort="top" class="pull-right order-selector order-newest {{#if $.Session.equals 'sortBy' 'top'}}active{{/if}}">
-                Best bewertet
-            </a>
-            <a data-sort="latest" class="pull-right order-selector order-newest {{#if $.Session.equals 'sortBy' 'latest'}}active{{/if}}">
-                Neueste
-            </a>
-        </div>
+        {{#if $or shares.count shares.length}}
+            <div class="container order-selection">
+                <a data-sort="top" class="pull-right order-selector order-newest {{#if $.Session.equals 'sortBy' 'top'}}active{{/if}}">
+                    Best bewertet
+                </a>
+                <a data-sort="latest" class="pull-right order-selector order-newest {{#if $.Session.equals 'sortBy' 'latest'}}active{{/if}}">
+                    Neueste
+                </a>
+            </div>
+        {{/if}}
     {{/if}}
 
     <div class="container gallery-photos">

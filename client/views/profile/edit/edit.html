@@ -35,7 +35,7 @@
                             <input accept="image/jpg, image/jpeg" class="btn btn-default form-control" id="avatar" name="avatar" type="file" />
                         </div>
                     </div>
-                    <input class="btn btn-danger btn-red col-lg-6 col-lg-offset-6" name="commit" type="submit" value="Avatar hochladen" />
+                    <input class="btn btn-green col-lg-6 col-lg-offset-6" name="commit" type="submit" value="Avatar hochladen" />
                 </form>
             </div>
         </div>
@@ -59,7 +59,7 @@
                             <div class="form-errors"></div>
                         </div>
                     </div>
-                    <button class="btn btn-danger btn-red col-lg-6 col-lg-offset-6" type="submit">Addressdaten speichern</button>
+                    <button class="btn btn-green col-lg-6 col-lg-offset-6" type="submit">Addressdaten speichern</button>
                 </form>
             </div>
         </div>
@@ -91,7 +91,7 @@
                                 <input class="form-control" id="paypal_email" name="paypalEmail" placeholder="PAYPAL-EMAIL" type="email" value="{{userInfo.profile.paypalEmail}}">
                                 <div class="form-errors"></div>
                             </div>
-                            <input class="btn btn-danger btn-red col-lg-6 col-lg-offset-6" name="commit" type="submit" value="Kontodaten speichern">
+                            <input class="btn btn-green col-lg-6 col-lg-offset-6" name="commit" type="submit" value="Kontodaten speichern">
                         </form>
 
                         <form name="bankForm" class="bankForm{{#if $neq payInfo 'bank'}} hide{{/if}}">
@@ -103,7 +103,7 @@
                                 <input class="form-control" id="swift_code" name="swiftCode" placeholder="BIC" type="text" value="{{userInfo.profile.swiftCode}}">
                                 <div class="form-errors"></div>
                             </div>
-                            <input class="btn btn-danger btn-red col-lg-6 col-lg-offset-6" name="commit" type="submit" value="Kontodaten speichern">
+                            <input class="btn btn-green col-lg-6 col-lg-offset-6" name="commit" type="submit" value="Kontodaten speichern">
                         </form>
 
                     </div>

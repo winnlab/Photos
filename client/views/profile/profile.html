@@ -2,7 +2,8 @@
     {{> profilePanel}}
     <div class="plain" id="gallery-container">
         {{#if userInfo.uploads}}
-            {{> pix}}
+            {{> pix shares=shares displayFilters=displayFilters}}
+            {{> moreResults isMore=moreResults}}
         {{else}}
             <div class="empty-placeholder">
                 <div class="message">

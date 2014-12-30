@@ -6,7 +6,7 @@
                     <h3>{{mission.name}}</h3>
                 </div>
                 <div class="col-lg-6">
-                    <a class="pull-right btn btn-red" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
+                    <a class="pull-right btn btn-green" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
                     {{#unless mission.ended}}
                         <div class="mission-rounded">
                             <div class="counts">
@@ -51,7 +51,7 @@
                     {{#if mission.active}}
                         <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-green btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
@@ -61,7 +61,7 @@
                     {{#if mission.active}}
                         <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-green btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
@@ -71,7 +71,7 @@
                     {{#if mission.active}}
                         <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-green btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
@@ -81,7 +81,7 @@
                     {{#if mission.active}}
                         <div>
                             <p class="text-center hidden-xs">
-                                <a class="btn btn-lg btn-red btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
+                                <a class="btn btn-lg btn-green btn-300" href="{{addMissionPhoto mission._id}}">Jetzt teilnehmen</a>
                             </p>
                         </div>
                     {{/if}}
@@ -150,7 +150,9 @@
             </div>
         </div>
     </div>
+
     {{#if mission.uploadsQty}}
         {{> pix shares=shares displayFilters=displayFilters}}
+        {{> moreResults isMore=moreResults}}
     {{/if}}
 </template>

@@ -1,3 +1,6 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('http://fonts.googleapis.com/css?family=Roboto');
+
 .ng-animate-start {
     border-spacing: 1px 1px;
     -ms-zoom:1.0001
@@ -489,14 +492,35 @@
     filter: alpha(opacity=90)
 }
 
+.navbar-main .nav > li > a:hover, .navbar-main .nav > li > a:focus {
+    background: none;
+}
+
 .ff-nav {
-    background-color: rgba(0,0,0,0.8);
-    height: 72px;
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    background-color: #ffffff;
+    height: 70px;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
+    z-index: 1021;
+    border: none;
     -webkit-font-smoothing: antialiased
+}
+
+.ff-nav.sub-navbar {
+    top: 70px;
+    background-color: #f5f5f5;
+    z-index: 1020;
+}
+
+.ff-nav .header-text {
+    margin-top: 7px;
+    line-height: 18px;
+}
+
+.ff-nav .header-text a {
+    color: #a0c422;
 }
 
 .ff-nav .navbar-collapse {
@@ -533,23 +557,24 @@
 
 .ff-nav .nav.navbar-nav>li.user .user-avatar img {
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border: 0 solid transparent;
     background-color: transparent;
     -webkit-transform: translate3d(0,0,0)
 }
 
 .ff-nav .nav.navbar-nav>li>a {
-    color: white
+    color: #1a1a1a
 }
 
 .ff-nav .nav.navbar-nav>li>a:hover {
-    color: #9d9d9d
+    color: #000000
 }
 
 .ff-nav .nav.navbar-nav>li>.dropdown-menu {
     border-radius: 0;
+    margin-top: 9px;
     padding: 20px
 }
 
@@ -576,7 +601,11 @@
 }
 
 .ff-nav .nav .open>a {
-    background-color: rgba(0,0,0,0.8)
+    background-color: #ffffff
+}
+
+.ff-nav.nav > li > a:hover, .ff-nav.nav > li > a:focus {
+    background-color: #f5f5f5
 }
 
 .ff-nav .nav .dropdown-menu.info-menu {
@@ -609,21 +638,27 @@
 }
 
 .ff-nav .nav>li.info .info-sign {
-    background-color: white;
+    background-color: #a0c422;
     border-radius: 50%;
     display: inline-block;
     width: 20px;
     height: 20px;
     vertical-align: middle;
-    color: black;
+    color: #fff;
     font-style: italic;
     font-family: 'Georgia',serif;
-    line-height: 20px
+    font-weight: bold;
+    line-height: 20px;
+    opacity: 0.8;
+}
+
+.ff-nav .nav>li.info .info-sign:hover {
+    opacity: 1;
 }
 
 .ff-nav .nav>li.upload a {
-    height: 72px;
-    line-height: 72px !important;
+    height: 70px;
+    line-height: 70px !important;
     vertical-align: middle;
     display: block;
     background-color: white;
@@ -709,13 +744,13 @@
 
 .ff-nav .nav>li a {
     position: relative;
-    line-height: 72px;
+    line-height: 70px;
     padding: 0 15px
 }
 
-.ff-nav .nav>li a:hover {
+/*.ff-nav .nav>li a:hover {
     background-color: transparent
-}
+}*/
 
 .ff-nav .nav>li a.search {
     margin-top: 23px
@@ -735,7 +770,7 @@
 
 .ff-nav .nav>li a.active:after {
     content: '';
-    background-color: #d00;
+    background-color: #a0c422;
     height: 4px;
     position: absolute;
     bottom: 0;
@@ -751,8 +786,8 @@
 
 .ff-nav-mobile .navbar-header {
     text-align: center;
-    height: 72px;
-    line-height: 72px
+    height: 70px;
+    line-height: 70px
 }
 
 .ff-nav-mobile .navbar-header .ff-logo {
@@ -810,7 +845,7 @@
     top: 0;
     height: 100vh;
     width: 60%;
-    margin-top: 72px !important;
+    margin-top: 70px !important;
     -webkit-transform: translateX(-100%);
     -moz-transform: translateX(-100%);
     -ms-transform: translateX(-100%);
@@ -896,6 +931,31 @@
     height: 0
 }
 
+.ff-nav .search {
+    width: 350px;
+    margin: 8px auto;
+    padding: 10px 0;
+}
+
+.ff-nav .search .input-group {
+    width: 100%;
+}
+
+.ff-nav .search input,
+.ff-nav .search span {
+    border: none;
+}
+
+.ff-nav .search span.searchBtn {
+    cursor: pointer;
+    width: 30px;
+}
+
+.ff-nav .search input:active,
+.ff-nav .search input:focus {
+    box-shadow: none;
+}
+
 #notifications {
     width: 320px;
     padding: 0 0 0 10px;
@@ -970,7 +1030,7 @@
 }
 
 #notifications li.notification-item .notification-text .message-date {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1030,7 +1090,7 @@
 
 #search-bar {
     position: fixed;
-    top: 72px;
+    top: 140px;
     width: 100%;
     padding: 20px;
     background-color: rgba(55,55,55,0.7);
@@ -1052,7 +1112,7 @@
 }
 
 #search-bar ul#search-query-suggest li {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1170,7 +1230,7 @@
 }
 
 #banner h5 {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1186,7 +1246,7 @@
 }
 
 #banner h5 span.small {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1404,11 +1464,7 @@
 }
 
 .gallery .photo-thumb img.thumb {
-    -moz-box-shadow: -2px 2px 0 0 rgba(0,0,0,0.3);
-    -webkit-box-shadow: -2px 2px 0 0 rgba(0,0,0,0.3);
-    -khtml-box-shadow: -2px 2px 0 0 rgba(0,0,0,0.3);
-    -o-box-shadow: -2px 2px 0 0 rgba(0,0,0,0.3);
-    box-shadow: -2px 2px 0 0 rgba(0,0,0,0.3);
+    box-shadow: 1px 1px 0 0 rgba(0,0,0,0.3);
     z-index: 2;
     width: 100%
 }
@@ -1489,7 +1545,7 @@
 }
 
 .gallery .photo-thumb .thumb-overlay .caption .message h6 {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1652,7 +1708,8 @@
 }
 
 .overlay .photo-carousel .carousel {
-    height: 100%
+    height: 100%;
+    background-color: #171717
 }
 
 .overlay .photo-carousel .carousel-control {
@@ -1866,7 +1923,7 @@
 }
 
 .overlay .carousel-slide-content .delete-screen p.success-msg {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1874,7 +1931,7 @@
 }
 
 .overlay .carousel-slide-content .delete-screen p.button-caption {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1888,7 +1945,7 @@
 }
 
 .overlay .carousel-slide-content .delete-screen .actions a.btn {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1927,7 +1984,7 @@
 }
 
 .overlay .carousel-slide-content .flagging-screen p.success-msg {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1937,7 +1994,7 @@
 }
 
 .overlay .carousel-slide-content .flagging-screen p.button-caption {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -1959,7 +2016,7 @@
 }
 
 .overlay .carousel-slide-content .flagging-screen ul.flagging-options li a.btn {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -2095,7 +2152,7 @@
 }
 
 .overlay .slide-container-footer .caption h4 {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -2153,7 +2210,7 @@
 }
 
 .overlay .slide-container-footer .caption .ellipsis {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -2280,6 +2337,10 @@
     top: 18px
 }
 
+.category-detail .main-header {
+    margin: 0;
+}
+
 .category-detail .main-header .back {
     display: inline-block
 }
@@ -2288,10 +2349,13 @@
     font-weight: 100;
     letter-spacing: 1px;
     text-align: center;
-    background-color: #222;
     color: white;
     line-height: 2.5em;
-    margin: 15px 0
+    height: 100px;
+    background-image: url('/img/themes-header-bg.jpg');
+    background-position: center center;
+    background-size: cover;
+    padding: 15px 0 0;
 }
 
 .main-header .back {
@@ -2315,15 +2379,9 @@
     }
 }
 
-.main-header .category-upload {
-    font-weight: 300;
-    letter-spacing: 0;
-    background-color: white;
-    float: right;
-    color: black;
-    text-decoration: none;
-    height: 100%;
-    font-size: 20px
+.main-header .category-upload-btn {
+    margin-top: 18px;
+    margin-right: 20px;
 }
 
 .main-header .category-upload .category-upload-label {
@@ -2360,7 +2418,7 @@
 }
 
 .darkBg {
-    background-color: #222
+    background-color: #ffffff;
 }
 
 .container.category {
@@ -2401,24 +2459,15 @@
     background-size: cover
 }
 
-.categories-wrapper .categories .cat:hover .title {
-    height: 50%;
-    background: rgba(255,255,255,0.5);
-    color: black
-}
-
 .categories-wrapper .categories .cat .preview {
     width: 100%
 }
 
 .categories-wrapper .categories .cat .title {
-    -webkit-transition: all .6s ease;
-    -moz-transition: all .6s ease;
-    -ms-transition: all .6s ease;
-    -o-transition: all .6s ease;
-    transition: all .6s ease;
     -webkit-transform: translate3d(0,0,0);
-    background: rgba(0,0,0,0.5);
+    background: rgba(160,196,34,0.9);
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
     color: white;
     position: absolute;
     display: block;
@@ -2484,7 +2533,7 @@
     padding-right: 15px;
     margin-bottom: 10px;
     cursor: pointer;
-    border-right: 2px solid #9e9e9e
+    border-right: 2px solid #5e5e5e
 }
 
 .order-selection .order-selector:first-child {
@@ -2498,13 +2547,13 @@
 }
 
 .order-selection a {
-    color: #9e9e9e;
+    color: #5e5e5e;
     text-decoration: none;
     font-size: 16px
 }
 
 .order-selection a:hover {
-    color: #fff
+    color: #5e5e5e
 }
 
 .order-selection a:hover .order-icon .sprite-ic_neueste_inaktiv_20x20 {
@@ -2516,7 +2565,8 @@
 }
 
 .order-selection a.active {
-    color: #fff
+    font-weight: bold;
+    color: #5e5e5e
 }
 
 @media(max-width: 768px) {
@@ -2546,27 +2596,10 @@
 #category-navbar {
     margin-bottom: 0;
     border-radius: 0;
-    background-color: #222;
+    background-color: #fff;
     height: 62px;
     overflow: hidden;
     position: relative
-}
-
-#category-navbar:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 75px;
-    height: 100%;
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyMjIyMjIiIHN0b3Atb3BhY2l0eT0iMC42NSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-    background: -moz-linear-gradient(left,rgba(0,0,0,0) 0,rgba(34,34,34,0.65) 100%);
-    background: -webkit-gradient(linear,left top,right top,color-stop(0,rgba(0,0,0,0)),color-stop(100%,rgba(34,34,34,0.65)));
-    background: -webkit-linear-gradient(left,rgba(0,0,0,0) 0,rgba(34,34,34,0.65) 100%);
-    background: -o-linear-gradient(left,rgba(0,0,0,0) 0,rgba(34,34,34,0.65) 100%);
-    background: -ms-linear-gradient(left,rgba(0,0,0,0) 0,rgba(34,34,34,0.65) 100%);
-    background: linear,to right,rgba(0,0,0,0) 0,rgba(34,34,34,0.65) 100%;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000',endColorstr='#a6222222',GradientType=1)
 }
 
 #category-navbar .navbar-wrapper {
@@ -2589,32 +2622,35 @@
 }
 
 #category-navbar li a {
-    font-family: 'HelveticaNeue-Light','Helvetica Neue Light','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    background-color: #222;
+    background-color: #fff;
     font-size: 20px;
-    color: rgba(255,255,255,0.8);
+    color: #1a1a1a;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 20px;
-    padding-bottom: 23px
+    padding-bottom: 20px
 }
 
 #category-navbar li a:hover {
-    color: white
+    color: #a0c422;
 }
 
 #category-navbar li a.active {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    background-color: #373737;
-    border-bottom: 2px solid #373737
+    border-bottom: 2px solid #a0c422;
+}
+
+#category-navbar li a.active:hover {
+    color: #1a1a1a;
 }
 
 @media(max-width: 768px) {
@@ -2658,7 +2694,7 @@ nav.navbar-fixed-top.mission-navbar .mission-rounded {
 }
 
 nav.navbar-fixed-top.mission-navbar .mission-rounded h6 {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -2669,7 +2705,7 @@ nav.navbar-fixed-top.mission-navbar .mission-rounded h6 {
 }
 
 nav.navbar-fixed-top.mission-navbar .mission-rounded span.uppercase {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -2694,7 +2730,7 @@ nav.navbar-fixed-top.mission-navbar .btn {
 }
 
 nav.navbar-fixed-top.mission-navbar h3 {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -2718,19 +2754,22 @@ nav.navbar-fixed-top.mission-navbar h3 {
 
 .mission-jumbotron {
     border-radius: 0 !important;
-    border-bottom: 10px solid rgba(245,245,245,0.5);
-    background-color: #f5f5f5;
     padding-top: 44px;
-    padding-bottom: 40px
+    padding-bottom: 40px;
+    height: 200px;
+    background-image: url('/img/missions-header-bg.jpg');
+    background-position: center center;
+    background-size: cover;
 }
 
 .mission-jumbotron .headline {
-    font-family: 'Swiss721-Condensed','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
+    font-size: 86px;
+    text-transform: uppercase;
     line-height: 1;
-    font-size: 80px;
-    color: #333;
+    color: #fff;
     text-align: center
 }
 
@@ -2744,10 +2783,14 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .mission-jumbotron .headline .upload-back-link {
-    margin-top: 30px;
+    margin-top: 36px;
     font-size: 40px;
     text-decoration: none;
-    color: #333
+    color: #fff
+}
+
+.mission-jumbotron .headline .mission-choose-title {
+    font-size: 76px;
 }
 
 .mission-jumbotron .headline .upload-back-link:hover {
@@ -2756,7 +2799,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .mission-jumbotron p {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -2804,7 +2847,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .mission-teaser .mission-ended .caption {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -2824,7 +2867,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .mission-teaser .mission-subtitle {
-    background-color: #f5f5f5;
+    background-color: #fff;
     padding: 20px
 }
 
@@ -2868,17 +2911,18 @@ nav.navbar-fixed-top.mission-navbar h3 {
 
 .mission-teaser .mission-subtitle ul.figures li h6 {
     float: left;
-    margin: 0;
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    margin: 0 0 0 5px;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
+    font-size: 18px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     color: #444
 }
 
 .mission-teaser .mission-subtitle ul.figures li h6 span.count {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -2895,21 +2939,19 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .mission-teaser .mission-subtitle .btn {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto',sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    font-size: 15px;
-    line-height: 2
+    font-size: 16px;
+    line-height: 24px;
+    padding: 7px 15px;
+    margin: 3px 0 0;
 }
 
 .jumbotron.mission-description-jumbotron {
-    -moz-box-shadow: 0 0 0 10px rgba(35,35,35,0.7);
-    -webkit-box-shadow: 0 0 0 10px rgba(35,35,35,0.7);
-    -khtml-box-shadow: 0 0 0 10px rgba(35,35,35,0.7);
-    -o-box-shadow: 0 0 0 10px rgba(35,35,35,0.7);
-    box-shadow: 0 0 0 10px rgba(35,35,35,0.7);
+    box-shadow: 0 0 0 10px rgba(160, 196, 34,0.7);
     border-radius: 10px;
     border-bottom: 0;
     background-color: #fff;
@@ -2923,7 +2965,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .jumbotron.mission-description-jumbotron p {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -2970,7 +3012,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .jumbotron.mission-description-jumbotron .mission-details .mission-value .value {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3008,7 +3050,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .jumbotron.mission-description-jumbotron .mission-details .mission-rounded h6 {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3022,7 +3064,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .jumbotron.mission-description-jumbotron .mission-details .mission-rounded span.uppercase {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3039,13 +3081,14 @@ nav.navbar-fixed-top.mission-navbar h3 {
 
 .user-panel {
     padding-top: 64px;
-    min-height: 635px;
+    min-height: 675px;
     position: relative;
     margin-bottom: 35px;
-    background-image: url(/img/default_user_background.jpg);
+    background-image: url(/img/default_user_background.png);
     background-position: center;
     background-size: cover;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 .user-panel .blurBg {
@@ -3082,10 +3125,10 @@ nav.navbar-fixed-top.mission-navbar h3 {
 
 .user-panel .avatar img {
     border-radius: 50%;
-    width: 280px;
-    height: 280px;
-    border: 35px solid rgba(0,0,0,0.5);
-    background-color: rgba(0,0,0,0.5);
+    width: 290px;
+    height: 290px;
+    border: 20px solid rgba(160,196,34,0.7);
+    box-shadow: 0 20px 32px rgba(0,1,1,0.75);
     -webkit-transform: translate3d(0,0,0)
 }
 
@@ -3100,7 +3143,8 @@ nav.navbar-fixed-top.mission-navbar h3 {
     color: white;
     text-align: center;
     padding: 13px 20px;
-    font-size: 26px
+    font-size: 26px;
+    border-radius: 5px;
 }
 
 .user-panel .profile-button:hover {
@@ -3134,8 +3178,9 @@ nav.navbar-fixed-top.mission-navbar h3 {
 .user-panel .username {
     margin: 30px auto 25px auto;
     text-align: center;
+    text-transform: uppercase;
     color: white;
-    font-size: 40px;
+    font-size: 66px;
     font-weight: bold;
     text-shadow: -2px 3px 4px rgba(50,50,50,0.2);
     position: relative
@@ -3146,11 +3191,22 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .user-panel .user-stats {
-    background-color: rgba(0,0,0,0.5);
+    background-color: #fff;
     position: absolute;
     bottom: 0;
     padding: 15px 0 10px 0;
     width: 100%
+}
+
+.user-panel .user-stats .menu-overline {
+    background-color: #ffffff;
+    opacity: 0.3;
+    bottom: 0;
+    height: 10px;
+    margin-top: -10px;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 .user-panel .user-stats .wrapper {
@@ -3172,9 +3228,9 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .user-panel .user-stats .wrapper .stat .stat-wrapper {
-    color: white;
+    color: #434343;
     display: block;
-    border-right: 1px solid white
+    border-right: 1px solid #d9d9d9
 }
 
 .user-panel .user-stats .wrapper .stat .stat-wrapper:hover {
@@ -3196,13 +3252,13 @@ nav.navbar-fixed-top.mission-navbar h3 {
     left: 5px;
     height: 5px;
     width: 140px;
-    background-color: red
+    background-color: #a0c422
 }
 
 .user-panel .user-stats .wrapper .stat .stat-count,.user-panel .user-stats .wrapper .stat .stat-label {
     display: block;
     line-height: 24px;
-    font-size: 24px
+    font-size: 18px
 }
 
 .user-panel .user-stats .wrapper .stat .stat-count {
@@ -3248,19 +3304,19 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .profile-edit legend {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     font-size: 18px;
-    color: #fff;
+    color: #4e4e4e;
     margin-bottom: 25px;
     border: 0
 }
 
 .profile-edit p {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3268,7 +3324,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
     font-size: 15px;
     line-height: 22px;
     margin-bottom: 17px;
-    color: #fff
+    color: #4e4e4e
 }
 
 .profile-edit input.form-control {
@@ -3290,7 +3346,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .profile-edit label {
-    color: #fff
+    color: #4e4e4e
 }
 
 .user-list .message {
@@ -3501,7 +3557,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .badge-detail {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3626,7 +3682,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 #about {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3639,7 +3695,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 #about h1 {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3674,23 +3730,26 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .license-switch {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     padding: 20px;
     border-radius: 0;
-    padding-top: 15px;
-    min-height: 180px;
-    background: #eee;
-    margin-bottom: 20px
+    min-height: 200px;
+    background-image: url('/img/upload-title-bg.png');
+    background-position: center center;
+    background-size: cover;
+    margin-bottom: 20px;
 }
 
 .license-switch p {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
     padding: 0;
-    font-size: 17px;
-    padding-bottom: 10px
+    font-size: 16px;
+    padding-bottom: 20px
 }
 
 .license-switch a {
@@ -3708,7 +3767,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 .license-switch .license-switch-options .rounded {
     padding: 20px;
     border-radius: 10px;
-    background-color: #e7e7e7;
+    background-color: #f5f5f5;
     color: #333;
     cursor: pointer;
     height: 100px;
@@ -3716,7 +3775,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .license-switch .license-switch-options .rounded.active {
-    background-color: #d00;
+    background-color: #a0c422;
     color: #fff
 }
 
@@ -3724,8 +3783,13 @@ nav.navbar-fixed-top.mission-navbar h3 {
     margin-right: 20px
 }
 
+.license-switch .license-switch-options .active.community.rounded img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .license-switch .license-switch-options .rounded h5 {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3741,22 +3805,23 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .upload-mission-details h1.mission-title {
-    font-family: 'Swiss721-Condensed','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed',sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
-    color: #fff;
-    margin-top: 0
+    color: #4e4e4e;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .upload-mission-details label {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     font-size: 18px;
-    color: #fff;
+    color: #4e4e4e;
     padding-top: 20px;
     padding-bottom: 14px
 }
@@ -3766,17 +3831,17 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .upload-header h1 {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    color: white;
+    color: #4e4e4e;
     margin-top: 10px
 }
 
 .upload-header h2 {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3784,19 +3849,29 @@ nav.navbar-fixed-top.mission-navbar h3 {
     font-size: 18px;
     color: white;
     padding-top: 20px;
+    color: #1a1a1a;
     padding-bottom: 14px
 }
 
 .upload-form-container .upload-photo-section {
-    background: #e2e2e2 url(/img/ic_upload_platzhalter_214x174.png) center 50px no-repeat
+    border-radius: 5px;
+    background: #fff url(/img/ic_upload_platzhalter_214x174.png) center center no-repeat
+}
+
+.upload-form-container .upload-photo-section h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 70px;
 }
 
 .upload-form-container .upload-photo-section .upload-preview-container {
     position: absolute;
     text-align: center;
     width: 100%;
-    height: 200px;
-    margin: 20px 0 0 -15px
+    height: 405px;
+    margin: 20px 0 0 -15px;
+    top: 64px;
 }
 
 .upload-form-container .upload-photo-section .upload-preview-container .preview-media-object {
@@ -3805,7 +3880,9 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .upload-form-container .upload-photo-section .upload-photo-container {
-    padding: 210px 20px 20px 20px
+    position: relative;
+    z-index: 1;
+    padding: 150px 20px 150px 20px
 }
 
 .upload-form-container .upload-photo-section .upload-photo-container .upload-photo-handle {
@@ -3814,17 +3891,14 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .upload-form-container .upload-photo-section .upload-photo-container .upload-photo-handle .file-select-button {
-    background: #333;
     color: #fff;
     z-index: 10;
     display: block;
-    width: 300px;
-    margin: 0 auto
-}
-
-.upload-form-container .upload-photo-section .upload-photo-container .upload-photo-handle .file-select-button:hover,.upload-form-container .upload-photo-section .upload-photo-container .upload-photo-handle .file-select-button:focus,.upload-form-container .upload-photo-section .upload-photo-container .upload-photo-handle .file-select-button:active,.upload-form-container .upload-photo-section .upload-photo-container .upload-photo-handle .file-select-button .active {
-    color: #fff;
-    background-color: #444
+    width: 370px;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .upload-form-container .upload-photo-section .upload-photo-container .upload-photo-handle .file-select-button input {
@@ -3844,7 +3918,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .upload-form-container .upload-photo-section .upload-photo-container p.description,.upload-form-container .upload-photo-section .upload-photo-container p.error {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3861,37 +3935,38 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .upload-form-container .upload-text-fields {
+    margin: 0 -15px;
     padding: 0 20px 20px 20px;
-    background-color: rgba(51,51,51,0.7)
 }
 
 .upload-form-container .upload-text-fields label {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    font-size: 18px;
-    color: #fff;
+    font-size: 16px;
+    color: #414141;
     padding-top: 16px;
     padding-bottom: 14px
 }
 
 .upload-form-container .upload-text-fields span.hint {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto',sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     font-style: italic;
-    color: #ddd;
-    font-size: 12px;
+    color: #414141;
+    font-size: 16px;
     margin-top: 20px;
+    display: inline-block;
     padding-bottom: 10px
 }
 
 .upload-form-container .upload-text-fields textarea.form-control {
-    font-family: 'HelveticaNeue-Light','Helvetica Neue Light','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3900,11 +3975,18 @@ nav.navbar-fixed-top.mission-navbar h3 {
     color: #666;
     line-height: 22px;
     border-radius: 10px;
+    border: 2px solid #a0c422;
     padding: 10px
 }
 
 .upload-form-container .upload-text-fields textarea.form-control:focus {
     color: #333
+}
+
+.upload-actions {
+    background: #ebebeb;
+    margin-bottom: -168px;
+    padding: 30px 0;
 }
 
 .upload-actions .terms-checkbox {
@@ -3923,7 +4005,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .upload-actions .terms-checkbox strong {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3933,7 +4015,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .upload-actions .terms-checkbox .photo_terms label {
-    font-family: 'HelveticaNeue','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -3946,13 +4028,49 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .upload-actions .btn {
-    margin-top: 30px;
     line-height: 1.5;
     font-size: 1.5em
 }
 
+.upload-actions h3 {
+    margin-top: 0;
+    font-weight: bold;
+}
+
+input[type=checkbox].css-checkbox {
+    position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label, input[type=checkbox].css-checkbox + label.css-label.clr {
+    padding-left:45px;
+    height:40px;
+    display:inline-block;
+    line-height:40px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    font-size:40px;
+    vertical-align:middle;
+    cursor:pointer;
+
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label,
+input[type=checkbox].css-checkbox + label.css-label.chk {
+    background-position: 0 -40px;
+}
+label.css-label {
+    background-image:url('/img/checkbox.png');
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 #teasers .menu-overline {
-    background-color: rgba(37,37,37,0.7);
+    background-color: #ffffff;
+    opacity: 0.3;
     position: relative;
     bottom: 0;
     height: 10px;
@@ -4022,7 +4140,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .big-teaser .carousel-inner .item .carousel-caption p {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -4039,7 +4157,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 .big-teaser .btn-lg,.big-teaser .btn-group-lg>.btn {
-    font-family: 'HelveticaNeue-Bold','Helvetica Neue Bold','HelveticaNeue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -4078,15 +4196,19 @@ nav.navbar-fixed-top.mission-navbar h3 {
 
 .big-teaser ol.carousel-indicators.light li {
     background-color: rgba(0,0,0,0.4);
-    border: none !important;
-    width: 16px !important;
-    height: 16px !important;
-    margin-right: 13px !important
+    width: 150px !important;
+    height: 100px !important;
+    margin-right: 13px !important;
+    border-radius: 3px !important;
+    background-position: center center;
+    background-size: cover;
+    border: 3px solid #fff;
+    margin: 1px;
 }
 
 .big-teaser ol.carousel-indicators.light li.active {
     background-color: white;
-    border: none !important
+    border: 3px solid #a0c422;
 }
 
 .big-teaser .carousel-caption.light h3 {
@@ -4165,6 +4287,15 @@ nav.navbar-fixed-top.mission-navbar h3 {
     left: 0;
     margin-left: 0
 }
+#teasers .carousel-control .icon-prev {
+    width: 63px;
+    background-image: url('/img/left.png');
+    background-position: 0 0 !important;
+    opacity: 0.8;
+}
+#teasers .carousel-control .icon-prev:hover {
+    opacity: 1;
+}
 
 #teasers .carousel-control .icon-next:before,.overlay .carousel-control .icon-next:before {
     content: none
@@ -4186,13 +4317,23 @@ nav.navbar-fixed-top.mission-navbar h3 {
     margin-right: 0;
 }
 
+#teasers .carousel-control .icon-next {
+    background-image: url('/img/right.png');
+    background-position: 0 0 !important;
+    width: 63px;
+    opacity: 0.8;
+}
+#teasers .carousel-control .icon-next:hover {
+    opacity: 1;
+}
+
 @media(min-width: 1200px) {
     .big-teaser .teaser-slide {
         min-height:300px
     }
 
     .big-teaser .carousel-caption {
-        bottom: 53px
+        bottom: 123px
     }
 
     .big-teaser .carousel-caption h3 {
@@ -4334,7 +4475,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 body {
     font-family: "Helvetica Neue",sans-serif;
     font-weight: normal;
-    background-color: #2e2e2e
+    background-color: #f5f5f5
 }
 
 body.noScroll {
@@ -4365,6 +4506,7 @@ body.noScroll {
 }
 
 .btn.btn-gray {
+    background: #f5f5f5;
     color: #333
 }
 
@@ -4396,7 +4538,7 @@ body.noScroll {
 }
 
 #content {
-    padding-top: 72px;
+    padding-top: 140px;
     padding-bottom: 168px
 }
 
@@ -4449,4 +4591,39 @@ body.noScroll {
 
 .margin-top {
     margin-top: 20px;
+}
+
+.btn-green {
+    background: #a0c422;
+    color: #fff;
+}
+
+.btn-green:hover {
+    color: #fff;
+}
+
+#login-dropdown-list .btn-green {
+    margin-top: 0;
+}
+
+#login-dropdown-list .btn-green + .dropdown-menu {
+    margin-top: 29px;
+    margin-right: 18px;
+}
+
+.carousel-indicators li {
+    text-indent: 0;
+}
+
+.categories-header {
+    background-image: url('/img/themes-header-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    height: 100px;
+    line-height: 100px;
+    margin: 0 0 30px;
+    font-size: 48px;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed', sans-serif;
 }

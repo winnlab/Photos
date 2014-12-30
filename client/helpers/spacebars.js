@@ -65,24 +65,25 @@ Template.registerHelper('avatar', function (_id, size, isBg) {
     if (typeof isBg === 'object') {
         isBg = null;
     }
+    Meteor.subscribe('avatar', { _id: _id });
     var avatar = _id && Avatars.findOne({ _id: _id }),
         options = size ? { store: size } : null;
-    return avatar ? avatar.url(options) : (isBg ? '/img/default_user_background.jpg' : '/img/generic-avatar_transparent.png');
+    return avatar ? avatar.url(options) : (isBg ? '/img/default_user_background.png' : '/img/generic-avatar_transparent.png');
 });
 
 Template.registerHelper('userAvatar', function (userId, color) {
     if (typeof color === 'object') {
         color = null;
     }
-    var user = Meteor.users.findOne({ _id: userId }),
-        avatar = user && user.avatar && user.avatar._id && Avatars.findOne({ _id: user.avatar._id });
+    Meteor.subscribe('avatar', { userId: userId });
+    var avatar = Avatars.findOne({ userId: userId });
     return avatar ? avatar.url() : color ? '/img/generic-avatar_white.png' : '/img/generic-avatar_transparent.png';
 });
 
 Template.registerHelper('getImage', function (_id, store) {
     var img = ShareFiles.findOne({ _id: _id }),
     options = store ? { store: store } : null;
-    return img ? img.url(options) : '/img/generic-avatar_transparent.png';
+    return img ? img.url(options) : '';
 });
 
 Template.registerHelper('Session', function (input) {
@@ -95,4 +96,18 @@ Template.registerHelper('log', function (name) {
 
 Template.registerHelper('$isChecked', function (a, b) {
     return a == b ? { checked: true } : null;
+});
+
+Template.registerHelper('shares', function () {
+    var sort = Session.get('sortBy');
+    if (sort == "latest" || !sort) {
+        return Share.find({}, { sort: { time: -1 } });
+    } else {
+        return Share.find({}, { sort: { likesQty: -1 } } );
+    }
+});
+
+Template.registerHelper('moreResults', function () {
+    var instance = Template.instance();
+    return !(Share.find().count() < instance.limit.get());
 });

@@ -6,7 +6,8 @@
                 {{#if $gt missions.length 1}}
                     <ol class="carousel-indicators light">
                         {{#each $mapped  missions}}
-                            <li class="{{#if $first}}active{{/if}}" data-target="{{$index}}"></li>
+                            <li class="{{#if $first}}active{{/if}}" data-target="{{$index}}" style="background-image: url(/uploads/missions/thumb_fill_768x264_{{bg.name}}_brand_logo_{{bg.time}}.jpg);">
+                            </li>
                         {{/each}}
                     </ol>
 

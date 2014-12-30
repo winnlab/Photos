@@ -3,14 +3,14 @@
         <div class="container">
             <div class="row headline">
                 <a class="pull-left upload-back-link {{#if $neq mode 'upload'}}hide{{/if}}" href="/photos/new">
-                    <img alt="Ic arrow zurueck 40x40" src="/img/ic_arrow_zurueck_40x40.png">zurück
+                    zurück
                 </a>
-                <img alt="Ic mission aufmacher 92x90" class="mission-headline" src="/img/ic_mission_aufmacher_92x90.png" />
+                <img alt="Bouunty" class="mission-headline" src="/img/bounty.png" />
                 {{#if $neq mode 'upload'}}
-                    <span ng-if="mode != 'upload'" class="ng-scope">Missionen</span>
+                    <span>12Aktionen</span>
                 {{/if}}
                 {{#if $eq mode 'upload'}}
-                    <span ng-if="mode == 'upload'" class="ng-scope">Bitte wähle eine Mission</span>
+                    <span class="mission-choose-title">Bitte wähle eine Aktionen</span>
                 {{/if}}
             </div>
         </div>

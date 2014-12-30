@@ -1,64 +1,60 @@
 <template name="photoUploadForm">
-    <div class="upload-header">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>Auswahl</h2>
-            </div>
-        </div>
-    </div>
     <form name="uploadForm" class="uploadForm">
-        <div class="upload-form-container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="upload-photo-section clearfix">
-                        {{#if $eq status 'uploaded'}}
-                            <h3 class='text-center'>Das Bild wurde hochgeladen</h3>
-                        {{/if}}
-                        <div class="upload-preview-container">
-                            <img class="preview-media-object">
-                            <video autoplay="" class="preview-media-object hide" controls=""></video>
-                        </div>
-                        <div class="upload-preview-container hide">
-                            <span class="preview-media-object" id="placeholder-text">File name: </span>
-                        </div>
-                        <div class="upload-photo-container">
-                            <div class="upload-photo-handle">
-                                <div class="btn btn-default btn-lg file-select-button">
-                                    <span id="placeholder-text">Video oder Bild auswählen</span>
-                                    <input class="btn btn-lg btn-inverse" id="file" name="file" type="file" accept="video/quicktime, video/mp4, image/jpg, image/jpeg">
-                                </div>
-                                <div class="upload-progress-bar hide">
-                                    <div class="progress active">
-                                        <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar">
-                                            <span class="sr-only">% Complete</span>
+        <div class="container">
+            <div class="upload-form-container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="upload-photo-section clearfix">
+                            <h2 class='text-center'>Auswahl</h2>
+                            {{#if $eq status 'uploaded'}}
+                                <h3 class='text-center'>Das Bild wurde hochgeladen</h3>
+                            {{/if}}
+                            <div class="upload-preview-container">
+                                <img class="preview-media-object">
+                                <video autoplay="" class="preview-media-object hide" controls=""></video>
+                            </div>
+                            <div class="upload-preview-container hide">
+                                <span class="preview-media-object" id="placeholder-text">File name: </span>
+                            </div>
+                            <div class="upload-photo-container">
+                                <div class="upload-photo-handle">
+                                    <div class="btn btn-green btn-lg file-select-button">
+                                        <span id="placeholder-text">Video oder Bild auswählen</span>
+                                        <input class="btn btn-lg btn-inverse" id="file" name="file" type="file" accept="video/quicktime, video/mp4, image/jpg, image/jpeg">
+                                    </div>
+                                    <div class="upload-progress-bar hide">
+                                        <div class="progress active">
+                                            <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar">
+                                                <span class="sr-only">% Complete</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <p class="description">
+                            <p class="description text-center">
                                 <span>Wähle ein Video (Länge max. 30 Sekunden) oder ein Foto (.jpg-Format oder .jpeg-Format) zum Hochladen aus</span>
                             </p>
-                            <p class="error"></p>
+                            <p class="error text-center"></p>
                         </div>
-                    </div>
-                    <div class="upload-text-fields">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <div class="input text optional photo_description">
-                                        <label class="text optional">Beschreibung*</label>
-                                        <textarea class="text optional form-control" name="description" rows="4"></textarea>
-                                        <div class="form-errors"></div>
+                        <div class="upload-text-fields">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="input text optional photo_description">
+                                            <label class="text optional">Beschreibung*</label>
+                                            <textarea class="text optional form-control" name="description" rows="4"></textarea>
+                                            <div class="form-errors"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <div class="input text optional photo_tag_list">
-                                        <label class="text optional">Schlagworte*</label>
-                                        <textarea class="text optional form-control" name="tags" rows="4"></textarea>
-                                        <span class="hint">mindestens 3 Tags angeben, z.B. sommer, hamburg, regen</span>
-                                        <div class="form-errors"></div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="input text optional photo_tag_list">
+                                            <label class="text optional">Schlagworte*</label>
+                                            <textarea class="text optional form-control" name="tags" rows="4"></textarea>
+                                            <span class="hint">mindestens 3 Tags angeben, z.B. sommer, hamburg, regen</span>
+                                            <div class="form-errors"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -67,30 +63,38 @@
                 </div>
             </div>
         </div>
+
         <div class="upload-actions">
-            <div class="row">
-                <div class="col-lg-8 col-xs-12">
-                    <label class="terms-checkbox hide">
-                        <div class="tick pull-left">
-                            <img alt="Ic checkbox tick 34x31" src="/img/ic_checkbox_tick_34x31.png">
-                        </div>
-                        <div class="pull-left">
-                            <strong class="ng-scope">Hinweis</strong>
-                            <div class="input boolean optional photo_terms">
-                                <input checked="checked" class="ng-hide" id="terms" name="terms" type="checkbox" value="1">
-                                <label class="boolean optional ng-binding" for="photo_terms"></label>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-xs-12">
+
+                        <div class="form-group">
+                            <div class="col-md-1">
+                                <input type="checkbox" name="agree" id="agree" class="css-checkbox">
+                                <label for="agree" class="css-label"></label>
+                            </div>
+                            <div class="col-md-7">
+                                <h3>
+                                    Hinweis
+                                </h3>
+                                <p>
+                                    Hiermit bestätige ich, dass ich das Foto oder Video selbst und alleine aufgenommen habe und übertrage 1414, der Axel Springer SE und der BILD GmbH & Co. KG. exklusiv alle Nutzungsrechte hieran gemäß den Allgemeinen Geschäftsbedingungen (AGB) von 1414.
+                                </p>
+                                <div class="form-errors"></div>
                             </div>
                         </div>
-                    </label>
-                </div>
-                <div class="col-lg-4 col-xs-12">
-                    <button type="submit" class="btn btn-lg btn-red start col-xs-12{{#if $eq status 'loading'}} disabled{{/if}}">
-                        {{#if $eq status 'loading'}}
-                            Laden...
-                        {{else}}
-                            Hochladen
-                        {{/if}}
-                    </button>
+
+                    </div>
+                    <div class="col-lg-4 col-xs-12">
+                        <button type="submit" class="btn btn-lg btn-green start col-xs-12{{#if $eq status 'loading'}} disabled{{/if}}">
+                            {{#if $eq status 'loading'}}
+                                Laden...
+                            {{else}}
+                                Hochladen
+                            {{/if}}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

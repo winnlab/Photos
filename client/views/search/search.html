@@ -1,0 +1,35 @@
+<template name="search">
+    <div id="search-bar" class="nav navbar navbar-fixed navbar-inverse">
+        <div class="container">
+            <div class="col-lg-12">
+
+                <ul id="search-tags" class="input-group input-group-lg">
+                    <li class="search-icon"></li>
+                    {{#each tags}}
+                        <li class="tag">
+                            {{.}}
+                        </li>
+                    {{/each}}
+
+                    <li class="input">
+                        <input class="tag-input" type="text" placeholder="Suchbegriff eingeben..." autofocus="">
+                    </li>
+                </ul>
+                {{#if suggested.count}}
+                    <ul id="search-query-suggest" class="suggest" style="{{adjustPosition}}">
+                        {{#each suggested}}
+                            <li class="addTag" data-name="{{name}}">
+                                {{name}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+
+            </div>
+        </div>
+    </div>
+    <div id="gallery-container" class="search-results">
+        {{> pix shares=shares}}
+        {{> moreResults isMore=moreResults}}
+    </div>
+</template>

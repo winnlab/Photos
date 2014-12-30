@@ -22,15 +22,14 @@ Meteor.methods({
     addShare: function (shareData, source) {
         var user = Meteor.user(),
             userId = user._id,
-            missionId = _.pick(shareData, 'missionId').missionId,
-            themeId = _.pick(shareData, 'themeId').themeId,
+            missionId = shareData.missionId,
+            themeId = shareData.themeId,
             data = _.extend(
-                _.pick(shareData, 'missionId', 'themeId', 'description', 'tags', 'type'), {
+                _.pick(shareData, 'missionId', 'themeId', 'description', 'tags', 'type', 'time'), {
                     source: _.pick(source, '_id', 'collectionName')
                 }, {
                     userId: userId,
                     username: user.username,
-                    time: Date.now(),
                     likes: [],
                     likesQty: 0,
                     edChoice: 0,
@@ -39,6 +38,8 @@ Meteor.methods({
                 }
             ),
             share = Share.insert(data);
+
+        Meteor.call('addTags', shareData.tags)
 
         shareCounting({
             userId: userId,
@@ -69,7 +70,7 @@ Meteor.methods({
 
     toggleLike: function (shareId) {
         var share = Share.findOne({ _id: shareId }, {
-                fields: { _id: 1 }
+                fields: { _id: 1, source: 1 }
             }),
             userId = Meteor.userId(),
             isLiked = Share.findOne({
@@ -88,12 +89,18 @@ Meteor.methods({
             Share.update({ _id: shareId }, {
                 $pull: { likes: userId },
                 $inc: { likesQty: -1 }
-            })
+            });
+            ShareFiles.update({ _id: share.source._id }, {
+                $inc: { likesQty: -1 }
+            });
         } else {
             Share.update({ _id: shareId }, {
                 $push: { likes: userId },
                 $inc: { likesQty: 1 }
-            })
+            });
+            ShareFiles.update({ _id: share.source._id }, {
+                $inc: { likesQty: 1 }
+            });
         }
     }
 });

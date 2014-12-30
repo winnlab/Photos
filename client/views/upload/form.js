@@ -2,8 +2,17 @@ Template.photoUploadForm.rendered = function () {
     $('.uploadForm').bootstrapValidator({
         message: 'Dieser Wert ist ungültig',
         trigger: null,
+        live: false,
         submitButtons: null,
         fields: {
+            agree: {
+                message: ' ',
+                validators: {
+                    notEmpty: {
+                        message: ' '
+                    }
+                }
+            },
             description: {
                 message: 'Bitte gib eine Beschreibung an',
                 validators: {
@@ -20,11 +29,23 @@ Template.photoUploadForm.rendered = function () {
             tags: {
                 message: 'Bitte gib mindestens drei Tags an',
                 validators: {
-                    notEmpty: {
-                        message: 'Bitte gib mindestens drei Tags an'
+                    stringLength: {
+                        max: 200,
+                        trim: true,
+                        message: 'Die Anzahl der Zeichen muss weniger als 200 sein'
                     },
-                    zipCode: {
-                        message: 'Der Wert ist nicht gültig Postleitzahl'
+                    callback: {
+                        message: 'Bitte gib mindestens drei Tags an',
+                        callback: function (value, validator, $field) {
+                            var valid = false,
+                                count = 0;
+                            _.each(value.split(','), function (tag) {
+                                if (tag.replace(' ', '').length) {
+                                    count += 1;
+                                }
+                            });
+                            return count >= 3;
+                        }
                     }
                 }
             }
@@ -45,7 +66,8 @@ var status = new ReactiveVar('waiting'),
         return _.extend(data, {
             missionId: (query && query.missionId) || null,
             themeId: (template.data && template.data.themeId) || null,
-            type: photoData.fileType
+            type: photoData.fileType,
+            time: Date.now()
         });
     },
     resetForm = function (form) {
@@ -89,20 +111,22 @@ Template.photoUploadForm.events({
         var $form = $(ev.target),
             file = $('#file')[0].files[0],
             userId = Meteor.userId(),
-            fileObj;
-
-        status.set('loading');
+            fileObj, formData;
 
         if (photoData.file && $form.data('bootstrapValidator').isValid()) {
+            status.set('loading');
+            formData = getFormData($form, template);
             fileObj = new FS.File(file);
             fileObj.userId = userId;
+            fileObj.likesQty = 0;
+            _.extend(fileObj, _.pick(formData, ['missionId', 'themeId', 'tags', 'time']));
 
             ShareFiles.insert(fileObj, function (err, shareFile) {
                 if (err) {
                     console.error(err);
                 }
                 Meteor.call('addShare',
-                    getFormData($form, template),
+                    formData,
                     _.pick(shareFile, '_id', 'collectionName'),
                     function (err) {
                         if (err) {

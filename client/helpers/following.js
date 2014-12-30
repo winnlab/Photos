@@ -9,3 +9,15 @@ Meteor.startup(function () {
         });
     });
 });
+
+findUsers = function (type) {
+    var instance = Template.instance();
+    return Meteor.users.find({
+        _id: { $in: instance[type] }
+    });
+}
+
+followSubscribe = function (instance, type) {
+    instance[type] = instance.data.userInfo[type] || [];
+    Meteor.subscribe('usersList', instance[type]);
+}

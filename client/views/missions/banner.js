@@ -6,7 +6,7 @@ Template.missionsBanner.events({
         $carousel.carousel($(ev.target).parent().data('slide'));
     },
     'click .carousel-indicators li': function (ev) {
-        $carousel.carousel(+ev.target.attributes['data-target'].value);
+        $carousel.carousel(+ev.currentTarget.attributes['data-target'].value);
     }
 });
 

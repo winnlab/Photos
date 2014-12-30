@@ -1,13 +1,13 @@
 <template name="addPhoto">
-    <div class="container">
-        <div class="license-switch">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>
-                        Wähle hier aus, wohin Dein Foto oder Video gesendet werden soll:
-                    </p>
-                </div>
+    <div class="license-switch">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="text-center">
+                    Wähle hier aus, wohin Dein Foto oder Video gesendet werden soll:
+                </p>
             </div>
+        </div>
+        <div class="container">
             <div class="license-switch-options">
                 <div class="row">
                     <div class="col-lg-4 col-xs-12">
@@ -29,7 +29,9 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="container">
         <div class="upload-mission-details{{#if $neq license 'mission'}} hide{{/if}}">
             <div class="row">
                 <div class="col-lg-12">
@@ -39,8 +41,6 @@
                 </div>
             </div>
         </div>
-
-        {{> photoUploadForm}}
-
     </div>
+    {{> photoUploadForm}}
 </template>

@@ -1,14 +1,14 @@
 <template name="themeItem">
-    <div class="container category category-detail">
+    <div class="category category-detail">
         <h2 class="main-header">
             <a href="{{pathFor 'themes'}}" class="back pull-left"></a>
             {{theme.name}}
             {{#if theme.displayUploadButton}}
-                <a href="{{pathFor 'themeUpload' link=theme.link}}" class="category-upload hidden-xs hidden-sm">
+                <a href="{{pathFor 'themeUpload' link=theme.link}}" class="pull-right category-upload-btn btn btn-green hidden-xs hidden-sm">
                     <span class="category-upload-plus">＋</span>
                     <span class="category-upload-label">Upload in Kategorie</span>
                 </a>
-                <a href="{{pathFor 'themeUpload' link=theme.link}}" class="category-upload mobile visible-xs visible-sm">
+                <a href="{{pathFor 'themeUpload' link=theme.link}}" class="pull-right category-upload-btn btn btn-green mobile visible-xs visible-sm">
                     <span class="category-upload-plus">＋</span>
                     <span class="category-upload-label">Upload in <span>{{name}}</span></span>
                 </a>
@@ -16,5 +16,6 @@
         </h2>
 
     </div>
-    {{> pix shares=shares displayFilters=theme.displayFilters}}        
+    {{> pix shares=shares displayFilters=theme.displayFilters}}
+    {{> moreResults isMore=moreResults}}
 </template>

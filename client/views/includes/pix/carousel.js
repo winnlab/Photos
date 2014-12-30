@@ -1,6 +1,7 @@
 var $carousel,
     imgWrapperHeight = new ReactiveVar(),
     photoAction = new ReactiveVar(),
+    conversionClosed = new ReactiveVar(false),
     imgSize = function () {
         var footer = $(".slide-container-footer:visible"),
             footerHeight = footer.length ? footer.outerHeight() : 0,
@@ -16,17 +17,14 @@ Template.carousel.helpers({
         return moment(time).fromNow();
     },
     manySlides: function () {
-        return true;
+        return !!(Template.instance().data.shares.count() > 1);
     },
     isLiked: function (likes) {
         return likes.indexOf(Meteor.userId()) !== -1;
     },
     // Variables
-    deleteSuccessMessage: function () {
-
-    },
-    deleteErrorMessage: function () {
-
+    conversionClosed: function () {
+        return conversionClosed.get();
     },
     flagSuccessMessage: function () {
         return false;
@@ -36,16 +34,13 @@ Template.carousel.helpers({
         return {
             style: 'height: ' + wrapperHeight + 'px; line-height:' + wrapperHeight + 'px;'
         }
-    },
-    activeSlides: function () {
-        console.log(arguments);
-        return [];
     }
 })
 
 Template.carousel.events({
 
     'click .close': function (ev, template) {
+        setShareId(null);
         template.data.active.set(false);
     },
 
@@ -90,6 +85,7 @@ Template.carousel.events({
 
     'click .conversion-banner-close': function (ev) {
         ev.preventDefault();
+        conversionClosed.set(true);
     },
 
     'click .to-register-button': function (ev) {
@@ -129,10 +125,14 @@ Template.carousel.events({
 });
 
 Template.carousel.rendered = function () {
-    imgSize();
     photoAction.set(null);
     $carousel = $('#photoCarousel');
     $carousel.carousel({ interval: false });
+    $carousel.on('slide.bs.carousel', function (e) {
+        var id = e.relatedTarget.attributes['data-id'].value;
+        setShareId(id);
+    });
+    imgSize();
 }
 
 Template.carousel.created = function() {
@@ -143,4 +143,5 @@ Template.carousel.created = function() {
 Template.carousel.destroyed = function() {
     $('body').removeClass('noScroll');
     $(window).off('resize');
+    $carousel.off('slide.bs.carousel');
 };

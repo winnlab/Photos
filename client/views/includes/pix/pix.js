@@ -43,13 +43,15 @@ Template.pix.events({
         Session.set('sortBy', e.target.attributes['data-sort'].value);
     },
     'click .showShare': function (ev) {
-        active.set(ev.currentTarget.attributes['data-id'].value);
+        var shareId = ev.currentTarget.attributes['data-id'].value;
+        setShareId(shareId);
+        active.set(shareId);
     }
 });
 
 Template.pix.rendered = function () {
     getColumns();
-    active.set(false);
+    active.set(Router.current().params.shareId);
     if (!Session.get('sortBy')) {
         Session.set('sortBy', 'latest');
     }

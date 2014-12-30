@@ -4,7 +4,7 @@
             <a class="close"></a>
 
             <div class="photo-carousel">
-                {{#unless currentUser}}
+                {{#unless $or currentUser conversionClosed}}
                     <div>
                         <div id="conversion-banner" class="container hidden-xs hidden-sm">
                             <div class="row">

@@ -42,13 +42,15 @@
                     </div>
                     <div class="pull-right text-right">
                         {{#if $eq mode 'upload'}}
-                            <a class="select-link" href="{{addMissionPhoto ../_id}}">
-                                <button class="btn btn-red">Mission auswählen</button>
-                            </a>
+                            {{#unless ../ended}}
+                                <a class="select-link" href="{{addMissionPhoto ../_id}}">
+                                    <div class="btn btn-green">Aktionen auswählen</div>
+                                </a>
+                            {{/unless}}
                         {{/if}}
                         {{#if $neq mode 'upload'}}
                             <a class="select-link" href="{{pathFor 'missionItem'  _id=../_id}}">
-                                <button class="btn {{#if ../ended}}btn-gray{{else}}btn-red{{/if}}">Zur Mission</button>
+                                <div class="btn {{#if ../ended}}btn-gray{{else}}btn-green{{/if}}">Zur Aktionen</div>
                             </a>
                         {{/if}}
                     </div>
