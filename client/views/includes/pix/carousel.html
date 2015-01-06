@@ -125,20 +125,9 @@
                                         </div>
 
                                         <div class="photo-overlay share-screen {{#if $neq photoAction 'share'}}hide{{/if}}">
-                                            <ul class="photo-share-bar">
-                                                <li>
-                                                    <a class="openSharer" data-product="facebook" href=""><img src="/img/ic_facebook_aktiv_40x40.png"></a>
-                                                </li>
-                                                <li>
-                                                    <a class="openSharer" data-product="twitter" href=""><img src="/img/ic_twitter_aktiv_40x40.png"></a>
-                                                </li>
-                                                <li>
-                                                    <a class="openSharer" data-product="googleplus" href=""><img src="/img/ic_google_aktiv_40x40.png"></a>
-                                                </li>
-                                                <li>
-                                                    <a class="openSharer" data-product="link" href=""><img src="/img/ic_link_aktiv_40x40.png"></a>
-                                                </li>
-                                            </ul>
+                                            <div class="photo-share-bar">
+                                                {{>shareit shareData}}
+                                            </div>
                                         </div>
 
                                         <div class="photo-overlay delete-screen {{#if $neq photoAction 'delete'}}hide{{/if}}">

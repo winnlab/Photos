@@ -42,13 +42,6 @@ Template.categories.created = function () {
     });
 }
 
-Template.categories.rendered = function () {
-    var instance = this;
-    $(window).on('scroll', function () {
-        showMoreVisible(instance);
-    });
-}
-
 Template.categories.destroyed = function () {
     $(window).off('scroll');
 }

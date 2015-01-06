@@ -34,6 +34,21 @@ Template.carousel.helpers({
         return {
             style: 'height: ' + wrapperHeight + 'px; line-height:' + wrapperHeight + 'px;'
         }
+    },
+    shareData: function() {
+        var img = ShareFiles.findOne({ _id: this.source._id }),
+            url = function () {
+                return img.url({ store: 'shares' });
+            };
+        return img ? {
+            title: this.description,
+            author: this.username,
+            excerpt: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
+            description: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
+            summary: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
+            thumbnail: url,
+            image: url
+        } : {};
     }
 })
 
@@ -62,11 +77,12 @@ Template.carousel.events({
         photoAction.set(action !== currentAction ? action : null);
     },
 
-    'click .openSharer': function(ev) {
+    'click .openSharer': function(ev, template) {
         ev.preventDefault();
-        var product = $(ev.currentTarget).data('product'),
-            url = Router.current().originalUrl,
-            $window = window;
+        var $el = $(ev.currentTarget),
+            product = $el.data('product'),
+            $window = window,
+            url = $window.location.origin + '/share/' + $el.parents('.item').data('id');
 
         switch (product) {
             case "link":
@@ -125,6 +141,7 @@ Template.carousel.events({
 });
 
 Template.carousel.rendered = function () {
+    var instance = this;
     photoAction.set(null);
     $carousel = $('#photoCarousel');
     $carousel.carousel({ interval: false });

@@ -1,6 +1,20 @@
 setupPagination = function (instance) {
     instance.limit = new ReactiveVar(SHARES_LIMIT);
+    $(window).on('scroll', function () {
+        showMoreVisible(instance);
+    });
     return instance;
+}
+
+simplePagination = function (instance, query) {
+    instance.autorun(function () {
+        var options = {
+                limit: instance.limit.get(),
+                sort: { time: -1 }
+            };
+        Meteor.subscribe('share', query, options);
+        Meteor.subscribe('shareSource', query, options);
+    });
 }
 
 showMoreVisible = function (instance) {

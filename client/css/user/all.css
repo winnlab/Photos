@@ -1874,7 +1874,7 @@
     margin-right: 0
 }
 
-.overlay .carousel-slide-content .share-screen ul {
+.overlay .carousel-slide-content .share-screen .photo-share-bar {
     position: relative;
     top: 70px;
     list-style: none;
@@ -1894,13 +1894,24 @@
     margin-right: 0
 }
 
-.overlay .carousel-slide-content .share-screen ul li a {
-    cursor: pointer
-}
-
-.overlay .carousel-slide-content .share-screen ul li a img {
+.overlay .carousel-slide-content .share-screen a {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 10px;
     width: 40px;
     height: 40px
+}
+
+.overlay .carousel-slide-content .share-screen .fb-share {
+    background-image: url('/img/ic_facebook_aktiv_40x40.png');
+}
+
+.overlay .carousel-slide-content .share-screen .tw-share {
+    background-image: url('/img/ic_twitter_aktiv_40x40.png');
+}
+
+.overlay .carousel-slide-content .share-screen .google-share {
+    background-image: url('/img/ic_google_aktiv_40x40.png');
 }
 
 .overlay .carousel-slide-content .share-screen ul li a:hover img {

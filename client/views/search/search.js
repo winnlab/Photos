@@ -129,10 +129,6 @@ Template.search.created = function () {
         }
         subscription.ready();
     });
-
-    $(window).on('scroll', function () {
-        showMoreVisible(instance);
-    });
 }
 
 Template.search.rendered = function () {
