@@ -5,7 +5,7 @@ var goToSearch = function (value) {
         }
         return result;
     }, '');
-    Router.go('searchWithParam', { search: encodeURI(search) });
+    Router.go('search', { search: encodeURI(search) });
 }
 
 Template.header.events({

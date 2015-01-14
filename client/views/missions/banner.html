@@ -6,7 +6,7 @@
                 {{#if $gt missions.length 1}}
                     <ol class="carousel-indicators light">
                         {{#each $mapped  missions}}
-                            <li class="{{#if $first}}active{{/if}}" data-target="{{$index}}" style="background-image: url(/uploads/missions/thumb_fill_768x264_{{bg.name}}_brand_logo_{{bg.time}}.jpg);">
+                            <li class="{{#if $first}}active{{/if}}" data-target="{{$index}}" style="background-image: url({{responsiveImg teaser true}});">
                             </li>
                         {{/each}}
                     </ol>
@@ -25,7 +25,7 @@
                         <div class="item{{#if $first}} active{{/if}}">
                             <div class="teaser-slide">
                                 <a href="{{pathFor 'missionItem'}}">
-                                    <img alt="" class="teaser-image" bh-src-responsive="[['(max-width: 767px)', teaser.graphics.thumb_fill_768x264], ['(min-width: 768px) and (max-width: 991px)', teaser.graphics.thumb_fill_992x341], ['(min-width: 992px) and (max-width: 1199px)', teaser.graphics.thumb_fill_1200x413], ['(min-width: 1200px)', teaser.graphics.thumb_fill_1680x578]]" src="/uploads/missions/thumb_fill_1680x578_{{bg.name}}_brand_logo_{{bg.time}}.jpg">
+                                    <img alt="{{name}}" class="teaser-image" src="{{responsiveImg teaser}}" />
                                     <div class="carousel-caption light">
                                         <h3 class="ng-binding">{{name}}</h3>
                                         <p class="ng-binding"></p>

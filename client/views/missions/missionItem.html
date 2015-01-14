@@ -42,10 +42,10 @@
     <div class="big-mission-teaser big-teaser">
         <div class="carousel-inner">
             <div class="item active">
-                <img alt="{{mission.name}}" class="teaser-image visible-lg" src="/uploads/missions/thumb_fill_1680x578_{{mission.bg.name}}_brand_logo_{{mission.bg.time}}.jpg" />
-                <img alt="{{mission.name}}" class="teaser-image visible-md" src="/uploads/missions/thumb_fill_1200x413_{{mission.bg.name}}_brand_logo_{{mission.bg.time}}.jpg" />
-                <img alt="{{mission.name}}" class="teaser-image visible-sm" src="/uploads/missions/thumb_fill_992x341_{{mission.bg.name}}_brand_logo_{{mission.bg.time}}.jpg" />
-                <img alt="{{mission.name}}" class="teaser-image visible-xs" src="/uploads/missions/thumb_fill_768x264_{{mission.bg.name}}_brand_logo_{{mission.bg.time}}.jpg" />
+                <img alt="{{mission.name}}" class="teaser-image visible-lg" src="{{getImage 'MissionTeaser' mission.teaser 'mission-teaser-1680'}}" />
+                <img alt="{{mission.name}}" class="teaser-image visible-md" src="{{getImage 'MissionTeaser' mission.teaser 'mission-teaser-1200'}}" />
+                <img alt="{{mission.name}}" class="teaser-image visible-sm" src="{{getImage 'MissionTeaser' mission.teaser 'mission-teaser-992'}}" />
+                <img alt="{{mission.name}}" class="teaser-image visible-xs" src="{{getImage 'MissionTeaser' mission.teaser 'mission-teaser-768'}}" />
                 <div class="carousel-caption visible-lg light">
                     <h3>{{mission.name}}</h3>
                     {{#if mission.active}}
@@ -140,7 +140,7 @@
                             {{#if mission.sponsor}}
                                 <div class="logo">
                                     <a href="{{mission.sponsor.link}}" target="_blank">
-                                        <img alt="{{mission.sponsor.name}}" src="/uploads/missions/sponsor_icon/{{mission.sponsor.icon}}" />
+                                        <img alt="{{mission.sponsor.name}}" src="{{getImage 'MissionSponsor' mission.sponsor 'mission-sponsor'}}" />
                                     </a>
                                 </div>
                             {{/if}}

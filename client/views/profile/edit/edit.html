@@ -2,29 +2,30 @@
     {{> profilePanel}}
 
     <div class="container profile-edit">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3 top-margin">
-                <div class="row border-bottom">
-                    <div class="col-lg-6">
-                        <div class="btn btn-default pull-left togglePwd">
-                            {{#unless Session 'pwd'}}
-                                Zum MyPass-Profil
-                            {{else}}
-                                Verbergen MyPass-Profil
-                            {{/unless}}
+        {{!--
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 top-margin">
+                    <div class="row border-bottom">
+                        <div class="col-lg-6">
+                            <div class="btn btn-default pull-left togglePwd">
+                                {{#unless Session 'pwd'}}
+                                    Zum MyPass-Profil
+                                {{else}}
+                                    Verbergen MyPass-Profil
+                                {{/unless}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <a class="btn btn-default btn-red pull-right logOut" >Logout</a>
+                        <div class="col-lg-6">
+                            <a class="btn btn-default btn-red pull-right logOut" >Logout</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        {{#if Session 'pwd'}}
-            {{> passwordForm}}
-        {{/if}}
-
+            {{#if Session 'pwd'}}
+                {{> passwordForm}}
+            {{/if}}
+        --}}
         <div class="row top-margin">
             <div class="col-lg-6 col-lg-offset-3 border-bottom">
                 <form name="avatarForm" class="avatarForm">

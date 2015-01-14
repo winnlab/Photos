@@ -1,29 +1,59 @@
-Meteor.publish('missionsBanner', function () {
-    return Missions.find({}, {
-        limit: 6,
-        sort: {
-            to: -1
-        },
-        fields: {
-            _id: 1,
-            name: 1,
-            bg: 1
+Meteor.publishComposite('missionsBanner', {
+    find: function () {
+        // Find last six missions
+        return Missions.find({}, {
+            limit: 6,
+            sort: { to: -1 },
+            fields: { _id: 1, name: 1, teaser: 1 }
+        });
+    },
+    children: [{
+        find: function (mission) {
+            return MissionTeaser.find({ _id: mission.teaser }, {
+                limit: 1,
+                fields: { original: 0, uploadedAt: 0 }
+            });
         }
-    });
+    }]
 });
 
 Meteor.publish('missionsList', function () {
     return Missions.find({}, {
-        description: 0
+        fields: { description: 0 }
     });
+});
+
+Meteor.publish('missionsListImg', function () {
+    return MissionBrand.find({}, {
+        fields: { original: 0, uploadedAt: 0 }
+    })
 });
 
 Meteor.publish('about', function () {
     return About.find({});
 });
 
-Meteor.publish('missionItem', function (missionId) {
-    return Missions.find({ _id: missionId });
+Meteor.publishComposite('missionItem', function (missionId) {
+    return {
+        find: function() {
+            return Missions.find({ _id: missionId });
+        },
+        children: [{
+            find: function (mission) {
+                return MissionTeaser.find({ _id: mission.teaser }, {
+                    limit: 1,
+                    fields: { original: 0, uploadedAt: 0 }
+                });
+            }
+        }, {
+            find: function (mission) {
+                return MissionSponsor.find({ _id: mission.sponsor }, {
+                    limit: 1,
+                    fields: { original: 0, uploadedAt: 0 }
+                });
+            }
+        }]
+    }
 });
 
 Meteor.publish('missionName', function () {
@@ -106,7 +136,11 @@ Meteor.publish('themes', function (query) {
             link: String
         });
     }
-    return Themes.find(query || {});
+    var publish = [Themes.find(query || {}, { sort: { position: -1 }, })]
+    if (!query) {
+        publish.push(ThemeBg.find());
+    }
+    return publish;
 })
 
 Meteor.publish('tags', function (name, exist) {

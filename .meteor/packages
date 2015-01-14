@@ -22,3 +22,10 @@ reactive-var
 momentjs:moment
 rzymek:moment-locale-de
 joshowens:shareit
+meteorhacks:kadira
+yogiben:admin
+accounts-base
+fortawesome:fontawesome
+aldeed:simple-schema
+yogiben:autoform-file
+reywood:publish-composite
