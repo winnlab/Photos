@@ -1,3 +1,4 @@
+'use strict';
 Template.registerHelper('activeRouteClass', function () {
     var args = Array.prototype.slice.call(arguments, 0),
     routeName = Router.current().route.getName();
@@ -9,15 +10,15 @@ Template.registerHelper('activeRouteClass', function () {
     });
 
     return active && 'active';
-})
+});
 
 Template.registerHelper('addMissionPhoto', function (id) {
-    return Router.routes['addPhoto'].path({}, {
+    return Router.routes.addPhoto.path({}, {
         query: {
             missionId: id
         }
     });
-})
+});
 
 Template.registerHelper('timeLeft', function (to, type) {
     var diff = (to - Date.now()) / (3600 * 1000),
@@ -43,7 +44,7 @@ Template.registerHelper('timeLeft', function (to, type) {
             break;
     }
 
-    return type == 'number' ? number : (type == 'period' ? period : number + period);
+    return type === 'number' ? number : (type === 'period' ? period : number + period);
 });
 
 Template.registerHelper('$even', function (a) {
@@ -55,7 +56,7 @@ Template.registerHelper('$odd', function (a) {
 });
 
 Template.registerHelper('isFirefox', function () {
-    return navigator.userAgent.indexOf("Firefox") > -1;
+    return navigator.userAgent.indexOf('Firefox') > -1;
 });
 
 Template.registerHelper('avatar', function (_id, size, isBg) {
@@ -67,8 +68,14 @@ Template.registerHelper('avatar', function (_id, size, isBg) {
     }
     Meteor.subscribe('avatar', { _id: _id });
     var avatar = _id && Avatars.findOne({ _id: _id }),
-        options = size ? { store: size } : null;
-    return avatar ? avatar.url(options) : (isBg ? '/img/default_user_background.png' : '/img/generic-avatar_transparent.png');
+        options = size ? { store: size } : null,
+        result = '';
+    if (avatar) {
+        result = avatar.url(options);
+    } else {
+        result = '/img/' + (isBg ? 'default_user_background.png' : 'generic-avatar_transparent.png');
+    }
+    return result;
 });
 
 Template.registerHelper('userAvatar', function (userId, color) {
@@ -98,12 +105,12 @@ Template.registerHelper('log', function (name) {
 });
 
 Template.registerHelper('$isChecked', function (a, b) {
-    return a == b ? { checked: true } : null;
+    return a === b ? { checked: true } : null;
 });
 
 Template.registerHelper('shares', function () {
     var sort = Session.get('sortBy');
-    if (sort == "latest" || !sort) {
+    if (sort === 'latest' || !sort) {
         return Share.find({}, { sort: { time: -1 } });
     } else {
         return Share.find({}, { sort: { likesQty: -1 } } );
@@ -113,4 +120,8 @@ Template.registerHelper('shares', function () {
 Template.registerHelper('moreResults', function () {
     var instance = Template.instance();
     return !(Share.find().count() < instance.limit.get());
+});
+
+Template.registerHelper('isMobileDevice', function () {
+    return Meteor.Device.isPhone() || Meteor.Device.isTablet();
 });

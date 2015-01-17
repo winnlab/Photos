@@ -1,3 +1,5 @@
+'use strict';
+
 var goToSearch = function (value) {
     var search = _.reduce(_.unique(value.split(' ')), function (result, item, index, all) {
         if (item) {
@@ -6,7 +8,7 @@ var goToSearch = function (value) {
         return result;
     }, '');
     Router.go('search', { search: encodeURI(search) });
-}
+};
 
 Template.header.events({
     'click .logout': function (ev) {
@@ -17,7 +19,7 @@ Template.header.events({
         Router.go('addPhoto');
     },
     'keyup #search-field': function (ev) {
-        if (ev.keyCode == 13) {
+        if (ev.keyCode === 13) {
             return goToSearch(ev.target.value);
         }
     },

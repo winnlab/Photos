@@ -4,18 +4,18 @@
             <div class="carousel slide">
 
                 {{#if $gt missions.length 1}}
-                    <ol class="carousel-indicators light">
+                    <ol class="carousel-indicators light hidden-sm hidden-xs">
                         {{#each $mapped  missions}}
                             <li class="{{#if $first}}active{{/if}}" data-target="{{$index}}" style="background-image: url({{responsiveImg teaser true}});">
                             </li>
                         {{/each}}
                     </ol>
 
-                    <a class="left carousel-control" role="button" data-slide="prev">
+                    <a class="left carousel-control hidden-sm hidden-xs" role="button" data-slide="prev">
                         <span class="icon-prev sprite-pfeil_links_mouseover_80x90"></span>
                     </a>
 
-                    <a class="right carousel-control" role="button" data-slide="next">
+                    <a class="right carousel-control hidden-sm hidden-xs" role="button" data-slide="next">
                         <span class="icon-next sprite-pfeil_rechts_mouseover_80x90"></span>
                     </a>
                 {{/if}}

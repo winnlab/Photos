@@ -1,3 +1,4 @@
+'use strict';
 Template.photoUploadForm.rendered = function () {
     $('.uploadForm').bootstrapValidator({
         message: 'Dieser Wert ist ungültig',
@@ -36,9 +37,8 @@ Template.photoUploadForm.rendered = function () {
                     },
                     callback: {
                         message: 'Bitte gib mindestens drei Tags an',
-                        callback: function (value, validator, $field) {
-                            var valid = false,
-                                count = 0;
+                        callback: function (value) {
+                            var count = 0;
                             _.each(value.split(','), function (tag) {
                                 if (tag.replace(' ', '').length) {
                                     count += 1;
@@ -50,8 +50,8 @@ Template.photoUploadForm.rendered = function () {
                 }
             }
         }
-    }).on('success.form.bv', function (ev) { ev.preventDefault() });
-}
+    }).on('success.form.bv', function (ev) { ev.preventDefault(); });
+};
 
 var status = new ReactiveVar('waiting'),
     photoData = {},
@@ -80,7 +80,7 @@ Template.photoUploadForm.helpers({
     status: function () {
         return status.get();
     }
-})
+});
 
 Template.photoUploadForm.events({
     'change #file': function (ev) {
@@ -95,12 +95,12 @@ Template.photoUploadForm.events({
 
         status.set('waiting');
 
-        reader.onload = (function(e) {
+        reader.onload = function (e) {
             if (file.type.indexOf('image') !== -1) {
                 $('img.preview-media-object').attr('src', e.target.result);
                 photoData.fileType = 'img';
             }
-        });
+        };
 
         // Read in the image file as a data URL.
         reader.readAsDataURL(file);

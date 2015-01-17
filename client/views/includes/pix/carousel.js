@@ -1,13 +1,15 @@
+'use strict';
+
 var $carousel,
     imgWrapperHeight = new ReactiveVar(),
     photoAction = new ReactiveVar(),
     conversionClosed = new ReactiveVar(false),
     imgSize = function () {
-        var footer = $(".slide-container-footer:visible"),
+        var footer = $('.slide-container-footer:visible'),
             footerHeight = footer.length ? footer.outerHeight() : 0,
             wrapperHeight = $(window).height() - footerHeight;
-        return imgWrapperHeight.set(wrapperHeight)
-    }
+        return imgWrapperHeight.set(wrapperHeight);
+    };
 
 Template.carousel.helpers({
     photoAction: function () {
@@ -33,7 +35,7 @@ Template.carousel.helpers({
         var wrapperHeight = imgWrapperHeight.get() || 0;
         return {
             style: 'height: ' + wrapperHeight + 'px; line-height:' + wrapperHeight + 'px;'
-        }
+        };
     },
     shareData: function() {
         var img = ShareFiles.findOne({ _id: this.source._id }),
@@ -50,7 +52,7 @@ Template.carousel.helpers({
             image: url
         } : {};
     }
-})
+});
 
 Template.carousel.events({
 
@@ -75,28 +77,6 @@ Template.carousel.events({
         var currentAction = photoAction.get(),
             action = ev.currentTarget.attributes['data-action'].value;
         photoAction.set(action !== currentAction ? action : null);
-    },
-
-    'click .openSharer': function(ev, template) {
-        ev.preventDefault();
-        var $el = $(ev.currentTarget),
-            product = $el.data('product'),
-            $window = window,
-            url = $window.location.origin + '/share/' + $el.parents('.item').data('id');
-
-        switch (product) {
-            case "link":
-                $window.prompt("Zum Kopieren: Ctrl+C drücken (CMD+C auf dem Mac)", url);
-                break;
-            case "facebook":
-                $window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url), "facebook-share-dialog", "width=626,height=436");
-                break;
-            case "twitter":
-                $window.open("https://twitter.com/share?url=" + encodeURIComponent(url), "twitter-share-dialog", "width=626,height=436");
-                break;
-            case "googleplus":
-                $window.open("https://plus.google.com/share?url=" + encodeURIComponent(url), "googleplus-share-dialog", "width=626,height=436");
-        }
     },
 
     'click .conversion-banner-close': function (ev) {
@@ -128,20 +108,11 @@ Template.carousel.events({
     'click .cancel-delete-btn': function (ev) {
         ev.preventDefault();
         photoAction.set(null);
-    },
-
-    /**
-    * Flagging
-    */
-
-    'click .flagging-reason': function (ev) {
-        var reason = $(ev.target).data('reason');
     }
 
 });
 
 Template.carousel.rendered = function () {
-    var instance = this;
     photoAction.set(null);
     $carousel = $('#photoCarousel');
     $carousel.carousel({ interval: false });
@@ -149,8 +120,8 @@ Template.carousel.rendered = function () {
         var id = e.relatedTarget.attributes['data-id'].value;
         setShareId(id);
     });
-    imgSize();
-}
+    Meteor.defer(imgSize);
+};
 
 Template.carousel.created = function() {
     $(window).on('resize', imgSize);

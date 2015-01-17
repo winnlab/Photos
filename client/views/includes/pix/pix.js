@@ -1,18 +1,16 @@
+'use strict';
 var columns = new ReactiveVar([]),
     active = new ReactiveVar(),
     getColumns = function () {
         var winWidth = $(window).width(),
             arr = [],
             qty;
-
-        if (winWidth < 768) {
-            qty = 1
-        } else if (winWidth < 992) {
-            qty = 2
+        if (winWidth < 992) {
+            qty = 2;
         } else if (winWidth < 1200) {
-            qty = 3
+            qty = 3;
         } else {
-            qty = 4
+            qty = 4;
         }
 
         for (var i = 0; i < qty; i += 1) {
@@ -25,9 +23,12 @@ Template.pix.helpers({
     columns: function () {
         return columns.get();
     },
+    columnsQty: function () {
+        return columns.get().length;
+    },
     inColumn: function (i, j) {
         var columnsQty = columns.get().length;
-        return (i + (columnsQty - j)) % columnsQty == 0;
+        return (i + (columnsQty - j)) % columnsQty === 0;
     },
     show: function () {
         return active.get();
@@ -55,7 +56,7 @@ Template.pix.rendered = function () {
     if (!Session.get('sortBy')) {
         Session.set('sortBy', 'latest');
     }
-}
+};
 
 Template.pix.created = function() {
     $(window).on('resize', getColumns);

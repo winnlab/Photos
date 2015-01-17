@@ -1,0 +1,96 @@
+<template name="headerDesktop">
+    <header>
+        <nav class="navbar navbar-main navbar-fixed-top ff-nav">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{pathFor 'home'}}">
+                    <img alt="12Selfie" src="/img/logo.png">
+                </a>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {{#if currentUser}}
+                        <li class="user">
+                            <div class="pull-left">
+                                <div class="user-avatar">
+                                    <a href="/users/{{currentUser.username}}">
+                                        <img class="avatar-image" src="{{avatar currentUser.avatar._id}}" width="50" height="50">
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    {{else}}
+                        {{> loginButtons}}
+                    {{/if}}
+                    {{#if currentUser}}
+                        <li class="dropdown info">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu info-menu" role="menu">
+                                <li>
+                                    <a href="/users/{{currentUser.username}}" ><strong>Profil anzeigen</strong></a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a class="logout" href="/auth/logout">Logout</a></li>
+                            </ul>
+                        </li>
+                    {{/if}}
+                    {{#if currentUser}}
+                        <li class="navbar-brand">
+                            <div class="btn btn-green upload">+ Upload</div>
+                        </li>
+                    {{/if}}
+                </ul>
+
+                <div class="text-center header-text">
+                    Sei, wie du bist. Zeig, wie du bist. Die <a href="{{pathFor 'home'}}">coole</a> Foto-Community
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-fixed-top ff-nav sub-navbar">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+
+                    <ul class="nav navbar-nav">
+                        <li class="photos">
+                            <a href="{{pathFor 'home'}}" class="{{activeRouteClass 'home' 'categories'}}">
+                                <i class="glyphicon glyphicon-home"></i>
+                            </a>
+                        </li>
+                        <li class="missions">
+                            <a href="{{pathFor 'missions'}}" class="{{activeRouteClass 'missions' 'missionItem'}}">12Aktionen</a>
+                        </li>
+                        <li class="kategorien">
+                            <a href="{{pathFor 'themes'}}" class="{{activeRouteClass 'kategorien'}}">12Rubriken</a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown info">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="info-sign">i</span>
+                            </a>
+                            <ul class="dropdown-menu info-menu" role="menu">
+                                <li><a href="/about/faq"><strong>Über Photos</strong></a></li>
+                                <li class="divider"></li>
+                                <li><a href="/about/faq">Hilfe</a></li>
+                                <li><a href="/about/impressum">Impressum</a></li>
+                                <li><a href="/about/datenschutz">Datenschutz</a></li>
+                                <li><a href="/about/agb">AGB</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="search text-center navbar-form" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1" id="search-field">
+                            <span class="input-group-addon btn-green searchBtn">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+</template>

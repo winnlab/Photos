@@ -2,24 +2,27 @@
 
     {{#if displayFilters}}
         {{#if $or shares.count shares.length}}
-            <div class="container order-selection">
-                <a data-sort="top" class="pull-right order-selector order-newest {{#if $.Session.equals 'sortBy' 'top'}}active{{/if}}">
-                    Best bewertet
-                </a>
-                <a data-sort="latest" class="pull-right order-selector order-newest {{#if $.Session.equals 'sortBy' 'latest'}}active{{/if}}">
-                    Neueste
-                </a>
-            </div>
+            {{#unless isMobileDevice}}
+                <div class="container order-selection">
+                    <a data-sort="top" class="pull-right order-selector order-newest {{#if $.Session.equals 'sortBy' 'top'}}active{{/if}}">
+                        Best bewertet
+                    </a>
+                    <a data-sort="latest" class="pull-right order-selector order-newest {{#if $.Session.equals 'sortBy' 'latest'}}active{{/if}}">
+                        Neueste
+                    </a>
+                </div>
+            {{/unless}}
         {{/if}}
     {{/if}}
 
     <div class="container gallery-photos">
         <div class="gallery row">
             {{#each $mapped columns}}
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="col-lg-3 col-md-4 col-sm-4 {{#if $eq columnsQty 1}}col-xs-12{{else}}col-xs-6{{/if}}">
                     {{#each $mapped ../shares}}
                         {{#if inColumn ../key $index}}
                             <div class="photo-thumb showShare" data-id="{{_id}}">
+                                {{#unless isMobileDevice}}
                                 <div class="thumb-overlay">
                                     <div class="caption">
                                         <div class="avatar pull-left">
@@ -41,6 +44,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{/unless}}
                                 <img class="thumb" src="{{getImage 'ShareFiles' source._id 'shareThumbs'}}" />
                             </div>
                         {{/if}}

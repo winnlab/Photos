@@ -1914,6 +1914,12 @@
     background-image: url('/img/ic_google_aktiv_40x40.png');
 }
 
+.overlay .carousel-slide-content .share-screen .fb-share i,
+.overlay .carousel-slide-content .share-screen .tw-share i,
+.overlay .carousel-slide-content .share-screen .google-share i {
+    display: none;
+}
+
 .overlay .carousel-slide-content .share-screen ul li a:hover img {
     opacity: .7;
     -khtml-opacity: .7;

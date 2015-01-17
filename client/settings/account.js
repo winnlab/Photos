@@ -1,11 +1,11 @@
 Accounts.ui.config({
     passwordSignupFields: 'USERNAME_AND_EMAIL'
-})
+});
 
 accountsUIBootstrap3.map('de', {
     loginButtonsLoggedOutDropdown: {
-        signIn: "Login",
-        up: "Neu Anmelden"
+        signIn: 'Login',
+        up: 'Neu Anmelden'
     }
 });
 

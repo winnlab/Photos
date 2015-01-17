@@ -1,0 +1,9 @@
+<template name="pixTags">
+    <ul class="tags list-unstyled list-inline">
+        {{#each tags}}
+            <li class="tag">
+                <a href="/photos/search/{{.}}">{{.}}</a>
+            </li>
+        {{/each}}
+    </ul>
+</template>

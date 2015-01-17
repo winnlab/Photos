@@ -1,0 +1,42 @@
+<template name="pixBtns">
+    <ul class="list-unstyled list-inline">
+        <!-- like button -->
+        {{#if currentUser}}
+            <li class="photo-action-button">
+                <a class="toggleLike {{#if isLiked likes}}active{{/if}}" href="">
+                    <i class="photo-like"></i>
+                </a>
+            </li>
+        {{/if}}
+
+        <!-- share button -->
+        <li class="photo-action-button">
+            <a class="togglePhotoAction {{#if $eq photoAction 'share'}}active{{/if}}" href="">
+                <i class="photo-share"></i>
+                <span class="button-content"></span>
+            </a>
+        </li>
+
+        <!-- flag button commented section -->
+        {{#if $eq currentUser 'comment'}}
+            {{#unless $eq currentUser._id userId}}
+                <li class="photo-action-button">
+                    <a class="togglePhotoAction {{#if $eq photoAction 'flag'}}active{{/if}}" href="">
+                        <i class="photo-flag"></i>
+                        <span class="button-content"></span>
+                    </a>
+                </li>
+            {{/unless}}
+        {{/if}}
+
+        <!-- delete button -->
+        {{#if $eq currentUser._id userId}}
+            <li class="photo-action-button">
+                <a class="togglePhotoAction {{#if $eq photoAction 'delete'}}active{{/if}}" href="">
+                    <i class="photo-delete"></i>
+                    <span class="button-content"></span>
+                </a>
+            </li>
+        {{/if}}
+    </ul>
+</template>

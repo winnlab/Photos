@@ -5,14 +5,14 @@
         <div class="darkBg">
             <div class="container">
                 <nav id="category-navbar" class="navbar-fixed">
-                    <div class="container navbar-wrapper">
-                        <ul class="nav navbar-nav" style="width: 1280px">
+                    <div class="{{#if isMobileDevice}}row{{else}}container{{/if}} navbar-wrapper">
+                        <ul class="nav navbar-nav" style="width: 1040px">
                             {{#each categories}}
-                                <li>
-                                    <a class="{{isActive type}}" href="{{pathFor 'categories'}}">
-                                        {{name}}
-                                    </a>
-                                </li>
+                            <li>
+                                <a class="{{isActive type}}" href="{{pathFor 'categories'}}">
+                                    {{name}}
+                                </a>
+                            </li>
                             {{/each}}
                         </ul>
                     </div>
@@ -23,5 +23,7 @@
         {{> pix shares=shares displayFilters=displayFilters}}
 
         {{> moreResults isMore=moreResults}}
+
+        <a class="upload-btn" href="{{pathFor 'addPhoto'}}">+</a>
     </div>
 </template>

@@ -1,0 +1,141 @@
+@import ".meteor/local/build/programs/server/assets/packages/wolves_bourbon/bourbon";
+
+body.mobile {
+
+    .navbar-fixed-top {
+        height: 60px;
+        background: #fff;
+        border: none;
+        margin: 0;
+    }
+
+    .navbar-toggle {
+        float: left;
+        margin: 13px 5px 8px 5px;
+        border: none;
+
+        .icon-bar{
+            background: #414141;
+            width: 24px;
+            border-radius: 0;
+            margin-bottom: 5px;
+        }
+    }
+
+    .navbar-brand {
+        @include size(147px 60px);
+        display: block;
+        padding: 15px 0;
+        float: none;
+        margin: 0 auto;
+        img {
+            @include size(147px 27px);
+        }
+    }
+
+    .notifications {
+        @include size(40px);
+        display: block;
+        padding: 6px 0;
+        margin: 10px 15px;
+        float: right;
+        font-family: Roboto, sans-serif;
+        font-size: 20px;
+        -webkit-font-smoothing: antialiased;
+        background: #a0c422;
+        color: #fff;
+        border-radius: 50%;
+        text-align: center;
+    }
+
+    #content {
+        padding-top: 60px;
+        padding-bottom: 15px;
+    }
+
+    .big-teaser .carousel-caption {
+        bottom: 0;
+        left: 5%;
+        right: 5%;
+
+        h3 {
+            font-size: 30px;
+        }
+    }
+
+    .darkBg {
+        box-shadow: 0px 0px 2px 0px rgba(0,1,1,0.2);
+    }
+
+    #category-navbar {
+        height: 54px;
+
+        li {
+            height: 54px;
+            a {
+                padding: 18px 20px;
+                height: 54px;
+                &.active {
+                    border-bottom: 2px solid #a0c422;
+                }
+            }
+        }
+    }
+
+    #gallery-container {
+        padding-bottom: 0;
+        .gallery-photos {
+            padding-top: 10px;
+        }
+    }
+
+    .gallery .photo-thumb {
+        margin: 0 0 15px 0;
+    }
+
+    .upload-btn {
+        @include position(fixed, null 15px 20px null);
+        @include size(60px);
+        padding: 11px 0;
+        line-height: 1;
+        font-size: 38px;
+        color: #fff;
+        text-align: center;
+        text-shadow: 0 0 2px rgba(0, 1, 1, 0.25);
+        box-shadow: 0 1px 6px rgba(0,0,0,.12),0 1px 6px rgba(0,0,0,.12);
+        background: #a0c422;
+        border-radius: 50%;
+
+        &:active {
+            text-decoration: none;
+            box-shadow: 0 6px 10px rgba(0,0,0,.23),0 10px 30px rgba(0,0,0,.19);
+        }
+        &:focus {
+            outline: none;
+            text-decoration: none;
+        }
+    }
+
+    .overlay {
+        z-index: 1050;
+        background: #171717;
+        .overlay-content {
+            padding-top: 20px;
+        }
+
+        .slide-container-footer {
+            padding: 10px 0 0px 0;
+
+            .tags {
+                margin-left: 0;
+            }
+            .photo-actions {
+                margin: 0;
+            }
+        }
+
+    }
+}
+#bg {
+    width: 100%;
+}
