@@ -1,0 +1,42 @@
+.mobile {
+    #search-bar {
+        padding: 0;
+        top: 60px;
+        height: 60px;
+
+        .container {
+            padding: 0;
+        }
+
+        ul#search-tags {
+            background: #fff;
+            padding: 5px 10px;
+            margin-top: 6px;
+
+            li.tag {
+                padding: 10px;
+                font-size: 16px;
+                padding: 8px 10px;
+                background-color: #a0c422;
+            }
+            li.input input[type=text] {
+                font-size: 16px;
+                padding: 8px 10px 8px 0px;
+            }
+        }
+
+        ul#search-query-suggest {
+            top: 120px !important;
+            left: 15px !important;
+            margin: 0 !important;
+
+            li {
+                padding: 15px;
+            }
+        }
+    }
+
+    .search-pillow {
+        padding: 65px 0 0;
+    }
+}
