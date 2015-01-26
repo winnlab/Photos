@@ -10,7 +10,7 @@
 
     <nav class="navbar-fixed" id="category-navbar">
         <div class="container">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav{{#if isMobileDevice}} info-menu-mobile{{/if}}">
                 {{#each page}}
                     <li>
                         <a class="{{isActive link}}" href="{{pathFor 'about'}}">{{title}}</a>
