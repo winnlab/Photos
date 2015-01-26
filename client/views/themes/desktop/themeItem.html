@@ -1,0 +1,18 @@
+<template name="themeItemDesk">
+    <div class="category category-detail">
+        <h2 class="main-header">
+            <a href="{{pathFor 'themes'}}" class="back pull-left"></a>
+            {{theme.name}}
+            {{#if theme.displayUploadButton}}
+                <a href="{{pathFor 'themeUpload' link=theme.link}}" class="pull-right category-upload-btn btn btn-green hidden-xs hidden-sm">
+                    <span class="category-upload-plus">＋</span>
+                    <span class="category-upload-label">Upload in Kategorie</span>
+                </a>
+                <a href="{{pathFor 'themeUpload' link=theme.link}}" class="pull-right category-upload-btn btn btn-green mobile visible-xs visible-sm">
+                    <span class="category-upload-plus">＋</span>
+                    <span class="category-upload-label">Upload in <span>{{name}}</span></span>
+                </a>
+            {{/if}}
+        </h2>
+    </div>
+</template>
