@@ -1,0 +1,26 @@
+<template name="missionsDesktop">
+    <div class="jumbotron mission-jumbotron">
+        <div class="container">
+            <div class="row headline">
+                <a class="pull-left upload-back-link {{#if $neq mode 'upload'}}hide{{/if}}" href="/photos/new">
+                    zurück
+                </a>
+                <img alt="Bouunty" class="mission-headline" src="/img/bounty.png" />
+                {{#if $neq mode 'upload'}}
+                    <span>12Aktionen</span>
+                {{/if}}
+                {{#if $eq mode 'upload'}}
+                    <span class="mission-choose-title">Bitte wähle eine Aktionen</span>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="teaser-underline"></div>
+    <div class="container">
+        <div class="row">
+            {{#each missions}}
+                {{> missionsDeskItem mode=mode}}
+            {{/each}}
+        </div>
+    </div>
+</template>

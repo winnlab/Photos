@@ -11,6 +11,12 @@ var $carousel,
         return imgWrapperHeight.set(wrapperHeight);
     };
 
+Template.pixBtns.helpers({
+    isLiked: function (likes) {
+        return likes.indexOf(Meteor.userId()) !== -1;
+    }
+});
+
 Template.carousel.helpers({
     photoAction: function () {
         return photoAction.get();
@@ -100,6 +106,7 @@ Template.carousel.events({
             if (err) {
                 console.error(err);
             }
+            setShareId(null);
             photoAction.set(null);
             template.data.active.set(false);
         });

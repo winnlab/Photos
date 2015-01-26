@@ -1,5 +1,5 @@
-<template name="missionListItem">
-    <div>
+<template name="missionsDeskItem">
+    <div class="col-lg-6">
         <div class="mission-teaser">
             {{#if $eq mode 'upload'}}
                 <a href="{{addMissionPhoto ../_id}}">
@@ -19,22 +19,22 @@
                                 <li>
                                     <img alt="Ic mission fotos klein 38x30" class="figure-icon" src="/img/ic_mission_fotos_klein_38x30.png">
                                     <h6>
-                                        <span class="count ng-binding">{{../uploadsQty}}</span>
+                                        <span class="count">{{#if ../uploadsQty}}{{../uploadsQty}}{{else}}0{{/if}}</span>
                                         <span class="topic">Uploads</span>
                                     </h6>
                                 </li>
                                 <li>
                                     <img alt="Ic mission zeit klein 38x30" class="figure-icon" src="/img/ic_mission_zeit_klein_38x30.png">
                                     <h6>
-                                        <span class="count ng-binding">{{timeLeft ../to 'number'}}</span>
-                                        <span class="topic ng-binding">{{timeLeft ../to 'period'}}</span>
+                                        <span class="count">{{timeLeft ../to 'number'}}</span>
+                                        <span class="topic">{{timeLeft ../to 'period'}}</span>
                                     </h6>
                                 </li>
                             {{/unless}}
                             <li>
                                 <img alt="Ic mission gewinn klein 38x30" class="figure-icon" src="/img/ic_mission_gewinn_klein_38x30.png">
-                                <h6 ng-if="mission.reward.type == 'Geld'" class="ng-scope">
-                                    <span class="count ng-binding">{{#if ../prizeQty}}{{../prizeQty}}x{{/if}}{{../prize}}</span>
+                                <h6>
+                                    <span class="count">{{#if ../prizeQty}}{{../prizeQty}}x{{/if}}{{../prize}}</span>
                                     <span class="topic">{{#if $eq ../prizeType 'money'}}EURO{{/if}}{{#if $eq ../prizeType 'coupons'}}GUTSCHEINE{{/if}}</span>
                                 </h6>
                             </li>

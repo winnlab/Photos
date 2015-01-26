@@ -1,0 +1,169 @@
+html.menu-opened {
+    @include size(100%);
+    overflow: hidden;
+    position: relative;
+
+    body {
+        @include size(100%);
+        overflow: hidden;
+        position: relative;
+    }
+    .mm-slideout {
+        @include transform(translate(80%, 0));
+    }
+
+    #m-menu {
+        @include transform(translate3d(0%, 0, 0));
+        visibility: visible;
+    }
+
+    #m-blocker {
+        display: block;
+    }
+}
+
+
+#m-menu {
+    @include transition(all 0.4s ease);
+    @include transform(translate3d(-30%, 0, 0));
+    @include position(fixed, 0 null 0 0);
+    visibility: hidden;
+    font-family: Roboto, sans-serif;
+    width: 80%;
+    background: #f1f1f1;
+    z-index: 1;
+
+    .mobile-wrap {
+        @include size(100%);
+        overflow-y: auto;
+        padding-top: 60px;
+    }
+
+    .menu-inner {
+        @include size(100%);
+        min-height: 430px;
+        position: relative;
+    }
+
+    .search {
+        @include position(absolute, 0 null null 0);
+        @include size(100% 60px);
+        z-index: 1;
+        background: #434343;
+
+        input {
+            @include size(100% 60px);
+            background: transparent;
+            border: none;
+            outline: none;
+            position: relative;
+            z-index: 1;
+            padding: 0 15px;
+            color: #fff;
+            font-size: 20px;
+            text-decoration: none;
+
+            &:focus + .search-label,
+            &.not-empty + .search-label {
+                display: none;
+            }
+        }
+
+        .search-label {
+            @include position(absolute, 16px null null 50px);
+            z-index: 0;
+            color: #fff;
+            font-size: 20px;
+
+            .glyphicon {
+                @include position(absolute, 4px null null -33px);
+                color: #fff;
+            }
+        }
+    }
+
+    .logo-wrap {
+        padding: 20px 0;
+
+        .header-text {
+            margin: 15px 0 0;
+            font-size: 16px;
+        }
+    }
+
+    nav {
+        display: block;
+        a {
+            color: #414141;
+            position: relative;
+            display: block;
+            padding: 15px 15px 15px 60px;
+            font-size: 20px;
+            text-decoration: none;
+            outline: none;
+
+            &.active {
+                background: rgba(67,67,67, 0.1);
+            }
+
+            i {
+                @include position(absolute, 17px null null 20px);
+
+                &.i-main {
+                    @include size(22px 20px);
+                    background-size: 22px 20px;
+                    background-image: url(/img/m-main.svg);
+                }
+                &.i-mission {
+                    @include size(22px 22px);
+                    background-size: 22px 22px;
+                    background-image: url(/img/m-mission.svg);
+                }
+                &.i-kategories {
+                    @include size(21px 21px);
+                    background-size: 21px 21px;
+                    background-image: url(/img/m-kategories.svg);
+                }
+            }
+        }
+    }
+
+    .foot-btns {
+        @include position(absolute, null 0 15px 0);
+        a {
+            display: block;
+            &.settings {
+                @include size(26px 27px);
+                margin-left: 15px;
+                background-size: 26px 27px;
+                background-image: url(/img/m-settings.svg);
+                float: left;
+            }
+            &.question {
+                @include size(27px);
+                background-size: 27px 27px;
+                background-image: url(/img/m-question.svg);
+                margin: 0 auto;
+            }
+            &.info {
+                @include size(27px);
+                margin-right: 15px;
+                background-size: 27px 27px;
+                background-image: url(/img/m-info.svg);
+                float: right;
+            }
+        }
+    }
+}
+
+#m-blocker {
+    @include size(100%);
+    @include position(fixed, 0 null null 0);
+    z-index: 999999;
+    background: rgba(3, 2, 1, 0);
+    display: none;
+}
+
+.mm-slideout {
+    @include transition(transform 0.4s ease);
+}

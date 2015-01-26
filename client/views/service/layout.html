@@ -1,7 +1,9 @@
 <template name="layout">
-    {{> header}}
-
-    <div id="content">
+    {{#if isMobileDevice}}
+        {{> mobileMenu}}
+    {{/if}}
+    <div id="content" class="{{#if isMobileDevice}}mm-slideout{{/if}}">
+        {{> header}}
         {{> yield}}
     </div>
 </template>

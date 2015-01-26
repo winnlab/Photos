@@ -1,0 +1,32 @@
+<template name="missionsMobileItem">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="mission-teaser">
+            <a href="{{pathFor 'missionItem' _id=../_id}}">
+                <img class="mission-teaser-img{{#if ../ended}} mission-teaser-img-ended{{/if}}" src="{{getImage 'MissionBrand' ../brand 'mission-brand'}}" />
+            </a>
+            <div class="mission-subtitle">
+                <div class="clearfix">
+                    <div class="mission-text">
+                        <h3 class="name">{{../name}}</h3>
+                        <p class="description">{{../shortDesc}}</p>
+                    </div>
+                    <div class="mission-btn {{#if ../ended}} ended{{/if}}">
+                        <div class="mission-info">
+                            {{#unless ../ended}}
+                            <div class="time-icon">
+                                {{timeLeft ../to 'number'}} {{timeLeft ../to 'period'}}
+                            </div>
+                            {{/unless}}
+                            <div class="prize-icon">
+                                {{#if ../prizeQty}}{{../prizeQty}}x{{/if}}{{../prize}}
+                            </div>
+                        </div>
+                        <a class="select-link" href="{{addMissionPhoto ../_id}}">
+                            Jetzt teilnehmen
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

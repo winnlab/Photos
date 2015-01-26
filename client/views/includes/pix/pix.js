@@ -5,9 +5,12 @@ var columns = new ReactiveVar([]),
         var winWidth = $(window).width(),
             arr = [],
             qty;
-        if (winWidth < 992) {
+
+        if (winWidth < 300) {
+            qty = 1;
+        } else if (winWidth < 767) {
             qty = 2;
-        } else if (winWidth < 1200) {
+        } else if (winWidth < 992) {
             qty = 3;
         } else {
             qty = 4;

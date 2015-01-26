@@ -1,0 +1,54 @@
+<template name="mobileMenu">
+    <div id="m-menu">
+        <div class="search">
+            <input type="text" id="search-field" />
+            <div class="search-label">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </div>
+        </div>
+        <div class="mobile-wrap">
+            <div class="menu-inner">
+                <div class="logo-wrap text-center">
+                    {{#if currentUser}}
+                        {{#with currentUser}}
+                            <a class="user-wrap" href="{{pathFor 'profile'}}">
+                                <img class="user-avatar" src="{{avatarById avatar._id}}" width="150" height="150">
+                                <div class="user-name">
+                                    {{username}}
+                                </div>
+                            </a>
+                        {{/with}}
+                    {{else}}
+                        <img class="logo" src="/img/m-logo-menu.png">
+                        <div class="header-text">
+                            Sei, wie du bist. Zeig, wie du bist. <br />
+                            Die <a href="{{pathFor 'home'}}">coole</a> Foto-Community
+                        </div>
+                    {{/if}}
+                </div>
+                <nav>
+                    <a href="{{pathFor 'home'}}" class="{{activeRouteClass 'home' 'categories'}}">
+                        <i class="i-main"></i>
+                        Start
+                    </a>
+                    <a href="{{pathFor 'missions'}}" class="{{activeRouteClass 'missions' 'missionItem'}}">
+                        <i class="i-mission"></i>
+                        12Aktionen
+                    </a>
+                    <a href="{{pathFor 'themes'}}" class="{{activeRouteClass 'themes'}}">
+                        <i class="i-kategories"></i>
+                        12Rubriken
+                    </a>
+                </nav>
+
+                <div class="foot-btns">
+                    <a class="settings"></a>
+                    <a class="info"></a>
+                    <a class="question"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="m-blocker" class="mm-slideout"></div>
+</template>

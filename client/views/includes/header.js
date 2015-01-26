@@ -1,12 +1,14 @@
 'use strict';
 
-var goToSearch = function (value) {
-    var search = _.reduce(_.unique(value.split(' ')), function (result, item, index, all) {
-        if (item) {
-            result += item + (index + 1 < all.length ? ',' : '');
-        }
-        return result;
-    }, '');
+window.goToSearch = function (value) {
+    var search = _.reduce(_.unique(value.split(' ')),
+        function (result, item, index, all) {
+            if (item) {
+                result += item + (index + 1 < all.length ? ',' : '');
+            }
+            return result;
+        },
+    '');
     Router.go('search', { search: encodeURI(search) });
 };
 

@@ -1,10 +1,10 @@
 <template name="profilePanel">
     <div class="user-panel blurrable" data-user-panel="">
         <div class="blurBg {{#if isFirefox}}firefox{{/if}}">
-            <img src="{{avatar userInfo.avatar._id 'avatars' true}}" />
+            <img src="{{avatarById userInfo.avatar._id 'avatars' true}}" />
         </div>
         <div class="avatar">
-            <img src="{{avatar userInfo.avatar._id 'avatars'}}" />
+            <img src="{{avatarById userInfo.avatar._id 'avatars'}}" />
         </div>
         <div class="username">
             {{userInfo.username}}

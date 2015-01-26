@@ -1,0 +1,50 @@
+<template name="mobileSignUp">
+    <div class="container my-sign-up">
+        <div class="row">
+            <div class="sign-in-top clearfix">
+                <div class="entry-logo">
+                    <a href="/"><img src="/img/m-logo.png" alt="logo"></a>
+                </div>
+                <p class="entry-signin-cta"><a href="{{pathFor 'entrySignIn'}}">{{t9n "signin"}}</a></p>
+            </div>
+            <div class="break-line"></div>
+            <div class="entry">
+                <h3>{{t9n "createAccount"}}</h3>
+                <div class="break-line"></div>
+                <div class="entry-social col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    {{#each loginServices}}
+                        {{> entrySocial}}
+                    {{/each}}
+                </div>
+                <div class="break-line"></div>
+                {{> entryError}}
+                <form class="entry-form" id='signUp'>
+                    <div class="form-group">
+                        <input autofocus name="username" type="string" class="form-control" placeholder="{{t9n 'username'}}">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="{{t9n 'emailAddress'}}">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control"  placeholder="{{t9n 'password'}}">
+                    </div>
+
+                    <div class="break-line"></div>
+
+                    <div class="agbs">
+                        <p>
+                            Für die Nutzung von myPass gelten die <a href="{{termsUrl}}" target="_blank">myPass AGB</a>, für die Nutzung von 1414 die <a href="{{termsUrl}}" target="_blank">12Nutzungsbedingungen</a>. Axel Springer SE darf per E-Mail über neue Missionen zu 12Selfie oder Änderung der Dienste bzw. ähnliche Dienstleistungen informieren. Sie können dem jederzeit schriftlich oder per E-Mail kostenlos widersprechen (näheres in den AGB).
+                        </p>
+                    </div>
+
+                    <div class="break-line"></div>
+
+                    <button type="submit" class="submit btn btn-block btn-default">{{t9n "signUp"}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</template>

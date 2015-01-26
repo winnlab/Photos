@@ -1,0 +1,44 @@
+<template name="missionItemMobile">
+    <div class="container">
+        <div class="row">
+            <div class="mission-header">
+                <img alt="{{mission.name}}" class="teaser-image img-responsive" src="{{getImage 'MissionTeaser' mission.teaser 'mission-teaser-768'}}" />
+                <div class="stats">
+                    <div class="uploads">
+                        Uploads: <strong>{{mission.uploadsQty}}</strong>
+                    </div>
+                    <div class="users">
+                        Teilnehmer: <strong>{{mission.participantsQty}}</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="mission-text col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3 class="title">{{mission.name}}</h3>
+                <p class="description">{{mission.shortDesc}}</p>
+            </div>
+            <div class="upload-btn-wrap">
+                <div class="affixed">
+                    <div class="mission-info">
+                        {{#unless mission.ended}}
+                            <div class="time-icon">
+                                {{timeLeft mission.to 'number'}} {{timeLeft mission.to 'period'}}
+                            </div>
+                        {{/unless}}
+                        <div class="prize-icon">
+                            {{#if mission.prizeQty}}{{mission.prizeQty}}x{{/if}}{{mission.prize}}
+                        </div>
+                    </div>
+                    <a href="{{addMissionPhoto mission._id}}" class="upload-to-mission">Jetzt teilnehmen!</a>
+                </div>
+            </div>
+            <div class="mission-sort">
+                <a data-sort="latest" class="order {{#if $.Session.equals 'sortBy' 'latest'}}active{{/if}}">
+                    <span class="latest">Zuletzt hochgeldan</span>
+                </a>
+                <a data-sort="top" class="order {{#if $.Session.equals 'sortBy' 'top'}}active{{/if}}">
+                    <span class="top">Best bewertet</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</template>

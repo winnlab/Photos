@@ -1,3 +1,5 @@
+'use strict';
+
 Meteor.publishComposite('missionsBanner', {
     find: function () {
         // Find last six missions
@@ -19,24 +21,26 @@ Meteor.publishComposite('missionsBanner', {
 
 Meteor.publish('missionsList', function () {
     return Missions.find({}, {
-        fields: { description: 0 }
+        fields: { description: 0, participants: 0 }
     });
 });
 
 Meteor.publish('missionsListImg', function () {
     return MissionBrand.find({}, {
         fields: { original: 0, uploadedAt: 0 }
-    })
+    });
 });
 
 Meteor.publish('about', function () {
-    return About.find({});
+    return About.find({}, {
+        sort: { position: -1 }
+    });
 });
 
 Meteor.publishComposite('missionItem', function (missionId) {
     return {
         find: function() {
-            return Missions.find({ _id: missionId });
+            return Missions.find({ _id: missionId }, { fields: { participants: 0 } });
         },
         children: [{
             find: function (mission) {
@@ -53,7 +57,7 @@ Meteor.publishComposite('missionItem', function (missionId) {
                 });
             }
         }]
-    }
+    };
 });
 
 Meteor.publish('missionName', function () {
@@ -70,12 +74,12 @@ Meteor.publish('avatar', function (query) {
     if (query && query._id) {
         check(query, {
             _id: String
-        })
+        });
     }
     if (query && query.userId) {
         check(query, {
             userId: String
-        })
+        });
     }
     return Avatars.find(query || {}, {
         fields: {
@@ -141,7 +145,7 @@ Meteor.publish('themes', function (query) {
         publish.push(ThemeBg.find());
     }
     return publish;
-})
+});
 
 Meteor.publish('tags', function (name, exist) {
     var query = {
@@ -161,4 +165,4 @@ Meteor.publish('tags', function (name, exist) {
     return name ? Tags.find(query, {
             limit: 6
         }) : [];
-})
+});

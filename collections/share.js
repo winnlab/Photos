@@ -7,9 +7,33 @@ var shareCounting = function (ids, inc) {
         });
     }
     if (ids.missionId) {
-        Missions.update({ _id: ids.missionId }, {
-            $inc: { uploadsQty: inc }
-        });
+        var updObj = {
+                $inc: { uploadsQty: inc }
+            };
+        if (Meteor.isServer && ids.userId) {
+            var exist = Missions.findOne({
+                _id: ids.missionId
+            });
+            if (!exist.participants) {
+                exist.participants = [];
+            }
+            if (inc > 0) {
+                exist.participants.push(ids.userId);
+                updObj.$inc.participantsQty = inc;
+            } else {
+                var index = exist.participants.indexOf(ids.userId);
+                if (index !== -1) {
+                    exist.participants.splice(index, 1);
+                }
+                if (exist.participants.indexOf(ids.userId) === -1) {
+                    updObj.$inc.participantsQty = inc;
+                }
+            }
+            updObj.$set = {
+                participants: exist.participants
+            };
+        }
+        Missions.update({ _id: ids.missionId }, updObj);
     }
     if (ids.themeId) {
         Themes.update({ _id: ids.themeId }, {

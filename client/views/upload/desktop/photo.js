@@ -1,3 +1,5 @@
+'use strict';
+
 Template.addPhoto.helpers({
     license: function () {
         var query = Router.current().params.query;

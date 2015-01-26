@@ -1,3 +1,5 @@
+'use strict';
+
 var $searchContainer,
     $searchInput,
     $document,
@@ -13,10 +15,10 @@ var $searchContainer,
 
         maxWidth = searchContainerWidth - widthForTagItems - safeRegion;
 
-        $searchInput.css("width", maxWidth);
+        $searchInput.css('width', maxWidth);
     },
     addTag = function (template, value) {
-        var tags = template.tags.get()
+        var tags = template.tags.get();
         $searchInput.val('');
         template.suggest.set('');
         if (tags.indexOf(value) === -1) {
@@ -41,7 +43,7 @@ Template.search.helpers({
             left = $searchInput.offset().left + 10;
         return "top:" + top + 'px; left:' + left + 'px;';
     }
-})
+});
 
 Template.search.events({
     'click .addTag': function (ev, template) {
@@ -69,10 +71,10 @@ Template.search.events({
             switch (ev.keyCode) {
                 case up:
                     nextTag = activeTag.prev();
-                    break
+                    break;
                 case down:
                     nextTag = activeTag.next();
-                    break
+                    break;
             }
             if (nextTag.length) {
                 activeTag.removeClass('active');
@@ -85,8 +87,8 @@ Template.search.events({
             currentSugges = template.suggest.get(),
             tags = template.tags.get(),
             activeTag;
-        if (value == ' '){
-            return $(ev.target).val('')
+        if (value == ' ') {
+            return $(ev.target).val('');
         }
         if (ev.keyCode == 32) {
             addTag(template, value.replace(' ', ''));

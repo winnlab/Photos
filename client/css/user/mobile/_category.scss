@@ -1,0 +1,19 @@
+.category.mobile {
+    padding: 15px;
+
+    .categories-wrapper {
+        padding: 0;
+
+        .categories .cat .title {
+            height: 50px;
+            line-height: 50px;
+            font-size: 16px;
+            text-transform: none;
+
+            span {
+                padding: 0 10px;
+                text-align: center;
+            }
+        }
+    }
+}

@@ -47,19 +47,11 @@ Template.registerHelper('timeLeft', function (to, type) {
     return type === 'number' ? number : (type === 'period' ? period : number + period);
 });
 
-Template.registerHelper('$even', function (a) {
-    return a % 2 === 0;
-});
-
-Template.registerHelper('$odd', function (a) {
-    return a % 2 !== 0;
-});
-
 Template.registerHelper('isFirefox', function () {
     return navigator.userAgent.indexOf('Firefox') > -1;
 });
 
-Template.registerHelper('avatar', function (_id, size, isBg) {
+Template.registerHelper('avatarById', function (_id, size, isBg) {
     if (typeof size === 'object') {
         size = null;
     }

@@ -1,0 +1,27 @@
+<template name="addPhotoMobile">
+    <div class="mobile-upload">
+        <div class="steps-nav">
+            {{#if isShowPrev}}
+                <div class="prev"></div>
+            {{/if}}
+            {{#if isShowNext}}
+                <div class="next"></div>
+            {{/if}}
+            <div class="step-current">{{step}}/4</div>
+        </div>
+        <div class="steps-wrap">
+            <div class="mobile-upload-step{{#if $neq step 1}} hidden{{/if}}">
+                <div class="wrap">{{> uploadStep1}}</div>
+            </div>
+            <div class="mobile-upload-step{{#if $neq step 2}} hidden{{/if}}">
+                <div class="wrap">{{> uploadStep2 tags=tags}}</div>
+            </div>
+            <div class="mobile-upload-step condition{{#if $neq step 3}} hidden{{/if}}">
+                <div class="wrap">{{> uploadStep3}}</div>
+            </div>
+            <div class="mobile-upload-step share {{#if $neq step 4}} hidden{{/if}}">
+                <div class="wrap">{{> uploadStep4}}</div>
+            </div>
+        </div>
+    </div>
+</template>

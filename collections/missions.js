@@ -2,16 +2,16 @@ Missions = new Mongo.Collection('missions');
 
 Missions.attachSchema(new SimpleSchema({
     name: {
-        label: "Name",
+        label: 'Name',
         type: String,
         max: 60
     },
     from: {
-        label: "From",
+        label: 'From',
         type: Date
     },
     to: {
-        label: "To",
+        label: 'To',
         type: Date
     },
     uploadsQty: {
@@ -20,6 +20,31 @@ Missions.attachSchema(new SimpleSchema({
         optional: true,
         autoform: {
             disabled: true
+        }
+    },
+    participantsQty: {
+        label: 'Participants quantity',
+        type: Number,
+        optional: true,
+        autoform: {
+            disabled: true
+        }
+    },
+    participants: {
+        label: 'Participants ids',
+        type: [String],
+        optional: true,
+        autoform: {
+            type: 'hidden',
+            disabled: true
+        }
+    },
+    shortDesc: {
+        label: 'Short description',
+        type: String,
+        max: 180,
+        autoform: {
+            rows: 2
         }
     },
     description: {
@@ -118,7 +143,7 @@ MissionTeaser = new FS.Collection('missionTeasers', {
             // transformWrite: function(fileObj, readStream, writeStream) {
             //     gm(readStream, fileObj.name()).autoOrient().resize('1680', '578', '^').gravity('North').extent('1680', '578').stream().pipe(writeStream);
             // }
-        }),
+        })
     ],
     filter: {
         allow: {

@@ -1,8 +1,10 @@
 <template name="themes">
-    <h2 class="text-center categories-header">
-        Rubriken
-    </h2>
-    <div class="container category">
+    {{#unless isMobileDevice}}
+        <h2 class="text-center categories-header">
+            Rubriken
+        </h2>
+    {{/unless}}
+    <div class="container category{{#if isMobileDevice}} mobile{{/if}}">
 
         <div class="categories-wrapper">
             <div class="row categories">

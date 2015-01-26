@@ -18,7 +18,7 @@
     <div class="container gallery-photos">
         <div class="gallery row">
             {{#each $mapped columns}}
-                <div class="col-lg-3 col-md-4 col-sm-4 {{#if $eq columnsQty 1}}col-xs-12{{else}}col-xs-6{{/if}}">
+                <div class="col-lg-3 col-md-3 col-sm-4 {{#if $eq columnsQty 1}}col-xs-12{{else}}col-xs-6{{/if}}">
                     {{#each $mapped ../shares}}
                         {{#if inColumn ../key $index}}
                             <div class="photo-thumb showShare" data-id="{{_id}}">
@@ -28,7 +28,7 @@
                                         <div class="avatar pull-left">
                                             <div class="user-avatar">
                                                 <a href="/users/{{username}}">
-                                                    <img class="avatar-image" src="{{userAvatar userId}}" width="58" height="58">
+                                                    <img class="avatar-image" src="{{avatarById userId}}" width="58" height="58">
                                                 </a>
                                             </div>
                                         </div>

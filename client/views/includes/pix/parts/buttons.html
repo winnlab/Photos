@@ -11,7 +11,7 @@
 
         <!-- share button -->
         <li class="photo-action-button">
-            <a class="togglePhotoAction {{#if $eq photoAction 'share'}}active{{/if}}" href="">
+            <a data-action="share" class="togglePhotoAction {{#if $eq photoAction 'share'}}active{{/if}}" href="">
                 <i class="photo-share"></i>
                 <span class="button-content"></span>
             </a>
@@ -21,7 +21,7 @@
         {{#if $eq currentUser 'comment'}}
             {{#unless $eq currentUser._id userId}}
                 <li class="photo-action-button">
-                    <a class="togglePhotoAction {{#if $eq photoAction 'flag'}}active{{/if}}" href="">
+                    <a data-action="flag" class="togglePhotoAction {{#if $eq photoAction 'flag'}}active{{/if}}" href="">
                         <i class="photo-flag"></i>
                         <span class="button-content"></span>
                     </a>
@@ -32,7 +32,7 @@
         <!-- delete button -->
         {{#if $eq currentUser._id userId}}
             <li class="photo-action-button">
-                <a class="togglePhotoAction {{#if $eq photoAction 'delete'}}active{{/if}}" href="">
+                <a data-action="delete" class="togglePhotoAction {{#if $eq photoAction 'delete'}}active{{/if}}" href="">
                     <i class="photo-delete"></i>
                     <span class="button-content"></span>
                 </a>

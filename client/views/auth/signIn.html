@@ -1,0 +1,52 @@
+<template name='mobileSignIn'>
+    <div class="container my-sign-in">
+        <div class="row">
+            <div class="sign-in-top clearfix">
+                <div class="entry-logo">
+                    <a href="/"><img src="/img/m-logo.png" alt="logo"></a>
+                </div>
+                <p class="entry-signup-cta"><a href="{{pathFor 'entrySignUp'}}">{{t9n "dontHaveAnAccount"}}</a></p>
+            </div>
+            <div class="break-line"></div>
+            <div class="entry">
+                {{> entryError}}
+                {{#if passwordLoginService}}
+                <div class="email-option">
+                    <h3>Log in</h3>
+                </div>
+                <form class="entry-form clearfix" id='signIn'>
+                    <div class="form-group">
+                        <input autofocus name="email" type="{{emailInputType}}" class="form-control" value='{{email}}' placeholder="{{emailPlaceholder}}">
+                    </div>
+                    <div class="form-group">
+                        <input name="password" type="password" class="form-control" value='{{password}}' placeholder="{{t9n 'password'}}">
+                    </div>
+                    {{#unless isUsernameOnly}}
+                    <p><a href="{{pathFor 'entryForgotPassword'}}">{{t9n "forgotPassword"}}</a></p>
+                    <button type="submit" class="submit btn btn-block btn-default">{{t9n "signIn"}}</button>
+                    {{/unless}}
+                </form>
+                <div class="break-line"></div>
+                {{/if}}
+                <div class="entry-social col-md-12 col-sm-12 col-xs-12">
+                    {{#each loginServices}}
+                        {{> entrySocial}}
+                    {{/each}}
+                </div>
+                <div class="break-line"></div>
+                <div class="ssl-certificate clearfix">
+                    <i class="m-lock"></i>
+                    <span>
+                        <strong>Schnell & sicher:</strong> Sichere Datenübertragung durch SSL - Verschlüsselung
+                    </span>
+                </div>
+                <div class="break-line"></div>
+            </div>
+            <nav class="sign-in-nav">
+                {{#each about}}
+                    <a href="{{pathFor 'about'}}">{{title}}</a>
+                {{/each}}
+            </nav>
+        </div>
+    </div>
+</template>

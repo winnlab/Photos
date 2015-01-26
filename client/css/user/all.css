@@ -3704,8 +3704,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    color: #fff;
-    background-color: #373737;
+    color: #1a1a1a;
     height: 100%;
     font-size: 15px;
     line-height: 22px
@@ -3723,7 +3722,7 @@ nav.navbar-fixed-top.mission-navbar h3 {
 }
 
 #about a {
-    color: #d00;
+    color: #a0c422;
     text-decoration: underline
 }
 
@@ -4643,4 +4642,10 @@ body.noScroll {
     color: #fff;
     text-transform: uppercase;
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+@media (min-width: 768px) and (max-width: 990px) {
+    .ff-nav .search {
+        width: 300px;
+    }
 }

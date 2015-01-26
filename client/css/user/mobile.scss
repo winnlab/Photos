@@ -1,12 +1,15 @@
 @import ".meteor/local/build/programs/server/assets/packages/wolves_bourbon/bourbon";
+@import "mobile/all";
 
 body.mobile {
+    @include transition(transform 0.4s ease-in-out);
 
     .navbar-fixed-top {
         height: 60px;
         background: #fff;
         border: none;
         margin: 0;
+        box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
     }
 
     .navbar-toggle {
@@ -23,14 +26,31 @@ body.mobile {
     }
 
     .navbar-brand {
-        @include size(147px 60px);
+        @include size(250px 60px);
+        line-height: 60px;
         display: block;
-        padding: 15px 0;
+        padding: 0;
         float: none;
         margin: 0 auto;
+        text-align: center;
         img {
             @include size(147px 27px);
+            display: inline-block;
         }
+    }
+
+    .navbar-page {
+        @include size(200px 60px);
+        margin: 0 auto;
+        padding: 0;
+        font: {
+            family: Roboto;
+            size: 22px;
+            weight: 500;
+        }
+        text-align: center;
+        line-height: 60px;
+        color: #414141;
     }
 
     .notifications {
@@ -49,8 +69,12 @@ body.mobile {
     }
 
     #content {
-        padding-top: 60px;
-        padding-bottom: 15px;
+        background: #f5f5f5;
+        padding: 60px 0 0;
+        position: relative;
+        z-index: 2;
+        min-height: 640px;
+        box-shadow: 0 0 10px 5px rgba(0, 1, 1, 0.15);
     }
 
     .big-teaser .carousel-caption {
@@ -105,6 +129,7 @@ body.mobile {
         box-shadow: 0 1px 6px rgba(0,0,0,.12),0 1px 6px rgba(0,0,0,.12);
         background: #a0c422;
         border-radius: 50%;
+        z-index: 1040;
 
         &:active {
             text-decoration: none;
@@ -135,7 +160,107 @@ body.mobile {
         }
 
     }
-}
-#bg {
-    width: 100%;
+
+    .mission-teaser {
+        margin-top: 15px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0px 2px 4px 0px rgba(0, 1, 1, 0.15);
+        overflow: hidden;
+
+        .mission-subtitle {
+            padding: 20px 20px 0px;
+        }
+
+        .name {
+            margin: 0;
+            font-family: Roboto;
+            color: #414141;
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 22px;
+            text-align: left;
+        }
+
+        .description {
+            font-family: Roboto;
+            color: #414141;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 22px;
+            text-align: left;
+            margin: 15px 0;
+        }
+
+        .mission-btn {
+            margin: 0 -20px -20px;
+            background-color: #a0c422;
+            height: 60px;
+        }
+
+        .select-link {
+            display: block;
+            margin-right: 120px;
+            font: {
+                family: Roboto;
+                size: 20px;
+                weight: 400;
+            }
+            text: {
+                decoration: none;
+                align: center;
+            }
+            line-height: 60px;
+            color: #ffffff;
+        }
+
+        .mission-info {
+            @include size(120px 60px);
+            float: right;
+            color: rgba(65, 65, 65, 0.8);
+            font-family: Roboto;
+            font-weight: 400;
+            line-height: 30px;
+
+            .prize-icon {
+                height: 30px;
+                background-color: #d9eb9b;
+                padding-left: 30px;
+                position: relative;
+
+                &:before {
+                    @include position(absolute, 5px null null 6px);
+                    @include size(20px);
+                    content: '';
+                    background-image: url(/img/m-money.svg);
+                    background-size: 20px 20px;
+                }
+            }
+
+            .time-icon {
+                @extend .prize-icon;
+                height: 29px;
+                margin-bottom: 1px;
+
+                &:before {
+                    background-image: url(/img/m-time.svg);
+                }
+            }
+        }
+    }
+
+    .user {
+        &-avatar {
+            border-radius: 50%;
+        }
+        &-name {
+            color: #414141;
+            font-size: 20px;
+            margin-top: 15px;
+            text: {
+                decoration: none;
+                transform: uppercase;
+            }
+        }
+    }
 }

@@ -1,0 +1,19 @@
+<template name="uploadStep2">
+    <div class="field-title">
+        Bitte gib drei Schlagworter ein.
+    </div>
+    <textarea class="tags" name="tags"></textarea>
+    <div class="fake-textarea">
+        {{#each tags}}
+            <span class="tag">
+                {{this}}
+                <i class="remove"></i>
+            </span>
+        {{/each}}
+        <span class="hash-content"></span>
+        <span class="text-caret"></span>
+    </div>
+    <div class="field-comment">
+        <span>Pflichtfeld</span>
+    </div>
+</template>

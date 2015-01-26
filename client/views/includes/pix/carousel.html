@@ -109,8 +109,8 @@
                                                     <p class="button-caption">Foto wirklich löschen?</p>
 
                                                     <div class="clearfix actions">
-                                                        <a class="btn btn-default btn-lg pull-right delete-btn">Ja, wirklich löschen</a>
-                                                        <a class="btn btn-default btn-lg pull-left cancel-delete-btn">Nein, Foto nicht löschen</a>
+                                                        <a class="btn btn-default btn-lg pull-right delete-btn">Ja{{#unless isMobileDevice}}, wirklich löschen{{/unless}}</a>
+                                                        <a class="btn btn-default btn-lg pull-left cancel-delete-btn">Nein{{#unless isMobileDevice}}, Foto nicht löschen{{/unless}}</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -1,0 +1,155 @@
+.my-sign-in {
+    .sign-in-top {
+        padding: 15px;
+    }
+
+    .entry-logo {
+        width: auto;
+        margin: 0;
+        float: left;
+    }
+
+    .entry-signup-cta {
+        margin: 5px 0 0;
+        float: right;
+        font: {
+            family: Roboto;
+            weight: 400;
+            size: 16px;
+        }
+        line-height: 24px;
+        a {
+            color: #414141;
+            text-decoration: none;
+        }
+    }
+
+    .break-line {
+        background-color: #dadada;
+        height: 1px;
+        margin: 0 15px;
+    }
+
+    .entry {
+        color: #414141;
+        margin-top: 15px;
+        padding: 0;
+
+        &-form {
+            margin: 15px 0;
+        }
+
+        &-social {
+            margin: 15px 0;
+            float: none;
+
+            button#entry-facebook {
+                width: 100%;
+            }
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 24px;
+            text-align: left;
+            margin: 0 0 15px 30px;
+        }
+
+        .form-group {
+            margin: 0 20px 15px;
+        }
+
+        input {
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
+            height: 54px;
+            display: block;
+            border: none;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        p {
+            font: {
+                family: Roboto;
+                weight: 400;
+            }
+            line-height: 24px;
+            text-decoration: underline;
+            float: left;
+            margin: 23px 0 0 20px;
+            font-size: 16px;
+            a {
+                color: #7c7c7c;
+            }
+        }
+
+        button.submit {
+            padding: 10px 20px;
+            margin: 15px 20px 0 0;
+            float: right;
+            width: auto;
+            border: none;
+            border-radius: 10px;
+            background-color: #a0c422;
+            box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .ssl-certificate {
+            padding: 15px;
+            color: #858585;
+            font-size: 16px;
+            line-height: 20px;
+
+            .m-lock {
+                @include size(41px 52px);
+                content: '';
+                display: block;
+                margin: 0 20px 0 0;
+                float: left;
+                background-image: url(/img/m-lock.svg);
+                background-size: 41px 52px;
+            }
+        }
+
+    }
+
+    .sign-in-nav {
+        padding: 15px 0;
+        text-align: center;
+
+        &:after {
+            content: '';
+            display: inline-block;
+            width: 100%;
+            height: 1px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 5px;
+            font-family: Roboto;
+            color: #858585;
+            font-size: 18px;
+            line-height: 20px;
+            text-decoration: none;
+        }
+    }
+
+    .alert {
+        margin: 15px;
+    }
+}
+
+.entry {
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    margin-top: 0;
+    background: transparent;
+    border-radius: 0;
+}

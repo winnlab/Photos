@@ -1,0 +1,168 @@
+.mobile {
+    .mission-header {
+        position: relative;
+        .stats {
+            @include position(absolute, null null 0 0);
+            @include size(100% 40px);
+            background-color: rgba(255, 255, 255, 0.8);
+
+            .users {
+                float: left;
+                width: 50%;
+                color: #414141;
+                font: {
+                    family: Roboto;
+                    weight: 300;
+                }
+                text-align: center;
+                line-height: 40px;
+            }
+
+            .uploads {
+                @extend .users;
+                border-right: 1px solid #fff;
+            }
+        }
+    }
+
+    .mission-text {
+        color: #414141;
+        .title {
+            margin: 15px 0;
+            font: {
+                family: Roboto;
+                size: 20px;
+                weight: 400;
+            }
+            line-height: 24px;
+        }
+
+        .description {
+            margin: 0 0 15px;
+            font: {
+                family: Roboto;
+                weight: 300;
+            }
+            line-height: 20px;
+        }
+    }
+
+    .upload-btn-wrap {
+        @include size(100% 60px);
+        box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.35);
+        float: left;
+
+        .affixed {
+            @include size(100% 60px);
+            background-color: #a0c422;
+            &.affix {
+                top: 60px;
+                z-index: 10;
+            }
+        }
+
+
+        .upload-to-mission {
+            display: block;
+            height: 60px;
+            margin: 0 120px 0 0;
+            outline: none;
+            font: {
+                family: Roboto;
+                size: 22px;
+                weight: 400;
+            }
+            text: {
+                align: center;
+                decoration: none;
+            }
+            line-height: 60px;
+            color: #fff;
+        }
+
+        .mission-info {
+            @include size(120px 60px);
+            float: right;
+            color: rgba(65, 65, 65, 0.8);
+            font-family: Roboto;
+            font-weight: 400;
+            line-height: 30px;
+
+            .prize-icon {
+                height: 30px;
+                background-color: #d9eb9b;
+                padding-left: 30px;
+                position: relative;
+
+                &:before {
+                    @include position(absolute, 5px null null 6px);
+                    @include size(20px);
+                    content: '';
+                    background-image: url(/img/m-money.svg);
+                    background-size: 20px 20px;
+                }
+            }
+
+            .time-icon {
+                @extend .prize-icon;
+                height: 29px;
+                margin-bottom: 1px;
+
+                &:before {
+                    background-image: url(/img/m-time.svg);
+                }
+            }
+        }
+    }
+
+    .mission-sort {
+        @include size(100% 47px);
+        float: left;
+        margin: 0 0 15px;
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
+
+        a {
+            @include size(50% 47px);
+            display: block;
+            float: left;
+            color: #414141;
+            font: {
+                family: Roboto;
+                weight: 300;
+            }
+            line-height: 48px;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            opacity: 0.5;
+
+            &:first-child {
+                border-right: 1px solid rgba(223, 223, 223, 0.6);
+            }
+
+            &.active {
+                opacity: 1;
+            }
+
+            span {
+                &.latest:before {
+                    background-image: url(/img/m-clock.svg);
+                }
+                &.top:before {
+                    background-image: url(/img/m-heart.svg);
+                }
+                &:before {
+                    content: '';
+                    @include size(17px);
+                    background-size: 17px 17px;
+                    display: inline-block;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 8px;
+                }
+            }
+        }
+
+    }
+}
