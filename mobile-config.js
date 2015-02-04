@@ -1,13 +1,13 @@
 // This section sets up some basic app metadata,
 // the entire section is optional.
 App.info({
-    id: 'com.12selfie',
-    name: '12Selfie',
+    id: 'com.selfie.SelfiePhotos',
+    name: 'Selfie',
     description: 'Photo shering site',
-    version: '0.0.1',
+    version: '1.0.1',
     author: 'Winnlab',
     email: 'andrew.sygyda@gmail.com',
-    website: 'http://12selfie.com'
+    website: 'http://selfie.com'
 });
 
 // App.icons({

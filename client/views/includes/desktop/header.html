@@ -6,8 +6,11 @@
                     <img alt="12Selfie" src="/img/logo.png">
                 </a>
 
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right user-nav">
                     {{#if currentUser}}
+                        <li class="notifications">
+                            {{> notifications}}
+                        </li>
                         <li class="user">
                             <div class="pull-left">
                                 <div class="user-avatar">

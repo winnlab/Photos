@@ -6,10 +6,12 @@ body.mobile {
 
     .navbar-fixed-top {
         height: 60px;
-        background: #fff;
         border: none;
         margin: 0;
         box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
+        .row {
+            background: #fff;
+        }
     }
 
     .navbar-toggle {
@@ -65,7 +67,40 @@ body.mobile {
         background: #a0c422;
         color: #fff;
         border-radius: 50%;
-        text-align: center;
+        text: {
+            align: center;
+            decoration: none;
+        }
+    }
+
+    .notification-list-wrap {
+        @include transform(translateY(-100%));
+        @include transition(transform 0.3s ease-in-out, visibility 0s 0.3s linear);
+        display: block;
+        visibility: hidden;
+        margin: 0;
+        z-index: -1;
+
+        &.active {
+            @include transform(translateY(0));
+            @include transition(transform 0.3s ease-in-out, visibility 0s linear);
+            visibility: visible;
+        }
+    }
+
+    .my-settings {
+        @include size(60px);
+        padding: 15px 15px;
+        display: block;
+        float: right;
+
+        &:before {
+            @include size(30px);
+            content: '';
+            display: block;
+            background-image: url(/img/m-settings.svg);
+            background-size: 30px 30px;
+        }
     }
 
     #content {
@@ -108,6 +143,7 @@ body.mobile {
 
     #gallery-container {
         padding-bottom: 0;
+        min-height: 350px;
         .gallery-photos {
             padding-top: 10px;
         }
@@ -250,6 +286,9 @@ body.mobile {
     }
 
     .user {
+        &-wrap {
+            text-decoration: none;
+        }
         &-avatar {
             border-radius: 50%;
         }
@@ -262,5 +301,20 @@ body.mobile {
                 transform: uppercase;
             }
         }
+    }
+}
+
+@media (min-width: 768px) {
+    #category-navbar {
+        position: static;
+        .navbar-wrapper {
+            height: 65px;
+        }
+    }
+    .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+        margin: 0 auto;
+    }
+    .navbar-toggle {
+        display: block;
     }
 }

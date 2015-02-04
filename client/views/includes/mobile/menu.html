@@ -13,14 +13,16 @@
                     {{#if currentUser}}
                         {{#with currentUser}}
                             <a class="user-wrap" href="{{pathFor 'profile'}}">
-                                <img class="user-avatar" src="{{avatarById avatar._id}}" width="150" height="150">
+                                <img class="user-avatar" src="{{avatarById avatar._id}}" width="150" height="150" />
                                 <div class="user-name">
                                     {{username}}
                                 </div>
                             </a>
                         {{/with}}
                     {{else}}
-                        <img class="logo" src="/img/m-logo-menu.png">
+                        <a href="{{pathFor 'categories' type='neueste'}}">
+                            <img class="logo" src="/img/m-logo-menu.png" />
+                        </a>
                         <div class="header-text">
                             Sei, wie du bist. Zeig, wie du bist. <br />
                             Die <a href="{{pathFor 'home'}}">coole</a> Foto-Community
@@ -43,7 +45,7 @@
                 </nav>
 
                 <div class="foot-btns">
-                    <a class="settings"></a>
+                    <a class="settings" href="{{pathFor 'profile.edit' username=currentUser.username}}"></a>
                     <a class="info" href="/about/agb"></a>
                     <a class="question" href="/about/faq"></a>
                 </div>

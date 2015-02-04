@@ -1,0 +1,101 @@
+.mobile {
+    .user-panel {
+        padding: 20px 0 0;
+        min-height: 400px;
+        background: none;
+        margin-bottom: 5px;
+
+        &.my-profile {
+            padding-top: 50px;
+            .username {
+                margin: 30px 0;
+            }
+        }
+
+        .blurBg {
+            padding-bottom: 69px;
+        }
+
+        .avatar img {
+            @include size(180px);
+            border: 10px solid rgba(160,196,34,0.7);
+            box-shadow: none;
+        }
+
+        .username {
+            color: #ffffff;
+            font: {
+                size: 22px;
+                weight: 700;
+            }
+            line-height: 22px;
+            text-shadow: none;
+            text-transform: none;
+            margin: 20px auto;
+        }
+
+        .profile-button {
+            font-size: 20px;
+        }
+
+        .user-stats {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
+            bottom: 2px;
+
+            .wrapper .stat {
+                padding: 0;
+            }
+
+            .wrapper .stat {
+                width: 33.3333333333%;
+            }
+            .wrapper .stat.active .stat-wrapper:after {
+                left: 0 !important;
+                right: 0 !important;
+                width: auto;
+                height: 2px;
+                bottom: -10px;
+            }
+        }
+    }
+
+    .user-list {
+        margin-top: 13px;
+
+        .message {
+            color: #676767;
+        }
+
+        .user {
+            .user-wrapper {
+                box-shadow: 0px 2px 2px 0px rgba(0, 1, 1, 0.15);
+                border-radius: 5px;
+                margin-bottom: 15px;
+
+                .nickname {
+                    width: auto;
+                    font-size: 22px;
+                    font-family: Roboto;
+                    font-weight: normal;
+                }
+
+                .user-info {
+                    display: block;
+                    float: none !important;
+                    width: auto;
+                    margin: 0 0 0 120px;
+                    line-height: 28px;
+                }
+
+                .follow-button.small {
+                    padding: 8px 17px;
+                    font-size: 18px;
+                    background: rgba(160, 196, 34, 0.9);
+                }
+            }
+        }
+    }
+
+}

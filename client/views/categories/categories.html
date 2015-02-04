@@ -23,7 +23,8 @@
         {{> pix shares=shares displayFilters=displayFilters}}
 
         {{> moreResults isMore=moreResults}}
-
-        <a class="upload-btn" href="{{pathFor 'addPhoto'}}">+</a>
+        {{#if isMobileDevice}}
+            <a class="upload-btn" href="{{pathFor 'addPhoto'}}">+</a>
+        {{/if}}
     </div>
 </template>

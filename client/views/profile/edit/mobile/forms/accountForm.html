@@ -1,0 +1,24 @@
+<template name="accountForm">
+    <div class="container account-form">
+        <h3>Meine Daten</h3>
+
+        <p>
+            Falls Du eine Mission gewinnst oder wir ein Foto von Dir kaufen möchten, benötigen wir für die Abrechnung Deine Adresse.
+        </p>
+
+        <div class="separate-line"></div>
+
+        <form name="addressForm" class="addressForm">
+            <div class="string form-group optional stringish" id="address_street_input">
+                <input class="form-control" id="street" name="street" placeholder="STRASSE UND HAUSNUMMER" required="required" type="text" value="{{userInfo.profile.street}}">
+            </div>
+            <div class="string form-group optional stringish" id="address_plz_input">
+                <input class="form-control" id="plz" name="plz" placeholder="PLZ" required="required" type="text" value="{{userInfo.profile.plz}}">
+            </div>
+            <div class="string form-group optional stringish" id="address_city_input">
+                <input class="form-control" id="city" name="city" placeholder="ORT" required="required" type="text" value="{{userInfo.profile.city}}" />
+            </div>
+            <button type="submit">Addressdaten speichern</button>
+        </form>
+    </div>
+</template>

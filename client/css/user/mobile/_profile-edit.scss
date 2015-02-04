@@ -1,0 +1,153 @@
+.mobile {
+    #content.profile-edit {
+        background-image: url(/img/m-profile-edit-bg.png);
+        background-size: cover;
+    }
+
+    .profile-edit-header {
+        @include size(100% 60px);
+        @include position(fixed, 0 null null 0);
+        z-index: 1050;
+        background-color: #fff;
+        box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
+
+        .back {
+            @include size(60px);
+            padding: 20px 15px;
+            display: block;
+            float: left;
+
+            &:before {
+                @include size(12px 20px);
+                content: '';
+                display: block;
+                background-image: url(/img/m-arrow-prev.svg);
+                background-size: 12px 20px;
+            }
+        }
+
+        h3 {
+            margin: 0 auto;
+            line-height: 60px;
+            width: 300px;
+            text-align: center;
+            font-size: 20px;
+        }
+    }
+
+    .profile-edit-nav {
+        list-style: none;
+        padding: 0;
+
+        li {
+            height: 60px;
+            padding: 20px;
+            border-bottom: 1px solid rgba(65, 65, 65, 0.4);
+            color: #414141;
+            font: {
+                family: Roboto;
+                weight: 400;
+                size: 20px;
+            }
+            line-height: 20px;
+
+            &.goTo:after {
+                @include size(10px 18px);
+                content: '';
+                display: block;
+                float: right;
+                background-image: url(/img/m-arrow-next-dark.svg);
+                background-size: 10px 18px;
+            }
+        }
+    }
+
+    .separate-line {
+        height: 1px;
+        background: rgba(65, 65, 65, 0.4);
+        margin: 15px -15px;
+    }
+
+    .profile-edit-wrap {
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            border: none;
+            border-radius: 7px;
+            background-color: #ffffff;
+            box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
+            height: 44px;
+            font-size: 18px;
+        }
+
+        button {
+            @include size(100% 44px);
+            border: none;
+            border-radius: 7px;
+            background-color: rgba(160, 196, 34, 0.5);
+            box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.2);
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 44px;
+            text-align: center;
+            outline: none;
+        }
+    }
+
+    .auth-form {
+        font-family: Roboto;
+        color: #414141;
+
+        h3 {
+            font-size: 20px;
+            font-weight: 500;
+        }
+    }
+
+    .account-form {
+        @extend .auth-form;
+        p {
+            font-size: 16px;
+            line-height: 20px;
+        }
+    }
+
+    .pay-form {
+        @extend .account-form;
+
+        .choice {
+            width: 50%;
+            float: left;
+
+            input {
+                display: none;
+
+                &[type=radio]:checked + label:before {
+                    background-image: url(/img/m-check.svg);
+                    background-size: 37px 27px;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                }
+            }
+
+            label {
+                font-size: 20px;
+                font-weight: 500;
+                text-align: left;
+
+                &:before {
+                    @include size(54px);
+                    margin: 0 10px 0 0;
+                    display: inline-block;
+                    content: '';
+                    border-radius: 6px;
+                    background-color: #ffffff;
+                    box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+
+}

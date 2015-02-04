@@ -18,5 +18,24 @@
     }
 }
 .theme-mobile-top {
-    padding: 15px 0 0;
+    padding: 62px 0 0;
+}
+.mobile {
+    .theme-sort {
+        @extend .mission-sort;
+        @include position(fixed, 60px null null 0);
+        z-index: 1;
+
+        a.active {
+            color: #fff;
+            background-color: rgba(168, 201, 53, 0.95);
+
+            span.latest:before {
+                background-image: url(/img/m-clock-white.svg);
+            }
+            span.top:before {
+                background-image: url(/img/m-heart-white.svg);
+            }
+        }
+    }
 }

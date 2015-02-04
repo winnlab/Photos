@@ -1,0 +1,42 @@
+<template name="payForm">
+    <div class="container pay-form">
+        <h3>Bankverbindung</h3>
+
+        <p>
+            Bitte wähle hier, wie Du Deinen Gewinn oder Dein Honorar erhalten möchtest.
+        </p>
+
+        <div class="choices-group clearfix">
+            <div class="choice">
+                <input class="payInfo" id="choice-paypal" name="type" type="radio" value="paypal">
+                <label for="choice-paypal">PayPal</label>
+            </div>
+            <div class="choice">
+                <input class="payInfo" id="choice-bank" name="type" type="radio" value="bank">
+                <label for="choice-bank">Bankkonto</label>
+            </div>
+        </div>
+
+        {{#if payType}}
+            <div class="separate-line"></div>
+        {{/if}}
+
+        <form class="paypalForm{{#if $neq payType 'paypal'}} hide{{/if}}">
+            <div class="form-group">
+                <input class="form-control" id="paypal_email" name="paypalEmail" placeholder="PAYPAL-EMAIL" type="email" value="{{userInfo.profile.paypalEmail}}">
+            </div>
+            <button type="submit">Speichern</button>
+        </form>
+
+        <form class="bankForm{{#if $neq payType 'bank'}} hide{{/if}}">
+            <div class="form-group">
+                <input class="form-control" id="iban" name="iban" placeholder="IBAN" type="text" value="{{userInfo.profile.iban}}" />
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" id="swift_code" name="swiftCode" placeholder="BIC" type="text" value="{{userInfo.profile.swiftCode}}" />
+            </div>
+            <button type="submit">Speichern</button>
+        </form>
+    </div>
+</template>

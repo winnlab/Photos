@@ -1,10 +1,10 @@
-var isFormValid = function ($form) {
-        return !!$form.data('bootstrapValidator').isValid();
-    },
-    setProfile = function (ev, infoType) {
+'use strict';
+
+var setProfile = function (ev, infoType) {
         ev.preventDefault();
-        var $form = $(ev.target);
-        if (isFormValid($form)) {
+        var $form = $(ev.currentTarget);
+        console.log(ev);
+        if ($form.data('bootstrapValidator').isValid()) {
             Meteor.call('setProfile', getFormObj($form), infoType);
         }
     };

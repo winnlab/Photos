@@ -166,3 +166,7 @@ Meteor.publish('tags', function (name, exist) {
             limit: 6
         }) : [];
 });
+
+Meteor.publish('notifications', function (userId) {
+    return Notification.find({ userId: userId, read: false }, { sort: { date: -1 } });
+});

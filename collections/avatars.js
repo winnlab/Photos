@@ -11,6 +11,18 @@ Avatars = new FS.Collection('avatars', {
             //     // Transform the image into a 280x280 thumbnail
             //     gm(readStream, fileObj.name()).autoOrient().resize('280', '280', '^').gravity('Center').extent('280', '280').stream().pipe(writeStream);
             // }
+        }),
+        new FS.Store.FileSystem('avatar-blur', {
+            transformWrite: function(fileObj, readStream, writeStream) {
+                gm(readStream, fileObj.name())
+                    .autoOrient()
+                    .resize('500', '500', '^')
+                    .gravity('Center')
+                    .extent('500', '500')
+                    .blur(0, 24)
+                    .stream()
+                    .pipe(writeStream);
+            }
         })
     ],
     filter: {

@@ -12,6 +12,12 @@ Template.registerHelper('activeRouteClass', function () {
     return active && 'active';
 });
 
+Template.registerHelper('showSettings', function () {
+    var routeName = Router.current().route.getName(),
+        routes = ['followings', 'followers', 'profile'];
+    return routes.indexOf(routeName) !== -1;
+});
+
 Template.registerHelper('addMissionPhoto', function (id) {
     return Router.routes.addPhoto.path({}, {
         query: {
@@ -45,10 +51,6 @@ Template.registerHelper('timeLeft', function (to, type) {
     }
 
     return type === 'number' ? number : (type === 'period' ? period : number + period);
-});
-
-Template.registerHelper('isFirefox', function () {
-    return navigator.userAgent.indexOf('Firefox') > -1;
 });
 
 Template.registerHelper('avatarById', function (_id, size, isBg) {
@@ -116,4 +118,8 @@ Template.registerHelper('moreResults', function () {
 
 Template.registerHelper('isMobileDevice', function () {
     return Meteor.Device.isPhone() || Meteor.Device.isTablet();
+});
+
+Template.registerHelper('timeAgo', function (date) {
+    return moment(date).fromNow();
 });

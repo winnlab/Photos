@@ -40,7 +40,7 @@ var shareCounting = function (ids, inc) {
             $inc: { 'meta.photos_count': inc }
         });
     }
-}
+};
 
 Meteor.methods({
     addShare: function (shareData, source) {
@@ -63,7 +63,8 @@ Meteor.methods({
             ),
             share = Share.insert(data);
 
-        Meteor.call('addTags', shareData.tags)
+        Meteor.call('addTags', shareData.tags);
+        Meteor.call('shareNotify', userId, shareData.type);
 
         shareCounting({
             userId: userId,
@@ -94,7 +95,7 @@ Meteor.methods({
 
     toggleLike: function (shareId) {
         var share = Share.findOne({ _id: shareId }, {
-                fields: { _id: 1, source: 1 }
+                fields: { _id: 1, source: 1, userId: 1 }
             }),
             userId = Meteor.userId(),
             isLiked = Share.findOne({
@@ -125,6 +126,7 @@ Meteor.methods({
             ShareFiles.update({ _id: share.source._id }, {
                 $inc: { likesQty: 1 }
             });
+            Meteor.call('likeNotify', share.userId, userId, shareId);
         }
     }
 });

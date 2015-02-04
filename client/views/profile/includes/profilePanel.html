@@ -1,7 +1,7 @@
 <template name="profilePanel">
-    <div class="user-panel blurrable" data-user-panel="">
-        <div class="blurBg {{#if isFirefox}}firefox{{/if}}">
-            <img src="{{avatarById userInfo.avatar._id 'avatars' true}}" />
+    <div class="user-panel{{#if currentUser}}{{#if $eq currentUser.username userInfo.username}} my-profile{{/if}}{{/if}}">
+        <div class="blurBg">
+            <img src="{{avatarById userInfo.avatar._id 'avatar-blur' true}}" />
         </div>
         <div class="avatar">
             <img src="{{avatarById userInfo.avatar._id 'avatars'}}" />
@@ -12,7 +12,9 @@
         <div class="user-settings text-center">
             {{#if currentUser}}
                 {{#if $eq currentUser.username userInfo.username}}
-                    <a class="profile-button" href="/users/{{userInfo.username}}/edit">Einstellungen</a>
+                    {{#unless isMobileDevice}}
+                        <a class="profile-button" href="/users/{{userInfo.username}}/edit">Einstellungen</a>
+                    {{/unless}}
                 {{else}}
                     <a data-username="{{userInfo.username}}" href="/users/{{userInfo.username}}/followings" class="followingMe profile-button{{#if $isFollowed userInfo._id}} disabled{{/if}}">
                         {{#if $isFollowed userInfo._id}}
@@ -57,7 +59,7 @@
                         <span class="stat-label">Folgen mir</span>
                     </a>
                 </div>
-                <div class="stat badges {{activeRouteClass 'badges'}}">
+                <!-- <div class="stat badges {{activeRouteClass 'badges'}}">
                     <a class="stat-wrapper" href="/users/{{userInfo.username}}/badges">
                         <span class="stat-count">
                             {{#if userInfo.badgesQty}}
@@ -68,7 +70,7 @@
                         </span>
                         <span class="stat-label">Erfolge</span>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

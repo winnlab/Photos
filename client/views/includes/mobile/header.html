@@ -8,7 +8,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </div>
-                    <a class="notifications" href="/notifications">12</a>
+                    {{> notificationsMobile}}
+                    {{#if showSettings}}
+                        <a class="my-settings" href="{{pathFor 'profile.edit' username=currentUser.username}}"></a>
+                    {{/if}}
                     {{#if pageName}}
                         <div class="navbar-page">{{pageName}}</div>
                     {{else}}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="57px" height="42px">
+<filter id="filter0" x="-3.64%" y="-5.00%" width="107.27%" height="110.00%" filterUnits="objectBoundingBox">
+<feGaussianBlur in="SourceAlpha" result="dsBlurOut" stdDeviation="1.00"/>
+<feFlood result="dsFloodOut" flood-color="rgb(0,0,0)"/>
+<feComposite in="dsFloodOut" in2="dsBlurOut" result="dsShadow" operator="atop"/>
+<feComponentTransfer in="dsShadow" result="dsShadowOpacity">
+<feFuncA type="linear" slope="0.25"/>
+</feComponentTransfer>
+<feOffset in="dsShadowOpacity" dx="0.50" dy="0.87" result="dsOffset"/>
+<feComposite in="dsOffset" in2="SourceAlpha" result="dropShadow" operator="out"/>
+</filter>
+<defs>
+<path id="symbol0" fill-rule="evenodd" d="M 56.76 5.96C 56.76 5.96 22.66 39.77 22.66 39.77 22.36 40.06 21.88 40.06 21.58 39.77 21.58 39.77 2.22 20.57 2.22 20.57 1.92 20.27 1.92 19.79 2.22 19.49 2.22 19.49 6.92 14.83 6.92 14.83 7.22 14.53 7.71 14.53 8.01 14.83 8.01 14.83 22.12 28.82 22.12 28.82 22.12 28.82 50.97 0.22 50.97 0.22 51.27-0.08 51.76-0.08 52.06 0.22 52.06 0.22 56.76 4.88 56.76 4.88 57.06 5.18 57.06 5.66 56.76 5.96Z"/>
+</defs>
+<g>
+<use xlink:href="#symbol0" filter="url(#filter0)"/>
+<use xlink:href="#symbol0" fill="rgb(159,195,33)"/>
+</g>
+</svg>

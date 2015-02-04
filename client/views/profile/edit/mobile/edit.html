@@ -1,0 +1,23 @@
+<template name="profileEditMobile">
+    <div class="profile-edit-header">
+        <a class="back" href="{{pathFor 'profile' username=currentUser.username}}"></a>
+        <h3 class="title">{{title}}</h3>
+    </div>
+    <div class="profile-edit-wrap">
+        {{#if $eq state 'menu'}}
+            {{> profileEditNav}}
+        {{/if}}
+        {{#if $eq state 'pay'}}
+            {{> payForm}}
+        {{/if}}
+        {{#if $eq state 'account'}}
+            {{> accountForm}}
+        {{/if}}
+        {{#if $eq state 'push'}}
+            {{> pushForm}}
+        {{/if}}
+        {{#if $eq state 'privacy'}}
+            {{> privacyForm}}
+        {{/if}}
+    </div>
+</template>

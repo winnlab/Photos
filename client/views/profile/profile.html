@@ -12,4 +12,7 @@
             </div>
         {{/if}}
     </div>
+    {{#if isMobileDevice}}
+        <a class="upload-btn" href="{{pathFor 'addPhoto'}}">+</a>
+    {{/if}}
 </template>
