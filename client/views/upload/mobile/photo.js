@@ -3,9 +3,21 @@
 var step = new ReactiveVar(1),
     tags = new ReactiveVar([]),
     desc = new ReactiveVar(''),
+    fileType = new ReactiveVar(''),
+    getFormData = function () {
+        var query = Router.current().params.query;
+        return {
+            tags: tags.get(),
+            description: desc.get(),
+            missionId: (query && query.missionId) || null,
+            themeId: (query && query.themeId) || null,
+            type: fileType.get(),
+            time: Date.now()
+        };
+    },
     changeStep = function (inc) {
         step.set(step.get() + inc);
-    }, $fakeTextArea;
+    }, $fakeTextArea, shareFileId;
 
 Template.addPhotoMobile.helpers({
     step: function () {
@@ -16,23 +28,40 @@ Template.addPhotoMobile.helpers({
     },
     isShowPrev: function () {
         var currentStep = step.get();
-        if (currentStep === 1 || currentStep >= 3) {
+        if (currentStep === 1 || currentStep >= 4) {
             return false;
         }
         return true;
     },
     isShowNext: function () {
         var currentStep = step.get();
-        if (currentStep === 1) {
-            return desc.get().length > 5;
+        switch (currentStep) {
+            case 1:
+                return !!fileType.get();
+            case 2:
+                return desc.get().length > 5;
+            case 3:
+                return tags.get().length >= 3;
+            default:
+                return false;
         }
-        if (currentStep === 2) {
-            return tags.get().length >= 3;
+    },
+    uploadTitle: function () {
+        var query = Router.current().params.query,
+            mission, theme;
+
+        if (query) {
+            if (query.missionId) {
+                mission = Missions.findOne({_id: query.missionId});
+                return 'Für Mission ' + (mission ? mission.name : '');
+            }
+            if (query.themeId) {
+                theme = Themes.findOne({_id: query.themeId});
+                return 'Für Kathegorie ' + (theme ? theme.name : '');
+            }
+        } else {
+            return 'ins Profil';
         }
-        if (currentStep >= 3) {
-            return false;
-        }
-        return false;
     }
 });
 
@@ -70,11 +99,35 @@ Template.addPhotoMobile.events({
         oldTags.splice(index, 1);
         tags.set(oldTags);
     },
-    'click .start-upload': function () {
-        changeStep(1);
-    },
     'keyup .upload-desc': function (ev) {
         desc.set(ev.target.value);
+    },
+    'change #file': function (ev) {
+        var file = ev.target.files[0],
+            reader = new FileReader();
+        if (!file) {
+            return false;
+        }
+        reader.onload = function (e) {
+            if (file.type.indexOf('image') !== -1) {
+                fileType.set('image');
+                $('.share-container').css('background-image', 'url(' + e.target.result + ')');
+            }
+        };
+        reader.readAsDataURL(file);
+    },
+    'click .start-upload': function () {
+        submitShareForm(getFormData(), function (_id) {
+            shareFileId = _id;
+            changeStep(1);
+        });
+    },
+    'click .social-share': function () {
+        FB.api('/me/photos', 'POST', {
+            url: window.location.origin + ShareFiles.findOne({ _id: shareFileId }).url({ storage: 'shares' }),
+            message: desc.get()
+        }, function (response) {});
+        Router.go('categories', { type: 'neueste' });
     }
 });
 

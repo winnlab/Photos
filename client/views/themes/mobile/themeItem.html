@@ -1,6 +1,6 @@
 <template name="themeItemMobile">
     <div class="theme-mobile-top"></div>
-    <a class="upload-btn" href="{{pathFor 'themeUpload' link=theme.link}}">+</a>
+    <a class="upload-btn" href="{{addThemePhoto theme._id}}">+</a>
     <div class="theme-sort">
         <a data-sort="latest" class="order {{#if $.Session.equals 'sortBy' 'latest'}}active{{/if}}">
             <span class="latest">Neueste</span>

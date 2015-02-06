@@ -60,8 +60,22 @@ Meteor.publishComposite('missionItem', function (missionId) {
     };
 });
 
-Meteor.publish('missionName', function () {
-    return Missions.find({}, {
+Meteor.publish('missionName', function (id) {
+    var query = {};
+    if (id) {
+        query._id = id;
+    }
+    return Missions.find(query, {
+        fields: { name: 1 }
+    });
+});
+
+Meteor.publish('themeName', function (id) {
+    var query = {};
+    if (id) {
+        query._id = id;
+    }
+    return Themes.find(query, {
         fields: { name: 1 }
     });
 });

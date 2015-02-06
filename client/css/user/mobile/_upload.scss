@@ -307,6 +307,48 @@
             text-align: center;
         }
     }
+
+    .file-wrap {
+        @include size(100% 170px);
+        position: relative;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
+        color: #414141;
+        border: none;
+        overflow: hidden;
+
+        input {
+            @include size(100%);
+            @include position(absolute, 0 null null 0);
+            z-index: 2;
+            opacity: 0;
+        }
+
+        .fake-file {
+            @include size(100%);
+            @include position(absolute, 0 null null 0);
+            z-index: 1;
+            font-size: 18px;
+            text-align: center;
+            background-color: rgba(255,255,255,0.4);
+
+            .title {
+                @include position(absolute, 50% null null 0);
+                @include transform(translateY(-50%));
+                width: 100%;
+                padding: 0 15px;
+            }
+        }
+
+        .share-container {
+            @include size(100%);
+            @include position(absolute, 0 null null 0);
+            background-size: cover;
+            background-position: center center;
+            z-index: 0;
+        }
+    }
 }
 
 @include keyframes(caret) {

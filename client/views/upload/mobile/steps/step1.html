@@ -2,7 +2,17 @@
     <div class="field-title">
         Bitte gib uns eine kurze Beschreibung.
     </div>
-    <textarea class="upload-desc" name="description"></textarea>
+    <div class="file-wrap">
+        <div class="fake-file">
+            <div class="title">
+                Video oder Bild auswählen
+                <br />
+                {{uploadTitle}}
+            </div>
+        </div>
+        <div class="share-container"></div>
+        <input id="file" name="file" type="file" accept="video/quicktime, video/mp4, image/jpg, image/jpeg">
+    </div>
     <div class="field-comment">
         <span>Pflichtfeld</span>
     </div>

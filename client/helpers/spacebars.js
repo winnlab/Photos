@@ -17,13 +17,22 @@ Template.registerHelper('showSettings', function () {
         routes = ['followings', 'followers', 'profile'];
     return routes.indexOf(routeName) !== -1;
 });
-
-Template.registerHelper('addMissionPhoto', function (id) {
-    return Router.routes.addPhoto.path({}, {
-        query: {
-            missionId: id
-        }
+var pathForUpload = function (query) {
+    var route;
+    if (Meteor.Device.isPhone() || Meteor.Device.isTablet()) {
+        route = Router.routes.addShare;
+    } else {
+        route = Router.routes.addPhoto;
+    }
+    return route.path({}, {
+        query: query
     });
+};
+Template.registerHelper('addMissionPhoto', function (id) {
+    return pathForUpload({ missionId: id });
+});
+Template.registerHelper('addThemePhoto', function (id) {
+    return pathForUpload({ themeId: id });
 });
 
 Template.registerHelper('timeLeft', function (to, type) {

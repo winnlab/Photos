@@ -109,32 +109,13 @@ Template.photoUploadForm.events({
     'submit .uploadForm': function (ev, template) {
         ev.preventDefault();
         var $form = $(ev.target),
-            file = $('#file')[0].files[0],
-            userId = Meteor.userId(),
-            fileObj, formData;
+            formData;
 
         if (photoData.file && $form.data('bootstrapValidator').isValid()) {
             status.set('loading');
             formData = getFormData($form, template);
-            fileObj = new FS.File(file);
-            fileObj.userId = userId;
-            fileObj.likesQty = 0;
-            _.extend(fileObj, _.pick(formData, ['missionId', 'themeId', 'tags', 'time']));
-
-            ShareFiles.insert(fileObj, function (err, shareFile) {
-                if (err) {
-                    console.error(err);
-                }
-                Meteor.call('addShare',
-                    formData,
-                    _.pick(shareFile, '_id', 'collectionName'),
-                    function (err) {
-                        if (err) {
-                            console.error(err);
-                        }
-                        resetForm(ev.target);
-                    }
-                );
+            submitShareForm(formData, function () {
+                resetForm(ev.target);
             });
         }
     }
