@@ -132,11 +132,11 @@ Template.carousel.rendered = function () {
 
 Template.carousel.created = function() {
     $(window).on('resize', imgSize);
-    $('body').addClass('noScroll');
+    $('html').addClass('noScroll');
 };
 
 Template.carousel.destroyed = function() {
-    $('body').removeClass('noScroll');
+    $('html').removeClass('noScroll');
     $(window).off('resize');
     $carousel.off('slide.bs.carousel');
 };

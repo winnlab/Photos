@@ -1,3 +1,5 @@
+'use strict';
+
 Template.categories.helpers({
     isActive: function (type) {
         return type === Router.current().params.type ? 'active' : '';
@@ -40,8 +42,8 @@ Template.categories.created = function () {
         Meteor.subscribe('shareSource', query, options);
 
     });
-}
+};
 
 Template.categories.destroyed = function () {
     $(window).off('scroll');
-}
+};

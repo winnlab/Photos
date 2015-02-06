@@ -55,7 +55,7 @@ Meteor.methods({
             type: 'like',
             msg: 'Benutzer ' + owner.username + ' mag Ihr Foto',
             link: Router.path('profile', {
-                username: user.username,
+                username: user ? user.username : '',
                 shareId: shareId
             })
         });

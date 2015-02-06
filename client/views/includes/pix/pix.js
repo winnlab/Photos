@@ -63,8 +63,12 @@ Template.pix.rendered = function () {
 
 Template.pix.created = function() {
     $(window).on('resize', getColumns);
+    $('body').on('shareView', function (ev, shareId) {
+        active.set(shareId, !!shareId ? shareId : null);
+    });
 };
 
 Template.pix.destroyed = function() {
     $(window).off('resize');
+    $('body').off('shareView');
 };

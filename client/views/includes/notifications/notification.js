@@ -6,8 +6,8 @@ var helpers = {
     },
     events = {
         'click .notification-item': function (ev) {
-            var notificationId = $(ev.currentTarget).data('id');
-            Notification.update({ _id: notificationId }, { $set: { read: true }});
+            // var notificationId = $(ev.currentTarget).data('id');
+            // Notification.update({ _id: notificationId }, { $set: { read: true }});
         }
     };
 
