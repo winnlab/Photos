@@ -27,7 +27,7 @@
                                     <div class="caption">
                                         <div class="avatar pull-left">
                                             <div class="user-avatar">
-                                                <a href="/users/{{username}}">
+                                                <a href="{{pathFor 'profile'}}">
                                                     <img class="avatar-image" src="{{userAvatar userId}}" width="58" height="58">
                                                 </a>
                                             </div>
@@ -35,7 +35,7 @@
 
                                         <div class="message">
                                             <h6>
-                                                <a href="/users/{{username}}">{{username}}</a>
+                                                <a href="{{pathFor 'profile'}}">{{username}}</a>
                                                 <span class="rating">❤</span>
                                                 <span class="ratings-count">({{likes.length}})</span>
                                             </h6>

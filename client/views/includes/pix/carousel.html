@@ -51,7 +51,7 @@
                                             <div class="col-lg-2 col-md-2 col-md-offset-0 col-sm-4 col-xs-4">
                                                 <div class="pull-right">
                                                     <div class="user-avatar">
-                                                        <a href="/users/{{username}}">
+                                                        <a href="{{pathFor 'profile'}}">
                                                             <img class="avatar-image" src="{{userAvatar userId 'white'}}" width="50" height="50">
                                                         </a>
                                                     </div>
@@ -61,7 +61,7 @@
                                             <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8 caption-content">
                                                 <div class="caption">
                                                     <h4>
-                                                        <a class="nickname" href="/users/{{username}}">{{username}}</a>
+                                                        <a class="nickname" href="{{pathFor 'profile'}}">{{username}}</a>
                                                         <span class="date-indication">{{since time}}</span>
                                                     </h4>
                                                     {{#if $gt likesQty 0}}

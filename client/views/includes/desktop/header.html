@@ -14,7 +14,7 @@
                         <li class="user">
                             <div class="pull-left">
                                 <div class="user-avatar">
-                                    <a href="/users/{{currentUser.username}}">
+                                    <a href="{{pathFor 'profile' username=currentUser.username}}">
                                         <img class="avatar-image" src="{{avatarById currentUser.avatar._id}}" width="50" height="50">
                                     </a>
                                 </div>
@@ -30,7 +30,7 @@
                             </a>
                             <ul class="dropdown-menu info-menu" role="menu">
                                 <li>
-                                    <a href="/users/{{currentUser.username}}" ><strong>Profil anzeigen</strong></a>
+                                    <a href="{{pathFor 'profile' username=currentUser.username}}" ><strong>Profil anzeigen</strong></a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a class="logout" href="/auth/logout">Logout</a></li>
