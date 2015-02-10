@@ -36,11 +36,17 @@ Template.categories.created = function () {
             case 'gw1414':
                 query.winner = 1;
                 break;
+            case 'videos':
+                query.type = 'video';
+                break;
+            case 'bestclips':
+                query.type = 'video';
+                options.sort ={
+                    likesQty: -1
+                };
+                break;
         }
-
         Meteor.subscribe('share', query, options);
-        Meteor.subscribe('shareSource', query, options);
-
     });
 };
 

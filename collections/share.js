@@ -153,11 +153,59 @@ ShareFiles = new FS.Collection('shares', {
     }
 });
 
-ShareFiles.allow({
+var allow = {
     insert: function (userId) {
         return !!userId;
     },
     update: isUserOwn,
     remove: isUserOwn,
     download: function () { return true; }
+};
+
+ShareFiles.allow(_.extend({}, allow));
+
+var shareVideoStores = [];
+shareVideoStores.push(new FS.Store.FileSystem('share-video'));
+
+if (Meteor.isServer) {
+    shareVideoStores.push(new FS.Store.FileSystem('share-video-thumb', {
+        beforeWrite: function (fileObj) {
+            return {
+                extension: 'png',
+                type: 'image/png'
+            };
+        },
+        transformWrite: function(fileObj, readStream, writeStream) {
+            var fs = Npm.require('fs'),
+                folder = __meteor_bootstrap__.serverDir.split('.meteor/local')[0] +
+                    '.meteor/local/cfs/files/share-video-shots/',
+                filename = fileObj.copies['share-video-thumb'].name;
+            ffmpeg(readStream)
+            // setup event handlers
+            .on('end', function() {
+                var shotReadStream = fs.createReadStream(folder + filename);
+                gm(shotReadStream, filename).autoOrient().resize('296').stream().pipe(writeStream);
+            })
+            .on('error', function(err) {
+                console.log('an error happened: ' + err.message);
+            })
+            .screenshot({
+                count: 1,
+                timemarks: [ 0 ],
+                folder: folder,
+                filename: filename
+            });
+        }
+    }));
+}
+
+ShareVideo = new FS.Collection('shareVideo', {
+    stores: shareVideoStores,
+    filter: {
+        allow: {
+            contentTypes: ['video/*']
+        }
+    }
 });
+
+ShareVideo.allow(_.extend({}, allow));

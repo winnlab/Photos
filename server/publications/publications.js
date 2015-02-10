@@ -125,27 +125,28 @@ Meteor.publish('usersList', function (users) {
     });
 });
 
-Meteor.publish('share', function (query, options) {
-    checkSharesQuery(query);
-    return Share.find(query || {}, options || {});
-});
-
-Meteor.publish('shareSource', function (query, opts) {
-    checkSharesQuery(query);
-    var options = {
-        fields: {
-            original: 0,
-            uploadedAt: 0
-        }
-    };
-    if (opts && opts.limit) {
-        check(opts.limit, Number);
-        options.limit = opts.limit;
+Meteor.publishComposite('share', function (query, options) {
+    return {
+        find: function () {
+            checkSharesQuery(query);
+            return Share.find(query || {}, options || {});
+        },
+        children: [{
+            find: function (share) {
+                var options = {
+                    limit: 1,
+                    fields: { original: 0, uploadedAt: 0 }
+                };
+                if (share.type === 'img') {
+                    return ShareFiles.find({ _id: share.source._id }, options);
+                }
+                if (share.type === 'video') {
+                    return ShareVideo.find({ _id: share.source._id }, options);
+                }
+                return null;
+            }
+        }]
     }
-    if (opts && opts.sort) {
-        options.sort = opts.sort;
-    }
-    return ShareFiles.find(query || {}, options);
 });
 
 Meteor.publish('themes', function (query) {

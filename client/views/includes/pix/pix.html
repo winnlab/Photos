@@ -21,7 +21,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-4 {{#if $eq columnsQty 1}}col-xs-12{{else}}col-xs-6{{/if}}">
                     {{#each $mapped ../shares}}
                         {{#if inColumn ../key $index}}
-                            <div class="photo-thumb showShare" data-id="{{_id}}">
+                            <div class="photo-thumb showShare{{#if $eq type 'video'}} video{{/if}}" data-id="{{_id}}">
                                 {{#unless isMobileDevice}}
                                 <div class="thumb-overlay">
                                     <div class="caption">
@@ -45,7 +45,12 @@
                                     </div>
                                 </div>
                                 {{/unless}}
-                                <img class="thumb" src="{{getImage 'ShareFiles' source._id 'shareThumbs'}}" />
+                                {{#if $eq type 'img'}}
+                                    <img class="thumb" data-id="{{source._id}}" src="{{getImage 'ShareFiles' source._id 'shareThumbs'}}" />
+                                {{/if}}
+                                {{#if $eq type 'video'}}
+                                    <img class="thumb" data-id="{{source._id}}" src="{{getImage 'ShareVideo' source._id 'share-video-thumb'}}" />
+                                {{/if}}
                             </div>
                         {{/if}}
                     {{/each}}

@@ -128,6 +128,7 @@ Template.carousel.rendered = function () {
         setShareId(id);
     });
     Meteor.defer(imgSize);
+    Meteor.setTimeout(imgSize, 100);
 };
 
 Template.carousel.created = function() {

@@ -95,15 +95,24 @@ Template.photoUploadForm.events({
 
         status.set('waiting');
 
-        reader.onload = function (e) {
-            if (file.type.indexOf('image') !== -1) {
-                $('img.preview-media-object').attr('src', e.target.result);
-                photoData.fileType = 'img';
-            }
-        };
+        $('.preview-media-object').addClass('hide');
 
-        // Read in the image file as a data URL.
-        reader.readAsDataURL(file);
+        if (file.type.indexOf('image') !== -1) {
+            reader.onload = function (e) {
+                $('img.preview-media-object').attr('src', e.target.result).removeClass('hide');
+                photoData.fileType = 'img';
+            };
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(file);
+        }
+        if (file.type.indexOf('video') !== -1) {
+            if (navigator.userAgent.toLowerCase().indexOf('chrome') !== -1) {
+                $('video.preview-media-object').attr('src', URL.createObjectURL(file)).removeClass('hide');
+            } else {
+                $('span.preview-media-object').text('File name: ' + file.name).removeClass('hide');
+            }
+            photoData.fileType = 'video';
+        }
     },
 
     'submit .uploadForm': function (ev, template) {

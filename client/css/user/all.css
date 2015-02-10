@@ -1787,6 +1787,25 @@
     max-height: 100%
 }
 
+.overlay .carousel-slide-content .photo-container .photo-container-wrapper video {
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.overlay .carousel-slide-content .photo-container .photo-container-wrapper video .not-suported {
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    padding: 40px;
+}
+
 @media(max-width: 768px) {
     .overlay .carousel-slide-content .photo-container .photo-container-wrapper {
         min-height:0
@@ -3842,20 +3861,29 @@ nav.navbar-fixed-top.mission-navbar h3 {
     position: absolute;
     text-align: center;
     width: 100%;
-    height: 405px;
+    height: 335px;
     margin: 20px 0 0 -15px;
     top: 64px;
+    z-index: 10;
 }
 
 .upload-form-container .upload-photo-section .upload-preview-container .preview-media-object {
     max-width: 100%;
     max-height: 100%
 }
+.upload-form-container .upload-photo-section .upload-preview-container span.preview-media-object {
+    padding: 180px 0;
+    display: inline-block;
+    font-size: 18px;
+    width: 500px;
+}
 
 .upload-form-container .upload-photo-section .upload-photo-container {
     position: relative;
     z-index: 1;
-    padding: 150px 20px 150px 20px
+    height: 410px;
+    z-index: 1;
+    padding: 290px 20px 20px 20px;
 }
 
 .upload-form-container .upload-photo-section .upload-photo-container .upload-photo-handle {

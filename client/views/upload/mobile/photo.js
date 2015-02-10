@@ -110,7 +110,7 @@ Template.addPhotoMobile.events({
         }
         reader.onload = function (e) {
             if (file.type.indexOf('image') !== -1) {
-                fileType.set('image');
+                fileType.set('img');
                 $('.share-container').css('background-image', 'url(' + e.target.result + ')');
             }
         };

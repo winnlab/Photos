@@ -35,7 +35,14 @@
                                 <div class="carousel-slide-content col-lg-12 col-xs-12 col-sm-12 col-md-12">
                                     <div class="photo-container">
                                         <div class="photo-container-wrapper" {{containerSize}}>
-                                            <img class="zoombox-image slide-image" src="{{getImage 'ShareFiles' source._id 'shares'}}">
+                                            {{#if $eq type 'img'}}
+                                                <img class="zoombox-image slide-image" src="{{getImage 'ShareFiles' source._id 'shares'}}">
+                                            {{/if}}
+                                            {{#if $eq type 'video'}}
+                                                <video src="{{getImage 'ShareVideo' source._id 'share-video'}}" preload="metadata" volume="0.5" controls>
+                                                    <div class="not-suported">Video is not supported. You can download the video <a href="{{getImage 'ShareVideo' source._id 'share-video'}}">here</a>.</div>
+                                                </video>
+                                            {{/if}}
                                         </div>
                                     </div>
 
