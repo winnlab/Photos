@@ -4642,3 +4642,20 @@ html.noScroll body {
         width: 300px;
     }
 }
+
+
+.set-username {
+    margin: 15px auto;
+}
+
+.set-username > div {
+    background: #fff;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.set-username legend {
+    font-size: 18px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}

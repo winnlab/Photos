@@ -1,3 +1,5 @@
+'use strict';
+
 Meteor.methods({
 
     setAvatar: function (avatar) {
@@ -35,17 +37,22 @@ Meteor.methods({
     },
 
     toggleFollow: function (username) {
-        var user = Meteor.user(),
+        var proceedFollow = function (userId, action, upd) {
+                var updQuery = {};
+                updQuery[action] = upd;
+                Meteor.users.update({ _id: userId }, updQuery);
+            },
+            user = Meteor.user(),
             followingUser;
 
-        if (username == user.username) {
-            throw new Meteor.Error("same", "You cannot follow by yourself");
+        if (username === user.username) {
+            throw new Meteor.Error('same', 'You cannot follow by yourself');
         }
 
         followingUser = Meteor.users.findOne({ username: username });
 
         if (!followingUser) {
-            throw new Meteor.Error(404, "User that you are trying to follow is not found");
+            throw new Meteor.Error(404, 'User that you are trying to follow is not found');
         }
 
         if (!user.followings || user.followings.indexOf(followingUser._id) === -1) {
@@ -57,13 +64,19 @@ Meteor.methods({
             proceedFollow(user._id, '$pull', { followings: followingUser._id });
             proceedFollow(followingUser._id, '$pull', { followers: user._id });
         }
+    },
 
-        function proceedFollow (userId, action, upd) {
-            var updQuery = {};
-            updQuery[action] = upd
-            Meteor.users.update({ _id: userId }, updQuery)
+    setUsername: function (username) {
+        var suchUser = Meteor.users.find({ username: username });
+
+        if (suchUser.length) {
+            throw new Meteor.Error(409, 'Such username is existing');
         }
 
+        Meteor.users.update({ _id: Meteor.userId() }, { $set: {
+            generatedUsername: 0,
+            username: username
+        }});
     }
 
 });
