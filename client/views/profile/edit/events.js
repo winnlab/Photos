@@ -3,7 +3,6 @@
 var setProfile = function (ev, infoType) {
         ev.preventDefault();
         var $form = $(ev.currentTarget);
-        console.log(ev);
         if ($form.data('bootstrapValidator').isValid()) {
             Meteor.call('setProfile', getFormObj($form), infoType);
         }

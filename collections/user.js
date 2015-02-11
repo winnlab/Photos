@@ -24,7 +24,7 @@ Meteor.methods({
                 break;
         }
         if (!checkList) {
-            throw new Meteor.Error('invalid', "You must set a correct info type");
+            throw new Meteor.Error('invalid', 'You must set a correct info type');
         }
         var user = Meteor.user(),
             profile = user.profile;
