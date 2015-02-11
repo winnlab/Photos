@@ -34,7 +34,7 @@
                             <div class="item {{#if $eq _id ../currentId}}active{{/if}}" data-id="{{_id}}">
                                 <div class="carousel-slide-content col-lg-12 col-xs-12 col-sm-12 col-md-12">
                                     <div class="photo-container">
-                                        <div class="photo-container-wrapper" {{containerSize}}>
+                                        <div class="photo-container-wrapper{{#if $eq type 'video'}} video{{/if}}" {{containerSize}}>
                                             {{#if $eq type 'img'}}
                                                 <img class="zoombox-image slide-image" src="{{getImage 'ShareFiles' source._id 'shares'}}">
                                             {{/if}}
