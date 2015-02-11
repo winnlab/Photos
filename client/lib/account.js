@@ -21,7 +21,7 @@ Meteor.startup(function () {
     });
 
     accountsUIBootstrap3.setLanguage('de');
-
+    console.log(signInTemplate, signUpTemplate);
     AccountsEntry.config({
         signInTemplate: signInTemplate,
         signUpTemplate: signUpTemplate,
