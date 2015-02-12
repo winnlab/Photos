@@ -128,7 +128,7 @@ Template.carousel.rendered = function () {
     photoAction.set(null);
     $carousel = $('#photoCarousel');
     $carousel.carousel({ interval: false });
-    $carousel.on('slide.bs.carousel', function (e) {
+    $carousel.on('slid.bs.carousel', function (e) {
         var id = e.relatedTarget.attributes['data-id'].value;
         setShareId(id);
     });
