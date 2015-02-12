@@ -2,16 +2,16 @@ var shareUploaded = function (err, shareFile, formData, cb) {
     if (err) {
         console.error(err);
     }
-    Meteor.subscribe('shareSource', {_id: shareFile._id});
     Meteor.call('addShare',
         formData,
         _.pick(shareFile, '_id', 'collectionName'),
-        function (err) {
+        function (err, shareId) {
+            console.log(arguments);
             if (err) {
                 console.error(err);
             }
             if (cb && typeof cb === 'function') {
-                cb(shareFile._id);
+                cb(shareId);
             }
         }
     );

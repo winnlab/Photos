@@ -4,6 +4,9 @@ var step = new ReactiveVar(1),
     tags = new ReactiveVar([]),
     desc = new ReactiveVar(''),
     fileType = new ReactiveVar(''),
+    redirect = function () {
+        Router.go('categories', { type: 'neueste' });
+    },
     getFormData = function () {
         var query = Router.current().params.query;
         return {
@@ -17,7 +20,13 @@ var step = new ReactiveVar(1),
     },
     changeStep = function (inc) {
         step.set(step.get() + inc);
-    }, $fakeTextArea, shareFileId;
+    },
+    shareToFB = function (shareID) {
+        Meteor.call('shareToFB', shareID, function () {
+            redirect();
+        });
+    },
+    $fakeTextArea, shareId;
 
 Template.addPhotoMobile.helpers({
     step: function () {
@@ -118,16 +127,24 @@ Template.addPhotoMobile.events({
     },
     'click .start-upload': function () {
         submitShareForm(getFormData(), function (_id) {
-            shareFileId = _id;
+            shareId = _id;
             changeStep(1);
         });
     },
     'click .social-share': function () {
-        FB.api('/me/photos', 'POST', {
-            url: window.location.origin + ShareFiles.findOne({ _id: shareFileId }).url({ storage: 'shares' }),
-            message: desc.get()
-        }, function (response) {});
-        Router.go('categories', { type: 'neueste' });
+        if ($('#fb-check').is(':checked')) {
+            if (Meteor.user().services.facebook) {
+                shareToFB(shareId);
+            } else {
+                Meteor.connectWith('facebook', {
+                    requestPermissions: ['public_profile', 'publish_actions']
+                }, function () {
+                    shareToFB(shareId);
+                });
+            }
+        } else {
+            redirect();
+        }
     }
 });
 

@@ -17,4 +17,4 @@ checkSharesQuery = function (query) {
     if (query && query.tags) {
         check(query.tags['$all'], Array);
     }
-}
+};

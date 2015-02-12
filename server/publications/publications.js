@@ -106,9 +106,10 @@ Meteor.publish('avatar', function (query) {
 Meteor.publish('userInfo', function (username) {
     return username && Meteor.users.find({ username: username }, {
         fields: {
-            createdAt: 0,
-            emails: 0,
-            services: 0
+            'createdAt': 0,
+            'emails': 0,
+            'services.password': 0,
+            'services.resume': 0
         }
     });
 });

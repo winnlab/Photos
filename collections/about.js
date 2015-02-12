@@ -1,7 +1,8 @@
 About = new Mongo.Collection('about');
+
 About.attachSchema(new SimpleSchema({
     title: {
-        label: 'Title',
+        label: 'Überschrift',
         type: String,
         max: 80
     },
@@ -11,16 +12,16 @@ About.attachSchema(new SimpleSchema({
         max: 20
     },
     position: {
-        label: 'Position (first is greater)',
+        label: 'Position (klein nach groß)',
         type: Number
     },
     description: {
-        label: 'Description',
+        label: 'Beschreibung',
         type: String,
         autoform: {
             afFieldInput: {
-                type: 'summernote',
-                class: 'editor'
+                'type': 'summernote',
+                'class': 'editor'
             }
         }
     }

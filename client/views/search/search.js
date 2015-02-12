@@ -22,7 +22,7 @@ var $searchContainer,
         $searchInput.val('');
         template.suggest.set('');
         if (tags.indexOf(value) === -1) {
-            tags.push(value);
+            tags.push(value.toLowerCase());
             template.tags.set(tags);
             Meteor.setTimeout(adjustInputFieldSize, 1);
         }
@@ -39,9 +39,9 @@ Template.search.helpers({
         return Share.find();
     },
     adjustPosition: function () {
-        var top = $searchInput.offset().top + $searchInput.height() + 60 - $document.scrollTop();
+        var top = $searchInput.offset().top + $searchInput.height() + 60 - $document.scrollTop(),
             left = $searchInput.offset().left + 10;
-        return "top:" + top + 'px; left:' + left + 'px;';
+        return 'top:' + top.toString() + 'px; left:' + left.toString() + 'px;';
     }
 });
 
@@ -58,11 +58,11 @@ Template.search.events({
     'mouseleave .addTag': function (ev) {
         $(ev.currentTarget).removeClass('active');
     },
-    'keydown .tag-input': function (ev, template) {
+    'keydown .tag-input': function (ev) {
         var up = 38,
             down = 40,
             activeTag, nextTag;
-        if ((ev.keyCode == up || ev.keyCode == down) && $('.addTag').length) {
+        if ((ev.keyCode === up || ev.keyCode === down) && $('.addTag').length) {
             ev.preventDefault();
             activeTag = $('.addTag.active');
             if (!activeTag.length) {
@@ -87,12 +87,12 @@ Template.search.events({
             currentSugges = template.suggest.get(),
             tags = template.tags.get(),
             activeTag;
-        if (value == ' ') {
+        if (value === ' ') {
             return $(ev.target).val('');
         }
-        if (ev.keyCode == 32) {
+        if (ev.keyCode === 32) {
             addTag(template, value.replace(' ', ''));
-        } else if (ev.keyCode == 13) {
+        } else if (ev.keyCode === 13) {
             activeTag = $('.addTag.active');
             addTag(template, activeTag.length ? activeTag.data('name') : value);
         } else {
@@ -111,7 +111,7 @@ Template.search.created = function () {
         instance = this;
 
     setupPagination(instance);
-    instance.tags = new ReactiveVar(searchParams ? decodeURIComponent(searchParams).split(',') : []);
+    instance.tags = new ReactiveVar(searchParams ? decodeURIComponent(searchParams.toLowerCase()).split(',') : []);
     instance.suggest = new ReactiveVar('');
 
     instance.autorun(function () {
@@ -131,15 +131,18 @@ Template.search.created = function () {
         }
         subscription.ready();
     });
-}
+
+    $('.search').hide();
+};
 
 Template.search.rendered = function () {
     $searchContainer = $('#search-tags');
     $searchInput = $('.tag-input');
     $document = $(document);
     adjustInputFieldSize();
-}
+};
 
 Template.search.destroyed = function () {
     $(window).off('scroll');
-}
+    $('.search').show();
+};

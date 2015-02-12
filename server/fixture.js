@@ -1,10 +1,4 @@
-
 if (Categories.find().count() === 0) {
-    Categories.insert({
-        name: 'Mein 1414',
-        type: 'mein1414',
-        position: 0
-    });
 
     Categories.insert({
         name: 'Neueste',

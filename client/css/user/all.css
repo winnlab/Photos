@@ -2709,6 +2709,10 @@
     color: #1a1a1a;
 }
 
+#category-navbar .nav.navbar-nav {
+    padding: 0 15px;
+}
+
 @media(max-width: 768px) {
     ::-webkit-scrollbar {
         display:none
@@ -4642,7 +4646,10 @@ html.noScroll body {
 
 @media (min-width: 768px) and (max-width: 990px) {
     .ff-nav .search {
-        width: 300px;
+        width: 240px;
+    }
+    #category-navbar .navbar-wrapper {
+        height: 85px !important;
     }
 }
 

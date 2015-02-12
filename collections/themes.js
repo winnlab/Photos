@@ -2,27 +2,27 @@ Themes = new Mongo.Collection('themes');
 
 Themes.attachSchema(new SimpleSchema({
     name: {
-        label: "Name",
+        label: 'Name',
         type: String,
         max: 60
     },
     link: {
-        label: "Link",
+        label: 'Link',
         type: String,
         max: 60
     },
     position: {
-        label: "Position",
+        label: 'Position',
         type: Number
     },
     title: {
-        label: "Title",
+        label: 'Überschrift',
         optional: true,
         type: String,
         max: 200
     },
     uploadsQty: {
-        label: 'Uploads quantity',
+        label: 'Hochgeladene Menge',
         type: Number,
         optional: true,
         autoform: {
@@ -30,14 +30,15 @@ Themes.attachSchema(new SimpleSchema({
         }
     },
     displayFilters: {
-        label: 'Display sort buttons',
+        label: 'Anzeige: Sortierung',
         type: Boolean
     },
     displayUploadButton: {
-        label: 'Display upload button',
+        label: 'Anzeige Hochlade Button',
         type: Boolean
     },
     bgImg: {
+        label: 'Hintergrundbild',
         type: String,
         optional: true,
         autoform: {

@@ -7,15 +7,15 @@ Missions.attachSchema(new SimpleSchema({
         max: 60
     },
     from: {
-        label: 'From',
+        label: 'Von',
         type: Date
     },
     to: {
-        label: 'To',
+        label: 'Bis',
         type: Date
     },
     uploadsQty: {
-        label: 'Uploads quantity',
+        label: 'Hochgeladene Bilder',
         type: Number,
         optional: true,
         autoform: {
@@ -23,7 +23,7 @@ Missions.attachSchema(new SimpleSchema({
         }
     },
     participantsQty: {
-        label: 'Participants quantity',
+        label: 'Teilnehmer',
         type: Number,
         optional: true,
         autoform: {
@@ -31,7 +31,7 @@ Missions.attachSchema(new SimpleSchema({
         }
     },
     participants: {
-        label: 'Participants ids',
+        label: 'Teilnehmer ids',
         type: [String],
         optional: true,
         autoform: {
@@ -40,7 +40,7 @@ Missions.attachSchema(new SimpleSchema({
         }
     },
     shortDesc: {
-        label: 'Short description',
+        label: 'Kurzbeschreibung',
         type: String,
         max: 180,
         autoform: {
@@ -48,25 +48,25 @@ Missions.attachSchema(new SimpleSchema({
         }
     },
     description: {
-        label: 'Description',
+        label: 'Beschreibung',
         type: String,
         autoform: {
             rows: 5
         }
     },
     prize: {
-        label: 'Prize',
+        label: 'Preis',
         type: Number,
         min: 0
     },
     prizeQty: {
-        label: 'Prize quantity',
+        label: 'Preis Anzahl',
         type: Number,
         min: 1,
         max: 5
     },
     prizeType: {
-        label: 'Prize type',
+        label: 'Preis art',
         type: String,
         autoform: {
             options: [{
@@ -79,26 +79,27 @@ Missions.attachSchema(new SimpleSchema({
         }
     },
     sponsorName: {
-        label: 'Sponsor name',
+        label: 'Sponsor Name',
         type: String,
         optional: true,
         max: 60
     },
     sponsorLink: {
-        label: 'Sponsor link',
+        label: 'Sponsor Link',
         type: String,
         optional: true,
         max: 60
     },
     ended: {
-        label: 'Ended',
+        label: 'Beendet',
         type: Boolean
     },
     active: {
-        label: 'Active',
+        label: 'Aktiv',
         type: Boolean
     },
     teaser: {
+        label: 'Banner',
         type: String,
         autoform: {
             type: 'fileUpload',
@@ -106,6 +107,7 @@ Missions.attachSchema(new SimpleSchema({
         }
     },
     brand: {
+        label: 'Markenlogo',
         type: String,
         autoform: {
             type: 'fileUpload',
@@ -113,6 +115,7 @@ Missions.attachSchema(new SimpleSchema({
         }
     },
     sponsor: {
+        label: 'Sponsorbild',
         type: String,
         optional: true,
         autoform: {

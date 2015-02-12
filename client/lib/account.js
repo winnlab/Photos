@@ -1,16 +1,19 @@
 'use strict';
 
+var signInTemplate = (function () {
+        return Meteor.Device.isPhone() || Meteor.Device.isTablet() ? 'mobileSignIn' : false;
+    }()),
+    signUpTemplate = (function () {
+        return Meteor.Device.isPhone() || Meteor.Device.isTablet() ? 'mobileSignUp' : false;
+    }());
+
 Meteor.startup(function () {
 
-    var signInTemplate = (function () {
-            return Meteor.Device.isPhone() || Meteor.Device.isTablet() ? 'mobileSignIn' : false;
-        }()),
-        signUpTemplate = (function () {
-            return Meteor.Device.isPhone() || Meteor.Device.isTablet() ? 'mobileSignUp' : false;
-        }());
-
     Accounts.ui.config({
-        passwordSignupFields: 'USERNAME_AND_EMAIL'
+        passwordSignupFields: 'USERNAME_AND_EMAIL',
+        requestPermissions: {
+            facebook: ['public_profile', 'publish_actions']
+        }
     });
 
     accountsUIBootstrap3.map('de', {
@@ -21,7 +24,7 @@ Meteor.startup(function () {
     });
 
     accountsUIBootstrap3.setLanguage('de');
-    console.log(signInTemplate, signUpTemplate);
+
     AccountsEntry.config({
         signInTemplate: signInTemplate,
         signUpTemplate: signUpTemplate,
@@ -31,5 +34,4 @@ Meteor.startup(function () {
         language: 'de',
         passwordSignupFields: 'USERNAME_AND_EMAIL'
     });
-
 });

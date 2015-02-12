@@ -44,6 +44,9 @@ var shareCounting = function (ids, inc) {
 
 Meteor.methods({
     addShare: function (shareData, source) {
+        _.map(shareData.tags, function (tag) {
+            return tag.toLowerCase();
+        });
         var user = Meteor.user(),
             userId = user._id,
             missionId = shareData.missionId,

@@ -44,17 +44,22 @@ Template.carousel.helpers({
         };
     },
     shareData: function() {
-        var img = ShareFiles.findOne({ _id: this.source._id }),
-            url = function () {
-                return img.url({ store: 'shares' });
-            };
-        return img ? {
+        var share, store, url;
+        if (this.type === 'img') {
+            share = ShareFiles.findOne({ _id: this.source._id });
+            store = 'shares';
+        }
+        if (this.type === 'video') {
+            share = ShareVideo.findOne({ _id: this.source._id });
+            store = 'share-video-thumb';
+        }
+        url = function () {
+            return share ? share.url({ store: store }) : '';
+        };
+        return share ? {
             title: this.description,
             author: this.username,
-            excerpt: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
             description: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
-            summary: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
-            thumbnail: url,
             image: url
         } : {};
     }
@@ -67,7 +72,7 @@ Template.carousel.events({
         template.data.active.set(false);
     },
 
-    'click .carousel-control': function (ev, template) {
+    'click .carousel-control': function (ev) {
         photoAction.set(null);
         $carousel.carousel($(ev.target).data('slide'));
     },
