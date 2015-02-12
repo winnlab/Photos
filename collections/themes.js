@@ -50,7 +50,9 @@ Themes.attachSchema(new SimpleSchema({
 
 ThemeBg = new FS.Collection('themeBg', {
     stores: [
-        new FS.Store.FileSystem('theme-bg')
+        new FS.Store.FileSystem('theme-bg', {
+            beforeWrite: renameFile
+        })
     ],
     filter: {
         allow: {

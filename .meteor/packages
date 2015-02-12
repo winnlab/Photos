@@ -23,7 +23,6 @@ momentjs:moment
 rzymek:moment-locale-de
 joshowens:shareit
 meteorhacks:kadira
-yogiben:admin
 accounts-base
 fortawesome:fontawesome
 aldeed:simple-schema
@@ -38,3 +37,4 @@ raix:push
 fish:ffmpeg
 mondora:connect-with
 http
+ansyg:meteor-admin

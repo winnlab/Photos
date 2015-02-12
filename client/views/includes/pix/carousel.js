@@ -60,7 +60,10 @@ Template.carousel.helpers({
             title: this.description,
             author: this.username,
             description: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
-            image: url
+            excerpt: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
+            summary: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
+            image: url,
+            thumbnail: url
         } : {};
     }
 });

@@ -128,21 +128,25 @@ Missions.attachSchema(new SimpleSchema({
 MissionTeaser = new FS.Collection('missionTeasers', {
     stores: [
         new FS.Store.FileSystem('mission-teaser-768', {
+            beforeWrite: renameFile,
             transformWrite: function(fileObj, readStream, writeStream) {
                 gm(readStream, fileObj.name()).autoOrient().resize('768', '264', '^').gravity('North').extent('768', '264').stream().pipe(writeStream);
             }
         }),
         new FS.Store.FileSystem('mission-teaser-992', {
+            beforeWrite: renameFile,
             transformWrite: function(fileObj, readStream, writeStream) {
                 gm(readStream, fileObj.name()).autoOrient().resize('992', '341', '^').gravity('North').extent('992', '341').stream().pipe(writeStream);
             }
         }),
         new FS.Store.FileSystem('mission-teaser-1200', {
+            beforeWrite: renameFile,
             transformWrite: function(fileObj, readStream, writeStream) {
                 gm(readStream, fileObj.name()).autoOrient().resize('1200', '413', '^').gravity('North').extent('1200', '413').stream().pipe(writeStream);
             }
         }),
         new FS.Store.FileSystem('mission-teaser-1680', {
+            beforeWrite: renameFile,
             transformWrite: function(fileObj, readStream, writeStream) {
                 gm(readStream, fileObj.name()).autoOrient().resize('1680', '578', '^').gravity('North').extent('1680', '578').stream().pipe(writeStream);
             }
@@ -158,6 +162,7 @@ MissionTeaser = new FS.Collection('missionTeasers', {
 MissionBrand = new FS.Collection('missionBrand', {
     stores: [
         new FS.Store.FileSystem('mission-brand', {
+            beforeWrite: renameFile,
             transformWrite: function(fileObj, readStream, writeStream) {
                 gm(readStream, fileObj.name()).autoOrient().resize('640', '200', '^').gravity('Center').extent('640', '200').stream().pipe(writeStream);
             }
@@ -172,7 +177,9 @@ MissionBrand = new FS.Collection('missionBrand', {
 
 MissionSponsor = new FS.Collection('missionSponsor', {
     stores: [
-        new FS.Store.FileSystem('mission-sponsor')
+        new FS.Store.FileSystem('mission-sponsor', {
+            beforeWrite: renameFile
+        })
     ],
     filter: {
         allow: {

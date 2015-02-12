@@ -137,12 +137,14 @@ Meteor.methods({
 ShareFiles = new FS.Collection('shares', {
     stores: [
         new FS.Store.FileSystem('shareThumbs', {
+            beforeWrite: renameFile,
             transformWrite: function(fileObj, readStream, writeStream) {
                 // Transform the image into a 296xAuto thumbnail
                 gm(readStream, fileObj.name()).autoOrient().resize('296').stream().pipe(writeStream);
             }
         }),
         new FS.Store.FileSystem('shares', {
+            beforeWrite: renameFile,
             transformWrite: function(fileObj, readStream, writeStream) {
                 // Transform the image into a 960xAuto image
                 gm(readStream, fileObj.name()).autoOrient().resize('960').stream().pipe(writeStream);
@@ -168,15 +170,17 @@ var allow = {
 ShareFiles.allow(_.extend({}, allow));
 
 var shareVideoStores = [];
-shareVideoStores.push(new FS.Store.FileSystem('share-video'));
+shareVideoStores.push(new FS.Store.FileSystem('share-video', {
+    beforeWrite: renameFile
+}));
 
 if (Meteor.isServer) {
     shareVideoStores.push(new FS.Store.FileSystem('share-video-thumb', {
         beforeWrite: function (fileObj) {
-            return {
-                extension: 'png',
-                type: 'image/png'
-            };
+            var obj = renameFile(fileObj);
+            obj.extension = 'png';
+            obj.type = 'image/png';
+            return obj;
         },
         transformWrite: function(fileObj, readStream, writeStream) {
             var fs = Npm.require('fs'),

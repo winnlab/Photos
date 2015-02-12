@@ -99,9 +99,11 @@
                                         </div>
 
                                         <div class="photo-overlay share-screen {{#if $neq photoAction 'share'}}hide{{/if}}">
-                                            <div class="photo-share-bar">
-                                                {{>shareit shareData}}
-                                            </div>
+                                            {{#if $eq _id ../currentId}}
+                                                <div class="photo-share-bar">
+                                                    {{>shareit shareData}}
+                                                </div>
+                                            {{/if}}
                                         </div>
 
                                         <div class="photo-overlay delete-screen {{#if $neq photoAction 'delete'}}hide{{/if}}">
