@@ -1,13 +1,19 @@
 'use strict';
-var helpers = {
+var notificationReaded = function (ev) {
+        var notificationId = $(ev.currentTarget).data('id');
+        Notification.update({ _id: notificationId }, { $set: { read: true }});
+    },
+    helpers = {
         notifications: function () {
             return Notification.find();
         }
     },
     events = {
-        'click .notification-item': function (ev) {
-            var notificationId = $(ev.currentTarget).data('id');
-            Notification.update({ _id: notificationId }, { $set: { read: true }});
+        'click .notification-item': notificationReaded,
+        'mouseleave .notification-item': function (ev) {
+            Meteor.setTimeout(function () {
+                notificationReaded(ev);
+            }, 1000);
         }
     };
 

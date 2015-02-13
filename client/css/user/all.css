@@ -1021,7 +1021,8 @@
 #notifications li.notification-item .notification-text {
     float: left;
     width: 220px;
-    padding: 5px 0
+    padding: 5px 0;
+    white-space: normal;
 }
 
 #notifications li.notification-item .notification-text h4 {

@@ -13,20 +13,33 @@ Push.allow({
     }
 });
 
-var addNotify = function (data) {
-    Notification.insert(_.extend(data, {
-        date: moment().format(),
-        read: false
-    }));
-    Push.send({
-        from: 'Selfie',
-        title: 'neue Aktivität',
-        text: data.msg,
-        query: {
-            userId: data.userId
+var checkNotify = function (data) {
+        if (data.ownerId && data.sourceId) {
+            var exist = Notification.find({
+                ownerId: data.ownerId,
+                sourceId: data.sourceId
+            });
+            return !!exist;
         }
-    });
-};
+        return false;
+    },
+    addNotify = function (data) {
+        if (checkNotify(data)) {
+            return;
+        }
+        Notification.insert(_.extend(data, {
+            date: moment().format(),
+            read: false
+        }));
+        Push.send({
+            from: 'Selfie',
+            title: 'neue Aktivität',
+            text: data.msg,
+            query: {
+                userId: data.userId
+            }
+        });
+    };
 
 Meteor.methods({
     shareNotify: function (ownerId, type) {
@@ -35,6 +48,7 @@ Meteor.methods({
         _.each(owner.followers, function (user) {
             addNotify({
                 userId: user,
+                ownerId: ownerId,
                 type: 'share' + type.charAt(0).toUpperCase() + type.slice(1),
                 msg: type === 'img' ?
                     'Benutzer ' + owner.username + ' ein neues Foto hinzugefügt' :
@@ -52,6 +66,8 @@ Meteor.methods({
             user = Meteor.users.findOne({ _id: userId });
         addNotify({
             userId: userId,
+            ownerId: ownerId,
+            sourceId: shareId,
             type: 'like',
             msg: 'Benutzer ' + owner.username + ' mag Ihr Foto',
             link: Router.path('profile', {
