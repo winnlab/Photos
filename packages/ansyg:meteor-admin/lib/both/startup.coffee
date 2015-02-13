@@ -39,6 +39,10 @@ AdminTables.Users = new Tabular.Table
 				value?[0]?.address
 		}
 		{
+			data: 'username'
+			title: 'Benutzername'
+		}
+		{
 			data: 'emails'
 			title: 'Absenden'
 			# TODO: use `tmpl`
