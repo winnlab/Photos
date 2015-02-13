@@ -57,7 +57,7 @@ Template.pix.rendered = function () {
     getColumns();
     active.set(Router.current().params.shareId);
     if (!Session.get('sortBy')) {
-        Session.set('sortBy', 'latest');
+        Session.set('sortBy', 'top');
     }
 };
 
