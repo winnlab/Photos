@@ -72,8 +72,8 @@ var status = new ReactiveVar('waiting'),
     },
     resetForm = function (form) {
         form.reset();
-        $('img.preview-media-object').attr('src', '');
-        $('video.preview-media-object').attr('src', '');
+        $('img.preview-media-object').attr('src', '').addClass('hide');
+        $('video.preview-media-object').attr('src', '').addClass('hide');
         status.set('uploaded');
     };
 

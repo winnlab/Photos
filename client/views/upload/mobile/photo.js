@@ -4,7 +4,17 @@ var step = new ReactiveVar(1),
     tags = new ReactiveVar([]),
     desc = new ReactiveVar(''),
     fileType = new ReactiveVar(''),
+    fileName = new ReactiveVar(''),
+    reset = function () {
+        step.set(1);
+        tags.set([]);
+        desc.set('');
+        fileType.set('');
+        fileName.set('');
+        $('.steps-form')[0].reset();
+    },
     redirect = function () {
+        reset();
         Router.go('categories', { type: 'neueste' });
     },
     getFormData = function () {
@@ -71,6 +81,9 @@ Template.addPhotoMobile.helpers({
         } else {
             return 'ins Profil';
         }
+    },
+    fileName: function () {
+        return fileName.get();
     }
 });
 
@@ -117,13 +130,18 @@ Template.addPhotoMobile.events({
         if (!file) {
             return false;
         }
-        reader.onload = function (e) {
-            if (file.type.indexOf('image') !== -1) {
+        if (file.type.indexOf('image') !== -1) {
+            reader.onload = function (e) {
                 fileType.set('img');
                 $('.share-container').css('background-image', 'url(' + e.target.result + ')');
-            }
-        };
-        reader.readAsDataURL(file);
+            };
+            reader.readAsDataURL(file);
+        }
+        if (file.type.indexOf('video') !== -1) {
+            console.log(file.name);
+            fileType.set('video');
+            fileName.set(file.name);
+        }
     },
     'click .start-upload': function () {
         submitShareForm(getFormData(), function (_id) {

@@ -6,7 +6,6 @@ var shareUploaded = function (err, shareFile, formData, cb) {
         formData,
         _.pick(shareFile, '_id', 'collectionName'),
         function (err, shareId) {
-            console.log(arguments);
             if (err) {
                 console.error(err);
             }

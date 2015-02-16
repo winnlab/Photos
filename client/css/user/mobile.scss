@@ -166,14 +166,12 @@ body.mobile {
         background: #a0c422;
         border-radius: 50%;
         z-index: 1040;
+        outline: none;
+        text-decoration: none;
 
         &:active {
             text-decoration: none;
             box-shadow: 0 6px 10px rgba(0,0,0,.23),0 10px 30px rgba(0,0,0,.19);
-        }
-        &:focus {
-            outline: none;
-            text-decoration: none;
         }
     }
 
