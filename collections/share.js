@@ -166,10 +166,13 @@ Meteor.methods({
         if (!share) {
             throw new Meteor.Error(404, 'Not found such share');
         }
-        if (share.userId !== this.userId || !Meteor.call('isUserAdmin', this.userId)) {
+
+        if (Roles.userIsInRole(this.userId, ['admin']) && share.userId !== this.userId) {
             throw new Meteor.Error(403, 'Not allowed');
         }
+
         Share.remove({ _id: shareId });
+
         if (share.type === 'img') {
             ShareFiles.remove({ _id: share.source._id });
         }
