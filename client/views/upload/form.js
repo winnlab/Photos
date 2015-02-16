@@ -73,6 +73,7 @@ var status = new ReactiveVar('waiting'),
     resetForm = function (form) {
         form.reset();
         $('img.preview-media-object').attr('src', '');
+        $('video.preview-media-object').attr('src', '');
         status.set('uploaded');
     };
 

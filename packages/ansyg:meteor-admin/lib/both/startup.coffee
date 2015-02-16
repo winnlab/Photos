@@ -69,7 +69,7 @@ adminCreateTables = (collections) ->
 			createdCell: createdCell
 
 		if columns.length == 0
-			columns = defaultColumns
+			columns = []
 
 		AdminTables[name] = new Tabular.Table
 			name: name

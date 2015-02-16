@@ -9,6 +9,14 @@ var $carousel,
             footerHeight = footer.length ? footer.outerHeight() : 0,
             wrapperHeight = $(window).height() - footerHeight;
         return imgWrapperHeight.set(wrapperHeight);
+    },
+    closeShareView = function (err, template) {
+        if (err) {
+            console.error(err);
+        }
+        setShareId(null);
+        photoAction.set(null);
+        template.data.active.set(false);
     };
 
 Template.pixBtns.helpers({
@@ -71,8 +79,8 @@ Template.carousel.helpers({
 Template.carousel.events({
 
     'click .close': function (ev, template) {
-        setShareId(null);
-        template.data.active.set(false);
+        ev.preventDefault();
+        closeShareView(false, template);
     },
 
     'click .carousel-control': function (ev) {
@@ -102,6 +110,15 @@ Template.carousel.events({
         ev.preventDefault();
     },
 
+    'click .block': function (ev, template) {
+        ev.preventDefault();
+        var shareId = $(ev.target).parents('.item')[0].attributes['data-id'].value,
+            block = !!parseInt($(ev.target)[0].attributes['data-block'].value, 10);
+        Meteor.call('toggleBlockShare', shareId, block, function (err) {
+            closeShareView(err, template);
+        });
+    },
+
     /**
      * Delete
      */
@@ -111,16 +128,11 @@ Template.carousel.events({
         var shareId = $(ev.target).parents('.item')[0].attributes['data-id'].value;
 
         Meteor.call('removeShare', shareId, function (err) {
-            if (err) {
-                console.error(err);
-            }
-            setShareId(null);
-            photoAction.set(null);
-            template.data.active.set(false);
+            closeShareView(err, template);
         });
     },
 
-    'click .cancel-delete-btn': function (ev) {
+    'click .cancel-btn': function (ev) {
         ev.preventDefault();
         photoAction.set(null);
     }
@@ -133,7 +145,9 @@ Template.carousel.rendered = function () {
     $carousel.carousel({ interval: false });
     $carousel.on('slid.bs.carousel', function (e) {
         var id = e.relatedTarget.attributes['data-id'].value;
-        setShareId(id);
+        Meteor.defer(function () {
+            setShareId(id);
+        });
     });
     Meteor.defer(imgSize);
     Meteor.setTimeout(imgSize, 100);

@@ -38,8 +38,8 @@
 <template name="AdminDashboardView">
 	{{> adminAlert}}
 	{{#if adminTemplate admin_collection_name 'view'}}
-		{{#with adminTemplate admin_collection_name 'view'}}
-		{{> UI.dynamic template=name data=data }}
+		{{#with adminTemplateScope admin_collection_name 'view'}}
+		{{> Template.dynamic template=name data=data }}
 		{{/with}}
 	{{else}}
 		{{#if hasDocuments}}

@@ -71,7 +71,7 @@ Router.route "adminDashboardView",
 	template: "AdminDashboardViewWrapper"
 	controller: "AdminController"
 	data: ->
-  		admin_table: AdminTables[@params.collection]
+		admin_table: AdminTables[@params.collection]
 	action: ->
 		@render()
 	onAfterAction: ->

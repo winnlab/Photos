@@ -126,10 +126,13 @@ Meteor.publish('usersList', function (users) {
     });
 });
 
-Meteor.publishComposite('share', function (query, options) {
+Meteor.publishComposite('share', function (query, options, blocked) {
     return {
         find: function () {
             checkSharesQuery(query);
+            if (!blocked || typeof blocked === 'undefined') {
+                query = _.extend(query || {}, { blocked: false });
+            }
             return Share.find(query || {}, options || {});
         },
         children: [{

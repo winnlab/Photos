@@ -1,5 +1,87 @@
 Share = new Mongo.Collection('shares');
 
+Share.attachSchema(new SimpleSchema({
+    description: {
+        label: 'Description',
+        type: String,
+        max: 200
+    },
+    username: {
+        label: 'Username',
+        type: String,
+        max: 40
+    },
+    userId: {
+        label: 'UserId',
+        type: String,
+        max: 20
+    },
+    themeId: {
+        label: 'themeId',
+        type: String,
+        optional: true,
+        max: 20
+    },
+    missionId: {
+        label: 'missionId',
+        type: String,
+        optional: true,
+        max: 20
+    },
+    type: {
+        label: 'Type',
+        type: String,
+        max: 5
+    },
+    likes: {
+        label: 'Likes',
+        type: [String],
+        optional: true
+    },
+    likesQty: {
+        label: 'Likes quantity',
+        type: Number,
+        optional: true
+    },
+    'source._id': {
+        label: 'SourceId',
+        type: String
+    },
+    'source.collectionName': {
+        label: 'Source name',
+        type: String
+    },
+    tags: {
+        label: 'Tags',
+        type: [String]
+    },
+    blocked: {
+        label: 'Blocked',
+        type: Boolean,
+        optional: true
+    },
+    edChoice: {
+        label: 'Editor choice',
+        type: Number,
+        optional: true
+    },
+    winner: {
+        label: 'Winner',
+        type: Number,
+        optional: true
+    },
+    main: {
+        label: 'Main',
+        type: Number,
+        optional: true
+    },
+    time: {
+        label: 'Time',
+        type: Number,
+        optional: true
+    }
+}));
+
 var shareCounting = function (ids, inc) {
     if (ids.userId) {
         Meteor.users.update({ _id: ids.userId }, {
@@ -55,6 +137,7 @@ Meteor.methods({
                 _.pick(shareData, 'missionId', 'themeId', 'description', 'tags', 'type', 'time'), {
                     source: _.pick(source, '_id', 'collectionName')
                 }, {
+                    blocked: false,
                     userId: userId,
                     username: user.username,
                     likes: [],
@@ -83,11 +166,16 @@ Meteor.methods({
         if (!share) {
             throw new Meteor.Error(404, 'Not found such share');
         }
-        if (share.userId !== this.userId) {
-            throw new Meteor.Error(403);
+        if (share.userId !== this.userId || !Meteor.call('isUserAdmin', this.userId)) {
+            throw new Meteor.Error(403, 'Not allowed');
         }
         Share.remove({ _id: shareId });
-        ShareFiles.remove({ _id: share.source._id });
+        if (share.type === 'img') {
+            ShareFiles.remove({ _id: share.source._id });
+        }
+        if (share.type === 'video') {
+            ShareVideo.remove({ _id: share.source._id });
+        }
         shareCounting({
             userId: share.userId,
             missionId: share.missionId,

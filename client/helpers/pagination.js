@@ -13,7 +13,6 @@ simplePagination = function (instance, query) {
                 sort: { time: -1 }
             };
         Meteor.subscribe('share', query, options);
-        Meteor.subscribe('shareSource', query, options);
     });
 };
 

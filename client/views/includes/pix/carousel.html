@@ -119,7 +119,7 @@
 
                                                     <div class="clearfix actions">
                                                         <a class="btn btn-default btn-lg pull-right delete-btn">Ja{{#unless isMobileDevice}}, wirklich löschen{{/unless}}</a>
-                                                        <a class="btn btn-default btn-lg pull-left cancel-delete-btn">Nein{{#unless isMobileDevice}}, Foto nicht löschen{{/unless}}</a>
+                                                        <a class="btn btn-default btn-lg pull-left cancel-btn">Nein{{#unless isMobileDevice}}, Foto nicht löschen{{/unless}}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,19 +137,12 @@
                                                     <div class="container">
                                                         <ul class="flagging-options">
                                                             <li class="col-xs-12 col-md-4 col-lg-3">
-                                                                <a data-reason="copyright" class="btn btn-default btn-lg flagging-reason">Urheberrechtsverletzung</a>
-                                                            </li>
-
-                                                            <li class="col-xs-12 col-md-2 col-lg-3">
-                                                                <a data-reason="porn" class="btn btn-default btn-lg flagging-reason">Pornografie</a>
-                                                            </li>
-
-                                                            <li class="col-xs-12 col-md-2 col-lg-3">
-                                                                <a data-reason="privacy" class="btn btn-default btn-lg flagging-reason">Privatsphäre verletzt</a>
-                                                            </li>
-
-                                                            <li class="col-xs-12 col-md-2 col-lg-3">
-                                                                <a data-reason="other" class="btn btn-default btn-lg flagging-reason">Anderer Grund</a>
+                                                                {{#if blocked}}
+                                                                    <a data-block="0" class="btn btn-default btn-lg block">Unblock it</a>
+                                                                {{else}}
+                                                                    <a data-block="1" class="btn btn-default btn-lg block">Block it</a>
+                                                                {{/if}}
+                                                                <a class="btn btn-default btn-lg cancel-btn">Abbrechen</a>
                                                             </li>
                                                         </ul>
                                                     </div>

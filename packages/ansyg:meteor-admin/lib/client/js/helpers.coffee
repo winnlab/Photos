@@ -81,13 +81,17 @@ UI.registerHelper 'adminTemplate', (collection,mode)->
 	if collection.toLowerCase() != 'users' && typeof AdminConfig.collections[collection].templates != 'undefined'
 		AdminConfig.collections[collection].templates[mode]
 
+UI.registerHelper 'adminTemplateScope', (collection,mode)->
+	if collection.toLowerCase() != 'users' && typeof AdminConfig.collections[collection].templates != 'undefined'
+		{ name: AdminConfig.collections[collection].templates[mode] }
+
 UI.registerHelper 'adminGetCollection', (collection)->
 	AdminConfig.collections[collection]
 
 UI.registerHelper 'adminWidgets', ->
 	if typeof AdminConfig.dashboard != 'undefined' and typeof AdminConfig.dashboard.widgets != 'undefined'
 		AdminConfig.dashboard.widgets
-		
+
 UI.registerHelper 'adminUserEmail', (user) ->
 	if user && user.emails && user.emails[0] && user.emails[0].address
 		user.emails[0].address

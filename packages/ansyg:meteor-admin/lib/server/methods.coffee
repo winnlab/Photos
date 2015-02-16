@@ -37,7 +37,7 @@ Meteor.methods
 				user.email = email
 				unless doc.chooseOwnPassword
 					user.password = doc.password
-					
+
 				_id = Accounts.createUser user
 
 				if doc.sendPassword && typeof AdminConfig.fromEmail != 'undefined'
@@ -102,3 +102,5 @@ Meteor.methods
 		check arguments, [Match.Any]
 		global.AdminPages[collection].set
 			sort: _sort
+	isUserAdmin: (userId) ->
+		Roles.userIsInRole userId, ['admin']

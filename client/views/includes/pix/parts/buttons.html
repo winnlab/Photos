@@ -18,15 +18,13 @@
         </li>
 
         <!-- flag button commented section -->
-        {{#if $eq currentUser 'comment'}}
-            {{#unless $eq currentUser._id userId}}
-                <li class="photo-action-button">
-                    <a data-action="flag" class="togglePhotoAction {{#if $eq photoAction 'flag'}}active{{/if}}" href="">
-                        <i class="photo-flag"></i>
-                        <span class="button-content"></span>
-                    </a>
-                </li>
-            {{/unless}}
+        {{#if adminIsUserInRole currentUser._id 'admin'}}
+            <li class="photo-action-button">
+                <a data-action="flag" class="togglePhotoAction {{#if $eq photoAction 'flag'}}active{{/if}}" href="">
+                    <i class="photo-flag"></i>
+                    <span class="button-content"></span>
+                </a>
+            </li>
         {{/if}}
 
         <!-- delete button -->
@@ -37,6 +35,15 @@
                     <span class="button-content"></span>
                 </a>
             </li>
+        {{else}}
+            {{#if adminIsUserInRole currentUser._id 'admin'}}
+                <li class="photo-action-button">
+                    <a data-action="delete" class="togglePhotoAction {{#if $eq photoAction 'delete'}}active{{/if}}" href="">
+                        <i class="photo-delete"></i>
+                        <span class="button-content"></span>
+                    </a>
+                </li>
+            {{/if}}
         {{/if}}
     </ul>
 </template>

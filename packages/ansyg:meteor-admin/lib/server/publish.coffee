@@ -24,6 +24,7 @@ Meteor.publish 'adminCollectionsCount', ->
 		count = 0
 
 		ready = false
+
 		handles.push table.collection.find().observeChanges
 			added: ->
 				count += 1
@@ -32,7 +33,7 @@ Meteor.publish 'adminCollectionsCount', ->
 				count -= 1
 				ready and self.changed 'adminCollectionsCount', id, {count: count}
 		ready = true
-		
+
 		self.added 'adminCollectionsCount', id, {collection: name, count: count}
 
 	self.onStop ->
