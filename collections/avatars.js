@@ -4,7 +4,7 @@ Avatars = new FS.Collection('avatars', {
             beforeWrite: renameFile,
             transformWrite: function(fileObj, readStream, writeStream) {
                 // Transform the image into a 50x50 thumbnail
-                gm(readStream, fileObj.name()).autoOrient().resize('50', '50', '^').gravity('Center').extent('50', '50').stream().pipe(writeStream);
+                gm(readStream, fileObj.name()).autoOrient().resize('90', '90', '^').gravity('Center').extent('90', '90').stream().pipe(writeStream);
             }
         }),
         new FS.Store.FileSystem('avatars', {

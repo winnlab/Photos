@@ -84,6 +84,10 @@ Template.carousel.events({
     },
 
     'click .carousel-control': function (ev) {
+        var video = $('.item.active').find('video');
+        if (video.length) {
+            video[0].pause();
+        }
         photoAction.set(null);
         $carousel.carousel($(ev.target).data('slide'));
     },
@@ -117,6 +121,15 @@ Template.carousel.events({
         Meteor.call('toggleBlockShare', shareId, block, function (err) {
             closeShareView(err, template);
         });
+    },
+
+    'click video': function (ev) {
+        var video = ev.target;
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
     },
 
     /**

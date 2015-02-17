@@ -167,7 +167,7 @@ Meteor.methods({
             throw new Meteor.Error(404, 'Not found such share');
         }
 
-        if (Roles.userIsInRole(this.userId, ['admin']) && share.userId !== this.userId) {
+        if (!Roles.userIsInRole(this.userId, ['admin']) && share.userId !== this.userId) {
             throw new Meteor.Error(403, 'Not allowed');
         }
 
@@ -275,23 +275,27 @@ if (Meteor.isServer) {
         },
         transformWrite: function(fileObj, readStream, writeStream) {
             var fs = Npm.require('fs'),
-                folder = __meteor_bootstrap__.serverDir.split('.meteor/local')[0] +
-                    '.meteor/local/cfs/files/share-video-shots/',
+                path = Npm.require('path'),
+                folder = path.normalize(__meteor_bootstrap__.serverDir +
+                    '../../../../cfs/files/share-video-shots/'),
                 filename = fileObj.copies['share-video-thumb'].name;
             ffmpeg(readStream)
+            .inputOptions('-analyzeduration 2147483647')
+            .inputOptions('-probesize 2147483647')
+            .screenshot({
+                timemarks: [0.5],
+                folder: folder,
+                filename: filename
+            })
             // setup event handlers
             .on('end', function() {
                 var shotReadStream = fs.createReadStream(folder + filename);
                 gm(shotReadStream, filename).autoOrient().resize('296').stream().pipe(writeStream);
             })
-            .on('error', function(err) {
+            .on('error', function(err, stdout, stderr) {
                 console.log('an error happened: ' + err.message);
-            })
-            .screenshot({
-                count: 1,
-                timemarks: [ 0 ],
-                folder: folder,
-                filename: filename
+                console.log('ffmpeg standard output:\n' + stdout);
+                console.log('ffmpeg standard error:\n' + stderr);
             });
         }
     }));
@@ -301,7 +305,7 @@ ShareVideo = new FS.Collection('shareVideo', {
     stores: shareVideoStores,
     filter: {
         allow: {
-            contentTypes: ['video/*']
+            contentTypes: ['video/mp4']
         }
     }
 });
