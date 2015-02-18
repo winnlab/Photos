@@ -126,9 +126,9 @@ var shareCounting = function (ids, inc) {
 
 Meteor.methods({
     addShare: function (shareData, source) {
-        _.map(shareData.tags, function (tag) {
-            return tag.toLowerCase();
-        });
+        shareData.tags = _.compact(_.map(shareData.tags, function (tag) {
+            return tag.toLowerCase().replace(/\n|,| /g, '');
+        }));
         var user = Meteor.user(),
             userId = user._id,
             missionId = shareData.missionId,
@@ -222,6 +222,13 @@ Meteor.methods({
             });
             Meteor.call('likeNotify', share.userId, userId, shareId);
         }
+    },
+
+    toggleBlockShare: function (shareId, block) {
+        if (!Roles.userIsInRole(this.userId, ['admin'])) {
+            throw new Meteor.Error(403, 'Not allowed');
+        }
+        return Share.update({ _id: shareId }, { $set: { blocked: block } });
     }
 });
 

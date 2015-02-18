@@ -7,7 +7,7 @@ Meteor.methods({
         }
         _.each(tags, function (tag) {
             check(tag, String);
-            tag = tag.toLowerCase().replace(/\n|,| /g, '');
+            tag = tag.replace(/\n|,| /g, '').toLowerCase();
             var exist = Tags.findOne({ name: tag });
             if (!exist) {
                 Tags.insert({ name: tag });
