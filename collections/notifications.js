@@ -14,12 +14,14 @@ Push.allow({
 });
 
 var checkNotify = function (data) {
-        if (data.ownerId && data.sourceId) {
+        var checkTypes = ['like'];
+        if (data.ownerId && data.sourceId && checkTypes.indexOf(data.type) !== -1) {
             var exist = Notification.find({
                 ownerId: data.ownerId,
-                sourceId: data.sourceId
-            });
-            return !!exist;
+                sourceId: data.sourceId,
+                type: data.type
+            }).fetch();
+            return !_.isEmpty(exist);
         }
         return false;
     },
@@ -74,6 +76,62 @@ Meteor.methods({
                 username: user ? user.username : '',
                 shareId: shareId
             })
+        });
+    },
+
+    /**
+     * data.shareId - source id
+     * data.shareType - source type
+     * data.userId - owner of source
+     * data.ownerId - initiator id of notification
+     * data.ownerUsername - initiator username of notification
+     * Method is invoked when user has commented any share entity.
+     * It notify owner of share entity about user commentary.
+     */
+    commentNotify: function (data) {
+        var user = Meteor.users.find({ _id: data.userId });
+        addNotify({
+            userId: data.userId,
+            ownerId: data.ownerId,
+            sourceId: data.shareId,
+            type: 'comment',
+            msg: 'Benutzer ' + data.ownerUsername + ' Ihr ' +
+            (data.shareType === 'img' ? 'Foto' : 'Video') + ' kommentiert',
+            link: Router.path('profile', {
+                username: user ? user.username : '',
+                shareId: data.shareId
+            })
+        });
+    },
+
+    /**
+     * data.shareId - source id
+     * data.userId - owner of source
+     * data.ownerId - initiator id of notification
+     * data.ownerUsername - initiator username of notification
+     * Method is invoked when user has commented any share entity.
+     * It notify user about discussion around share entity.
+     */
+    discussNotify: function (data) {
+        'use strict';
+        var self = this,
+            commets = Comments.find({ sourceId: data.shareId }).fetch(),
+            deafUsers = [data.userId, data.ownerId];
+        _.each(commets, function (comment) {
+            if (deafUsers.indexOf(comment.userId) === -1) {
+                self.unblock();
+                addNotify({
+                    userId: comment.userId,
+                    ownerId: data.ownerId,
+                    sourceId: data.shareId,
+                    type: 'discussion',
+                    msg: 'Benutzer ' + data.ownerUsername + ' Ihr ',
+                    link: Router.path('categories', {
+                        type: 'neueste',
+                        shareId: data.shareId
+                    })
+                });
+            }
         });
     }
 });

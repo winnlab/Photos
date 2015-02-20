@@ -189,3 +189,12 @@ Meteor.publish('tags', function (name, exist) {
 Meteor.publish('notifications', function (userId) {
     return Notification.find({ userId: userId, read: false }, { sort: { date: -1 } });
 });
+
+Meteor.publish('comments', function (shareId, limit) {
+    return Comments.find({
+        sourceId: shareId
+    }, {
+        limit: limit,
+        sort: { date: -1 }
+    });
+});
