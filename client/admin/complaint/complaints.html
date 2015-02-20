@@ -1,0 +1,15 @@
+<template name="adminComplaintsShare">
+    {{#each share}}
+        <div class="complaint-img" data-id="{{_id}}">
+            {{#if $eq type 'img'}}
+                <img class="thumb" data-id="{{source._id}}" src="{{getImage 'ShareFiles' source._id 'shareThumbs'}}" />
+            {{/if}}
+            {{#if $eq type 'video'}}
+                <img class="thumb" data-id="{{source._id}}" src="{{getImage 'ShareVideo' source._id 'share-video-thumb'}}" />
+            {{/if}}
+        </div>
+    {{/each}}
+    {{#if show}}
+        {{> carousel shares=share currentId=show active=active}}
+    {{/if}}
+</template>

@@ -156,8 +156,8 @@ body.mobile {
     .upload-btn {
         @include position(fixed, null 15px 20px null);
         @include size(60px);
-        padding: 11px 0;
-        line-height: 1;
+        padding: 0;
+        line-height: 60px;
         font-size: 38px;
         color: #fff;
         text-align: center;
@@ -299,6 +299,27 @@ body.mobile {
                 transform: uppercase;
             }
         }
+    }
+
+    .overlay .carousel-slide-content .flagging-screen ul.flagging-options {
+        margin: 0 -15px;
+    }
+
+    .overlay .carousel-slide-content .flagging-screen ul.flagging-options li {
+        margin-bottom: 15px;
+    }
+
+    .overlay .carousel-slide-content .flagging-screen ul.flagging-options li a.btn {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .overlay .slide-container-footer .photo-actions .photo-action-button {
+        margin-right: 10px;
+    }
+
+    .overlay .slide-container-footer .photo-actions .photo-action-button:last-of-type {
+        margin-right: 0;
     }
 }
 

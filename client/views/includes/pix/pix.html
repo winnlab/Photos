@@ -21,7 +21,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-4 {{#if $eq columnsQty 1}}col-xs-12{{else}}col-xs-6{{/if}}">
                     {{#each $mapped ../shares}}
                         {{#if inColumn ../key $index}}
-                            <div class="photo-thumb showShare{{#if $eq type 'video'}} video{{/if}}" data-id="{{_id}}">
+                            <div class="photo-thumb showShare{{#if $eq type 'video'}} video{{/if}}{{#if blocked}} blocked{{/if}}" data-id="{{_id}}">
                                 {{#unless isMobileDevice}}
                                 <div class="thumb-overlay">
                                     <div class="caption">

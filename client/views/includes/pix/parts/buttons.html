@@ -18,7 +18,7 @@
         </li>
 
         <!-- flag button commented section -->
-        {{#if adminIsUserInRole currentUser._id 'admin'}}
+        {{#if currentUser}}
             <li class="photo-action-button">
                 <a data-action="flag" class="togglePhotoAction {{#if $eq photoAction 'flag'}}active{{/if}}" href="">
                     <i class="photo-flag"></i>

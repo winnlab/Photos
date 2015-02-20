@@ -81,9 +81,9 @@ UI.registerHelper 'adminTemplate', (collection,mode)->
 	if collection.toLowerCase() != 'users' && typeof AdminConfig.collections[collection].templates != 'undefined'
 		AdminConfig.collections[collection].templates[mode]
 
-UI.registerHelper 'adminTemplateScope', (collection,mode)->
+UI.registerHelper 'adminTemplateScope', (collection, mode) ->
 	if collection.toLowerCase() != 'users' && typeof AdminConfig.collections[collection].templates != 'undefined'
-		{ name: AdminConfig.collections[collection].templates[mode] }
+		name: AdminConfig.collections[collection].templates[mode]
 
 UI.registerHelper 'adminGetCollection', (collection)->
 	AdminConfig.collections[collection]

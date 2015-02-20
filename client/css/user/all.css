@@ -1404,6 +1404,10 @@
     min-height: 147px
 }
 
+.gallery .photo-thumb.blocked {
+    border: 4px solid tomato;
+}
+
 @media(max-width: 767px) {
     .gallery .photo-thumb {
         margin:0 0 20px 0;
@@ -4669,4 +4673,8 @@ html.noScroll body {
     font-size: 18px;
     padding-bottom: 15px;
     margin-bottom: 15px;
+}
+
+.show-more-results {
+    padding: 100px 0;
 }

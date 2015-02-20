@@ -135,15 +135,32 @@
                                                     <p class="button-caption">Foto melden:</p>
 
                                                     <div class="container">
-                                                        <ul class="flagging-options">
-                                                            <li class="col-xs-12 col-md-4 col-lg-3">
-                                                                {{#if blocked}}
-                                                                    <a data-block="0" class="btn btn-default btn-lg block">Unblock it</a>
-                                                                {{else}}
-                                                                    <a data-block="1" class="btn btn-default btn-lg block">Block it</a>
-                                                                {{/if}}
-                                                                <a class="btn btn-default btn-lg cancel-btn">Abbrechen</a>
-                                                            </li>
+                                                        <ul class="flagging-options row">
+                                                            {{#if adminIsUserInRole currentUser._id 'admin'}}
+                                                                <li class="col-xs-12 col-md-4 col-lg-3">
+                                                                    {{#if blocked}}
+                                                                        <a data-block="0" class="btn btn-default btn-lg block">Unblock it</a>
+                                                                    {{else}}
+                                                                        <a data-block="1" class="btn btn-default btn-lg block">Block it</a>
+                                                                    {{/if}}
+                                                                </li>
+                                                                <li class="col-xs-12 col-md-4 col-lg-3">
+                                                                    <a class="btn btn-default btn-lg cancel-btn">Abbrechen</a>
+                                                                </li>
+                                                            {{else}}
+                                                                <li class="col-xs-6 col-md-4 col-lg-3">
+                                                                    <a class="btn btn-default btn-lg complaint" data-reason="copyright">Urheberrechtsverletzung</a>
+                                                                </li>
+                                                                <li class="col-xs-6 col-md-2 col-lg-3">
+                                                                    <a class="btn btn-default btn-lg complaint" data-reason="porn">Pornografie</a>
+                                                                </li>
+                                                                <li class="col-xs-6 col-md-2 col-lg-3">
+                                                                    <a class="btn btn-default btn-lg complaint" data-reason="privacy">Privatsphäre verletzt</a>
+                                                                </li>
+                                                                <li class="col-xs-6 col-md-2 col-lg-3">
+                                                                    <a class="btn btn-default btn-lg complaint" data-reason="other">Anderer Grund</a>
+                                                                </li>
+                                                            {{/if}}
                                                         </ul>
                                                     </div>
                                                 </div>

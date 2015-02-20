@@ -39,7 +39,7 @@
 	{{> adminAlert}}
 	{{#if adminTemplate admin_collection_name 'view'}}
 		{{#with adminTemplateScope admin_collection_name 'view'}}
-		{{> Template.dynamic template=name data=data }}
+		{{> Template.dynamic template=name }}
 		{{/with}}
 	{{else}}
 		{{#if hasDocuments}}

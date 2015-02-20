@@ -1,0 +1,5 @@
+<template name="adminComplaintsUsers">
+    {{#each $mapped value}}
+        {{username}}{{#unless $last}}, {{/unless}}
+    {{/each}}
+</template>

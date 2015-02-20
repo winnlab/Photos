@@ -123,6 +123,17 @@ Template.carousel.events({
         });
     },
 
+    'click .complaint': function (ev, template) {
+        ev.preventDefault();
+        var $el = $(ev.target),
+            shareId = $el.parents('.item')[0].attributes['data-id'].value,
+            reason = $el[0].attributes['data-reason'].value;
+        Meteor.call('complaintOnShare', shareId, reason, function (err) {
+            console.log(arguments);
+            photoAction.set(null);
+        });
+    },
+
     'click video': function (ev) {
         var video = ev.target;
         if (video.paused) {

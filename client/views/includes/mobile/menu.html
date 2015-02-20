@@ -13,7 +13,7 @@
                     {{#if currentUser}}
                         {{#with currentUser}}
                             <a class="user-wrap" href="{{pathFor 'profile'}}">
-                                <img class="user-avatar" src="{{avatarById avatar._id}}" width="150" height="150" />
+                                <img class="user-avatar" src="{{avatarById avatar._id 'avatars'}}" width="150" height="150" />
                                 <div class="user-name">
                                     {{username}}
                                 </div>
