@@ -1,7 +1,7 @@
 <template name="carousel">
     <div class="overlay overlay-closable-area">
         <div class="overlay-content">
-            <a class="close"></a>
+            <a class="close{{#if $eq photoAction 'comment'}} hide{{/if}}"></a>
 
             <div class="photo-carousel">
                 {{#unless $or currentUser conversionClosed}}
@@ -26,8 +26,8 @@
 
                 <div id="photoCarousel" class="carousel slide">
                     {{#if manySlides}}
-                        <a class="left carousel-control" {{containerSize}} data-slide="prev"></a>
-                        <a class="right carousel-control" {{containerSize}} data-slide="next"></a>
+                        <a class="left carousel-control{{#if $eq photoAction 'comment'}} hide{{/if}}" {{containerSize}} data-slide="prev"></a>
+                        <a class="right carousel-control{{#if $eq photoAction 'comment'}} hide{{/if}}" {{containerSize}} data-slide="next"></a>
                     {{/if}}
                     <div class="carousel-inner">
                         {{#each shares}}
@@ -80,7 +80,7 @@
                                                     {{> pixTags}}
                                                 {{else}}
                                                     <div class="photo-actions">
-                                                        {{> pixBtns}}
+                                                        {{> pixBtns commentsQty=commentsQty likes=likes}}
                                                     </div>
                                                 {{/unless}}
                                             </div>
@@ -92,81 +92,86 @@
                                                 </div>
                                             {{else}}
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-sm-offset-3 col-xs-12 col-xs-offset-3 col-md-offset-0 photo-actions">
-                                                    {{> pixBtns}}
+                                                    {{> pixBtns commentsQty=commentsQty likes=likes}}
                                                 </div>
                                             {{/if}}
 
                                         </div>
 
-                                        <div class="photo-overlay share-screen {{#if $neq photoAction 'share'}}hide{{/if}}">
-                                            {{#if $eq _id ../currentId}}
+                                        {{#if $eq _id ../currentId}}
+                                            <div class="photo-overlay share-screen {{#if $neq photoAction 'share'}}hide{{/if}}">
                                                 <div class="photo-share-bar">
                                                     {{>shareit shareData}}
                                                 </div>
-                                            {{/if}}
-                                        </div>
+                                            </div>
 
-                                        <div class="photo-overlay delete-screen {{#if $neq photoAction 'delete'}}hide{{/if}}">
-                                            <div>
-                                                <p class="success-msg {{#unless deleteSuccessMessage}}hide{{/unless}}">
-                                                    {{deleteSuccessMessage}}
-                                                </p>
-                                                <p class="error-msg {{#unless deleteErrorMessage}}hide{{/unless}}">
-                                                    {{deleteErrorMessage}}
-                                                </p>
-                                                <div class="{{#if $or deleteErrorMessage deleteSuccessMessage}}hide{{/if}}">
-                                                    <p class="button-caption">Foto wirklich löschen?</p>
+                                            <div class="photo-overlay delete-screen {{#if $neq photoAction 'delete'}}hide{{/if}}">
+                                                <div>
+                                                    <p class="success-msg {{#unless deleteSuccessMessage}}hide{{/unless}}">
+                                                        {{deleteSuccessMessage}}
+                                                    </p>
+                                                    <p class="error-msg {{#unless deleteErrorMessage}}hide{{/unless}}">
+                                                        {{deleteErrorMessage}}
+                                                    </p>
+                                                    <div class="{{#if $or deleteErrorMessage deleteSuccessMessage}}hide{{/if}}">
+                                                        <p class="button-caption">Foto wirklich löschen?</p>
 
-                                                    <div class="clearfix actions">
-                                                        <a class="btn btn-default btn-lg pull-right delete-btn">Ja{{#unless isMobileDevice}}, wirklich löschen{{/unless}}</a>
-                                                        <a class="btn btn-default btn-lg pull-left cancel-btn">Nein{{#unless isMobileDevice}}, Foto nicht löschen{{/unless}}</a>
+                                                        <div class="clearfix actions">
+                                                            <a class="btn btn-default btn-lg pull-right delete-btn">Ja{{#unless isMobileDevice}}, wirklich löschen{{/unless}}</a>
+                                                            <a class="btn btn-default btn-lg pull-left cancel-btn">Nein{{#unless isMobileDevice}}, Foto nicht löschen{{/unless}}</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="photo-overlay flagging-screen {{#if $neq photoAction 'flag'}}hide{{/if}}">
-                                            <div>
-                                                <p class="success-msg {{#unless flagSuccessMessage}}hide{{/unless}}">
-                                                    {{flagSuccessMessage}}
-                                                </p>
+                                            <div class="photo-overlay flagging-screen {{#if $neq photoAction 'flag'}}hide{{/if}}">
+                                                <div>
+                                                    <p class="success-msg {{#unless flagSuccessMessage}}hide{{/unless}}">
+                                                        {{flagSuccessMessage}}
+                                                    </p>
 
-                                                <div class="{{#if flagSuccessMessage}}hide{{/if}}">
-                                                    <p class="button-caption">Foto melden:</p>
+                                                    <div class="{{#if flagSuccessMessage}}hide{{/if}}">
+                                                        <p class="button-caption">Foto melden:</p>
 
-                                                    <div class="container">
-                                                        <ul class="flagging-options row">
-                                                            {{#if adminIsUserInRole currentUser._id 'admin'}}
-                                                                <li class="col-xs-12 col-md-4 col-lg-3">
-                                                                    {{#if blocked}}
-                                                                        <a data-block="0" class="btn btn-default btn-lg block">Unblock it</a>
-                                                                    {{else}}
-                                                                        <a data-block="1" class="btn btn-default btn-lg block">Block it</a>
-                                                                    {{/if}}
-                                                                </li>
-                                                                <li class="col-xs-12 col-md-4 col-lg-3">
-                                                                    <a class="btn btn-default btn-lg cancel-btn">Abbrechen</a>
-                                                                </li>
-                                                            {{else}}
-                                                                <li class="col-xs-6 col-md-4 col-lg-3">
-                                                                    <a class="btn btn-default btn-lg complaint" data-reason="copyright">Urheberrechtsverletzung</a>
-                                                                </li>
-                                                                <li class="col-xs-6 col-md-2 col-lg-3">
-                                                                    <a class="btn btn-default btn-lg complaint" data-reason="porn">Pornografie</a>
-                                                                </li>
-                                                                <li class="col-xs-6 col-md-2 col-lg-3">
-                                                                    <a class="btn btn-default btn-lg complaint" data-reason="privacy">Privatsphäre verletzt</a>
-                                                                </li>
-                                                                <li class="col-xs-6 col-md-2 col-lg-3">
-                                                                    <a class="btn btn-default btn-lg complaint" data-reason="other">Anderer Grund</a>
-                                                                </li>
-                                                            {{/if}}
-                                                        </ul>
+                                                        <div class="container">
+                                                            <ul class="flagging-options row">
+                                                                {{#if adminIsUserInRole currentUser._id 'admin'}}
+                                                                    <li class="col-xs-12 col-md-4 col-lg-3">
+                                                                        {{#if blocked}}
+                                                                            <a data-block="0" class="btn btn-default btn-lg block">Unblock it</a>
+                                                                        {{else}}
+                                                                            <a data-block="1" class="btn btn-default btn-lg block">Block it</a>
+                                                                        {{/if}}
+                                                                    </li>
+                                                                    <li class="col-xs-12 col-md-4 col-lg-3">
+                                                                        <a class="btn btn-default btn-lg cancel-btn">Abbrechen</a>
+                                                                    </li>
+                                                                {{else}}
+                                                                    <li class="col-xs-6 col-md-4 col-lg-3">
+                                                                        <a class="btn btn-default btn-lg complaint" data-reason="copyright">Urheberrechtsverletzung</a>
+                                                                    </li>
+                                                                    <li class="col-xs-6 col-md-2 col-lg-3">
+                                                                        <a class="btn btn-default btn-lg complaint" data-reason="porn">Pornografie</a>
+                                                                    </li>
+                                                                    <li class="col-xs-6 col-md-2 col-lg-3">
+                                                                        <a class="btn btn-default btn-lg complaint" data-reason="privacy">Privatsphäre verletzt</a>
+                                                                    </li>
+                                                                    <li class="col-xs-6 col-md-2 col-lg-3">
+                                                                        <a class="btn btn-default btn-lg complaint" data-reason="other">Anderer Grund</a>
+                                                                    </li>
+                                                                {{/if}}
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        {{/if}}
                                     </div>
+                                    {{#if $eq _id ../currentId}}
+                                        {{#if $eq photoAction 'comment'}}
+                                            {{> shareComments}}
+                                        {{/if}}
+                                    {{/if}}
                                 </div>
                             </div>
                         {{/each}}

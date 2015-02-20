@@ -1,0 +1,109 @@
+.mobile {
+    .comment-overlay-wrap {
+        @include position(absolute, 0 null null null);
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background: #fff;
+    }
+
+    .comment-header {
+        @include position(fixed, 0 0 null 0);
+        height: 60px;
+        border: none;
+        margin: 0;
+        box-shadow: 0px 1px 2px 0px rgba(0, 1, 1, 0.15);
+        background: #fff;
+        z-index: 1;
+
+        .back-to-photos {
+            display: block;
+            float: left;
+            width: 60px;
+            height: 60px;
+            background-image: url(/img/m-arrow-prev.svg);
+            background-size: 20px 20px;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .title {
+            font-family: Roboto;
+            color: #414141;
+            font-size: 20px; /* Приближение из-за подстановки шрифтов */
+            font-weight: 500;
+            line-height: 60px;
+            text-align: center;
+            width: 200px;
+            margin: 0 auto;
+        }
+    }
+
+    .comment-content {
+        width: 100%;
+        min-height: 100%;
+        position: relative;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .comment-item {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(65, 65, 65, 0.4);
+        font-family: Roboto;
+
+        a {
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .comment-username {
+            color: #414141;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 22px;
+        }
+
+        .comment-date {
+            float: right;
+            color: rgba(65, 65, 65, 0.7);
+            font-size: 16px;
+        }
+
+        .comment-text {
+            color: #414141;
+            font-size: 18px;
+        }
+
+        .col-xs-9 {
+            padding-left: 0;
+        }
+    }
+
+    .add-comment-wrap {
+        @include position(fixed, null 0 0 0);
+        @include size(100% 60px);
+        box-shadow: 0px -1px 2px 0px rgba(0, 1, 1, 0.35);
+        background-color: #e4e4e4;
+    }
+
+    .comment-form {
+        padding-top: 12px;
+        input {
+            @include size(100% 36px);
+            border: none;
+            padding: 0 5px;
+            border-radius: 10px;
+            outline: none;
+            font-family: Roboto;
+        }
+        button {
+            padding: 5px 10px;
+            font-family: Roboto;
+            height: 36px;
+        }
+    }
+}

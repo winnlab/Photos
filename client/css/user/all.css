@@ -2395,8 +2395,22 @@
 }
 
 .overlay .slide-container-footer .photo-actions .photo-action-button a i.photo-comment {
-    background-image: url(/img/ic_comment_50x43.png);
-    background-position: center 12px
+    background-image: url(/img/m-comments.svg);
+    background-position: center center;
+    background-size: 40px 40px;
+}
+
+.overlay .slide-container-footer .photo-actions .photo-action-button a .comments-quantity {
+    color: #222222;
+    font-size: 22px;
+    width: 42px;
+    height: 45px;
+    display: block;
+    float: left;
+    margin: 0 0 0 -15px;
+    line-height: 45px;
+    font-family: Roboto;
+    font-weight: bold;
 }
 
 .overlay .slide-container-footer .photo-actions .photo-action-button a i.photo-flag {

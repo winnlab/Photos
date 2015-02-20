@@ -19,12 +19,18 @@ Comments.attachSchema(new SimpleSchema({
     }
 }));
 
+var commetnCounting = function (shareId, inc) {
+    return Share.update({ _id: shareId }, { $inc: { commentsQty: inc } });
+};
+
 Meteor.methods({
     addComment: function (data) {
         'use strict';
         if (!this.userId) {
             throw new Meteor.Error(403, 'Not allowed');
         }
+
+        check(data.comment, String);
 
         var fields = ['shareId', 'shareType', 'userId', 'ownerId', 'ownerUsername', 'comment'],
             isOmits = false;
@@ -50,6 +56,8 @@ Meteor.methods({
             'shareId', 'userId', 'ownerId', 'ownerUsername'
         ]));
 
+        commetnCounting(data.shareId, 1);
+
         Comments.insert({
             userId: data.ownerId,
             username: data.ownerUsername,
@@ -64,6 +72,7 @@ Meteor.methods({
         if (!Roles.userIsInRole(this.userId, ['admin']) && comment.userId !== this.userId) {
             throw new Meteor.Error(403, 'Not allowed');
         }
+        commetnCounting(comment.sourceId, -1);
         return Comments.remove({ _id: commentId });
     }
 });

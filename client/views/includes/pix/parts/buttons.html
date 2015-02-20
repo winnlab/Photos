@@ -45,5 +45,17 @@
                 </li>
             {{/if}}
         {{/if}}
+
+        <!-- comment button -->
+        <li class="photo-action-button">
+            <a data-action="comment" class="togglePhotoAction" href="">
+                <i class="photo-comment"></i>
+            </a>
+        </li>
+        <li class="photo-action-button">
+            <a data-action="comment" class="togglePhotoAction" href="">
+                <span class="comments-quantity">{{#if commentsQty}}{{commentsQty}}{{/if}}</span>
+            </a>
+        </li>
     </ul>
 </template>

@@ -43,6 +43,11 @@ Share.attachSchema(new SimpleSchema({
         type: Number,
         optional: true
     },
+    commentsQty: {
+        label: 'Comments quantity',
+        type: Number,
+        optional: true
+    },
     'source._id': {
         label: 'SourceId',
         type: String
