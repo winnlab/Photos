@@ -2,23 +2,29 @@
     <div id="search-bar" class="nav navbar navbar-fixed navbar-inverse">
         <div class="container">
             <div class="col-lg-12">
-
+                {{#if isMobileDevice}}
+                    <a class="go-back"></a>
+                {{/if}}
                 <ul id="search-tags" class="input-group input-group-lg">
-                    {{#unless isMobileDevice}}
-                        <li class="search-icon"></li>
-                    {{/unless}}
-                    {{#each tags}}
+                    <li class="search-icon"></li>
+                    {{#each $mapped tags}}
                         <li class="tag">
-                            {{.}}
+                            <span>{{.}}</span>
+                            {{#unless isMobileDevice}}
+                                <i class="remove-tag"></i>
+                            {{/unless}}
                         </li>
                     {{/each}}
 
                     <li class="input">
                         <input class="tag-input" type="text" placeholder="Suchbegriff eingeben..." autofocus="">
                     </li>
+                    {{#unless isMobileDevice}}
+                        <li class="remove-all-tags"></li>
+                    {{/unless}}
                 </ul>
                 {{#if suggested.count}}
-                    <ul id="search-query-suggest" class="suggest" style="{{adjustPosition}}">
+                    <ul id="search-query-suggest" class="suggest" style="{{#unless isMobileDevice}}{{adjustPosition}}{{/unless}}">
                         {{#each suggested}}
                             <li class="addTag" data-name="{{name}}">
                                 {{name}}

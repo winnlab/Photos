@@ -39,8 +39,8 @@ Template.search.helpers({
         return Share.find();
     },
     adjustPosition: function () {
-        var top = $searchInput.offset().top + $searchInput.height() + 60 - $document.scrollTop(),
-            left = $searchInput.offset().left + 10;
+        var top = $searchInput.offset().top + $searchInput.height() + 27 - $document.scrollTop(),
+            left = $searchInput.offset().left;
         return 'top:' + top.toString() + 'px; left:' + left.toString() + 'px;';
     }
 });
@@ -102,6 +102,26 @@ Template.search.events({
             tags.pop();
             template.tags.set(tags);
             Meteor.setTimeout(adjustInputFieldSize, 1);
+        }
+    },
+    'click .remove-tag': function (ev, template) {
+        var index = $(ev.target).parents('li').index() - 1,
+            tags = template.tags.get();
+        $searchInput.val('');
+        template.suggest.set('');
+        tags.splice(index, 1);
+        template.tags.set(tags);
+        Meteor.setTimeout(adjustInputFieldSize, 1);
+    },
+    'click .remove-all-tags': function (ev, template) {
+        template.tags.set([]);
+    },
+    'click .go-back': function (ev) {
+        ev.preventDefault();
+        if (history && history.go) {
+            history.go(-1);
+        } else {
+            Router.go('categories', { type: 'neueste' });
         }
     }
 });
