@@ -47,7 +47,7 @@ Template.addPhotoMobile.helpers({
     },
     isShowPrev: function () {
         var currentStep = step.get();
-        if (currentStep === 1 || currentStep >= 4) {
+        if (currentStep === 1 || currentStep >= 5) {
             return false;
         }
         return true;

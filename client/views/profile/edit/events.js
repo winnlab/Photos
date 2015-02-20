@@ -46,6 +46,7 @@ Template.profileEdit.events({
                 if (err) {
                     console.error(err);
                 }
+                ev.target.reset();
             });
         });
     },
