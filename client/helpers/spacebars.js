@@ -81,13 +81,16 @@ Template.registerHelper('avatarById', function (_id, size, isBg) {
     return result;
 });
 
-Template.registerHelper('userAvatar', function (userId, color) {
+Template.registerHelper('userAvatar', function (userId, color, store) {
     if (typeof color === 'object') {
         color = null;
     }
+    if (typeof store === 'object') {
+        store = null;
+    }
     Meteor.subscribe('avatar', { userId: userId });
     var avatar = Avatars.findOne({ userId: userId });
-    return avatar ? avatar.url() : color ? '/img/generic-avatar_white.png' : '/img/generic-avatar_transparent.png';
+    return avatar ? avatar.url(store ? { store: store } : {}) : color ? '/img/generic-avatar_white.png' : '/img/generic-avatar_transparent.png';
 });
 
 Template.registerHelper('getImage', function (Collection, _id, store) {

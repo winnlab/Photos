@@ -38,6 +38,11 @@ Template.carousel.helpers({
     isLiked: function (likes) {
         return likes.indexOf(Meteor.userId()) !== -1;
     },
+    // controls visibility of navigation and close buttons
+    isNavVisible: function () {
+        return (Meteor.Device.isPhone() || Meteor.Device.isTablet()) &&
+            photoAction.get() === 'comment';
+    },
     // Variables
     conversionClosed: function () {
         return conversionClosed.get();

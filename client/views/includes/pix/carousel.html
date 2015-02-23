@@ -1,7 +1,7 @@
 <template name="carousel">
     <div class="overlay overlay-closable-area">
         <div class="overlay-content">
-            <a class="close{{#if $eq photoAction 'comment'}} hide{{/if}}"></a>
+            <a class="close{{#if isNavVisible}} hide{{/if}}"></a>
 
             <div class="photo-carousel">
                 {{#unless $or currentUser conversionClosed}}
@@ -26,12 +26,12 @@
 
                 <div id="photoCarousel" class="carousel slide">
                     {{#if manySlides}}
-                        <a class="left carousel-control{{#if $eq photoAction 'comment'}} hide{{/if}}" {{containerSize}} data-slide="prev"></a>
-                        <a class="right carousel-control{{#if $eq photoAction 'comment'}} hide{{/if}}" {{containerSize}} data-slide="next"></a>
+                        <a class="left carousel-control{{#if isNavVisible}} hide{{/if}}" {{containerSize}} data-slide="prev"></a>
+                        <a class="right carousel-control{{#if isNavVisible}} hide{{/if}}" {{containerSize}} data-slide="next"></a>
                     {{/if}}
                     <div class="carousel-inner">
                         {{#each shares}}
-                            <div class="item {{#if $eq _id ../currentId}}active{{/if}}" data-id="{{_id}}">
+                            <div class="item {{#if $eq _id ../currentId}}active{{/if}}{{#if $eq photoAction 'comment'}} comment-opened{{/if}}" data-id="{{_id}}">
                                 <div class="carousel-slide-content col-lg-12 col-xs-12 col-sm-12 col-md-12">
                                     <div class="photo-container">
                                         <div class="photo-container-wrapper{{#if $eq type 'video'}} video{{/if}}" {{containerSize}}>
@@ -47,7 +47,7 @@
                                     </div>
 
                                     <div class="slide-container-footer">
-                                        <div class="{{#unless isMobileDevice}}row{{/unless}} clearfix">
+                                        <div class="clearfix">
                                             <div class="col-lg-2 col-md-2 col-md-offset-0 col-sm-4 col-xs-4">
                                                 <div class="pull-right">
                                                     <div class="user-avatar">

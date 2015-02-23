@@ -1,0 +1,33 @@
+<template name="shareCommentsDesktop">
+    <div class="comment-overlay-wrap comment-desktop-owerlay">
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+            <div class="comment-header">
+                <div class='title'>{{commentsQty}} Kommentar{{#if $gt commentsQty 1}}e{{/if}}</div>
+            </div>
+            <form class="comment-form comment-item clearfix">
+                <a href="{{pathFor 'profile' username=currentUser.username}}">
+                    <img class="avatar-image" src="{{userAvatar currentUser._id 'white' 'thumbs'}}">
+                </a>
+                <div class="input-wrap comment-info">
+                    <input type="text" name="comment" placeholder="Einen Kommentar hinzufügen"/>
+                </div>
+            </form>
+            <div class="comment-content">
+                {{#each comments}}
+                    <div class="comment-item clearfix">
+                        <a href="{{pathFor 'profile'}}">
+                            <img class="avatar-image" src="{{userAvatar userId 'white' 'thumbs'}}">
+                        </a>
+                        <div class="comment-info">
+                            <div class="comment-username">{{username}} <span class="comment-date">{{timeAgo date}}</span></div>
+                            <div class="comment-text">{{comment}}</div>
+                        </div>
+                    </div>
+                {{/each}}
+                <div class="load-more{{#unless moreComments}} hide{{/unless}}">
+                    laden mehr
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1818,6 +1818,9 @@
 .overlay .carousel-inner > .item {
     height: 100%;
 }
+.overlay .carousel-inner > .item.comment-opened {
+    overflow: auto;
+}
 
 .overlay .carousel-slide-content .photo-container {
     position: relative;
@@ -2147,6 +2150,10 @@
     width: 100%
 }
 
+.overlay .comment-opened .slide-container-footer {
+    bottom: 10%;
+}
+
 @media(orientation:landscape) and (max-device-width: 480px) {
     .overlay .slide-container-footer .photo-actions {
         display:none
@@ -2398,16 +2405,16 @@
     background-image: url(/img/m-comments.svg);
     background-position: center center;
     background-size: 40px 40px;
+    float: left;
 }
 
 .overlay .slide-container-footer .photo-actions .photo-action-button a .comments-quantity {
     color: #222222;
     font-size: 22px;
-    width: 42px;
+    width: 22px;
     height: 45px;
     display: block;
     float: left;
-    margin: 0 0 0 -15px;
     line-height: 45px;
     font-family: Roboto;
     font-weight: bold;
@@ -4728,4 +4735,76 @@ html.noScroll body {
 
 .show-more-results {
     padding: 100px 0;
+}
+
+.overlay .comment-opened .comment-desktop-owerlay {
+    position: absolute;
+    width: 100%;
+    top: 90%;
+    left: 0;
+    background: #fff;
+}
+.comment-desktop-owerlay .comment-header {
+    font-family: Roboto;
+    color: #222222;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid #222222;
+    padding: 0 0 10px;
+    margin: 0 0 13px;
+    line-height: 1;
+}
+.comment-desktop-owerlay .comment-item a {
+    float: left;
+}
+.comment-desktop-owerlay .comment-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.comment-desktop-owerlay .comment-info {
+    display: block;
+    margin: 0 0 0 70px;
+}
+.comment-desktop-owerlay .comment-item {
+    margin-bottom: 20px;
+    font-family: Roboto;
+    font-size: 15px;
+}
+.comment-desktop-owerlay .comment-item input {
+    border-radius: 10px;
+    width: 100%;
+    outline: none;
+    border: 3px solid  rgba(65, 65, 65, 0.4);
+    padding: 10px;
+}
+.comment-desktop-owerlay .comment-item .comment-username {
+    color: #222222;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+.comment-desktop-owerlay .comment-item .comment-date {
+    text-transform: lowercase;
+    font-weight: normal;
+    margin: 0 0 0 10px;
+    color: #a0a0a0;
+    font-size: 13px;
+}
+.comment-desktop-owerlay .load-more {
+    border-radius: 10px;
+    background-color: rgba(144, 144, 144, 0.4);
+    width: 100%;
+    height: 50px;
+    font-family: Roboto;
+    color: #232323;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 50px;
+    margin: 0 0 20px;
+    cursor: pointer;
 }

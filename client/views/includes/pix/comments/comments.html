@@ -1,6 +1,7 @@
 <template name="shareComments">
     {{#if isMobileDevice}}
-        {{> shareCommentsMobile comments=comments}}
+        {{> shareCommentsMobile moreComments=moreComments comments=comments}}
     {{else}}
+        {{> shareCommentsDesktop moreComments=moreComments commentsQty=commentsQty comments=comments}}
     {{/if}}
 </template>

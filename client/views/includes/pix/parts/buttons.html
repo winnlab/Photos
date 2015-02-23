@@ -17,6 +17,14 @@
             </a>
         </li>
 
+        <!-- comment button -->
+        <li class="photo-action-button">
+            <a data-action="comment" class="togglePhotoAction {{#if $eq photoAction 'comment'}}active{{/if}}" href="">
+                <i class="photo-comment"></i>
+                <span class="comments-quantity">{{#if commentsQty}}{{commentsQty}}{{/if}}</span>
+            </a>
+        </li>
+
         <!-- flag button commented section -->
         {{#if currentUser}}
             <li class="photo-action-button">
@@ -45,17 +53,5 @@
                 </li>
             {{/if}}
         {{/if}}
-
-        <!-- comment button -->
-        <li class="photo-action-button">
-            <a data-action="comment" class="togglePhotoAction" href="">
-                <i class="photo-comment"></i>
-            </a>
-        </li>
-        <li class="photo-action-button">
-            <a data-action="comment" class="togglePhotoAction" href="">
-                <span class="comments-quantity">{{#if commentsQty}}{{commentsQty}}{{/if}}</span>
-            </a>
-        </li>
     </ul>
 </template>

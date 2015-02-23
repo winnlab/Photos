@@ -1,11 +1,21 @@
 'use strict';
 Template.shareComments.created = function () {
-    Meteor.subscribe('comments', this.data._id);
+    var instance = this;
+
+    instance.limit = new ReactiveVar(COMMENT_LIMIT);
+
+    instance.autorun(function () {
+        Meteor.subscribe('comments', instance.data._id, instance.limit.get());
+    });
 };
 
 Template.shareComments.helpers({
     comments: function () {
-        return Comments.find({ sourceId: this._id });
+        return Comments.find({ sourceId: this._id }, { sort: { date: -1 } });
+    },
+    moreComments: function () {
+        var instance = Template.instance();
+        return !(instance.data.commentsQty <= instance.limit.get());
     }
 });
 
@@ -33,5 +43,9 @@ Template.shareComments.events({
             }
             ev.target.reset();
         });
+    },
+    'click .load-more': function (ev, template) {
+        var limit = template.limit.get();
+        template.limit.set(limit + COMMENT_LIMIT);
     }
 });
