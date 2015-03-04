@@ -21,7 +21,9 @@
                             </div>
                         </li>
                     {{else}}
-                        {{> loginButtons}}
+                        {{#if showLoginButtons}}
+                            {{> loginButtons}}
+                        {{/if}}
                     {{/if}}
                     {{#if currentUser}}
                         <li class="dropdown info">
@@ -44,7 +46,7 @@
                     {{/if}}
                 </ul>
 
-                <div class="text-center header-text">
+                <div class="text-center header-text hidden-xs">
                     Sei, wie du bist. Zeig, wie du bist. Die <a href="{{pathFor 'home'}}">coole</a> Foto-Community
                 </div>
             </div>
@@ -73,12 +75,11 @@
                                 <span class="info-sign">i</span>
                             </a>
                             <ul class="dropdown-menu info-menu" role="menu">
-                                <li><a href="/about/faq"><strong>Über Photos</strong></a></li>
+                                <li><a href="/about/faq"><strong>Über Selfie</strong></a></li>
                                 <li class="divider"></li>
-                                <li><a href="/about/faq">Hilfe</a></li>
-                                <li><a href="/about/impressum">Impressum</a></li>
-                                <li><a href="/about/datenschutz">Datenschutz</a></li>
-                                <li><a href="/about/agb">AGB</a></li>
+                                {{#each articles}}
+                                    <li><a href="{{pathFor 'about'}}">{{title}}</a></li>
+                                {{/each}}
                             </ul>
                         </li>
                     </ul>
@@ -89,6 +90,11 @@
                             <span class="input-group-addon btn-green searchBtn">
                                 <i class="glyphicon glyphicon-search"></i>
                             </span>
+                        </div>
+                        <div class="suggestion-list">
+                            {{#each suggestion}}
+                                <div class="suggestion-item">{{name}}</div>
+                            {{/each}}
                         </div>
                     </div>
 

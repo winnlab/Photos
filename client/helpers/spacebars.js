@@ -17,6 +17,13 @@ Template.registerHelper('showSettings', function () {
         routes = ['followings', 'followers', 'profile'];
     return routes.indexOf(routeName) !== -1;
 });
+
+Template.registerHelper('showLoginButtons', function () {
+    var routeName = Router.current().route.getName(),
+        routes = ['entryResetPassword'];
+    return routes.indexOf(routeName) === -1;
+});
+
 var pathForUpload = function (query) {
     var route;
     if (Meteor.Device.isPhone() || Meteor.Device.isTablet()) {
@@ -28,6 +35,7 @@ var pathForUpload = function (query) {
         query: query
     });
 };
+
 Template.registerHelper('addMissionPhoto', function (id) {
     return pathForUpload({ missionId: id });
 });

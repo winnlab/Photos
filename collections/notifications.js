@@ -33,6 +33,12 @@ var checkNotify = function (data) {
             date: moment().format(),
             read: false
         }));
+        Meteor.users.update({ _id: data.userId }, {
+            $inc: {
+                'notification.count': 1,
+                'notification.new': 1
+            }
+        });
         Push.send({
             from: 'Selfie',
             title: 'neue Aktivität',
@@ -89,7 +95,10 @@ Meteor.methods({
      * It notify owner of share entity about user commentary.
      */
     commentNotify: function (data) {
-        var user = Meteor.users.find({ _id: data.userId });
+        var user = Meteor.users.findOne({ _id: data.userId });
+        if (data.userId === data.ownerId) {
+            return;
+        }
         addNotify({
             userId: data.userId,
             ownerId: data.ownerId,
@@ -133,5 +142,10 @@ Meteor.methods({
                 });
             }
         });
+    },
+
+    notificationReaded: function (notificationId) {
+        Notification.update({ _id: notificationId }, { $set: { read: true }});
+        Meteor.users.update({ _id: this.userId }, { $inc: { 'notification.new': -1 } });
     }
 });

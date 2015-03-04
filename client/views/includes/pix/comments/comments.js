@@ -14,8 +14,9 @@ Template.shareComments.helpers({
         return Comments.find({ sourceId: this._id }, { sort: { date: -1 } });
     },
     moreComments: function () {
-        var instance = Template.instance();
-        return !(instance.data.commentsQty <= instance.limit.get());
+        var instance = Template.instance(),
+            commentsQty = instance.data.commentsQty;
+        return commentsQty > 0 && !(commentsQty <= instance.limit.get());
     }
 });
 

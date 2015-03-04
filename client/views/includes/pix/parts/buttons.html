@@ -17,16 +17,17 @@
             </a>
         </li>
 
-        <!-- comment button -->
-        <li class="photo-action-button">
-            <a data-action="comment" class="togglePhotoAction {{#if $eq photoAction 'comment'}}active{{/if}}" href="">
-                <i class="photo-comment"></i>
-                <span class="comments-quantity">{{#if commentsQty}}{{commentsQty}}{{/if}}</span>
-            </a>
-        </li>
-
-        <!-- flag button commented section -->
         {{#if currentUser}}
+            <!-- comment button -->
+            <li class="photo-action-button">
+                <a data-action="comment" class="togglePhotoAction {{#if $eq photoAction 'comment'}}active{{/if}}" href="">
+                    <i class="photo-comment"></i>
+                    <span class="comments-quantity">{{#if commentsQty}}{{commentsQty}}{{/if}}</span>
+                </a>
+            </li>
+
+            <!-- flag button commented section -->
+
             <li class="photo-action-button">
                 <a data-action="flag" class="togglePhotoAction {{#if $eq photoAction 'flag'}}active{{/if}}" href="">
                     <i class="photo-flag"></i>

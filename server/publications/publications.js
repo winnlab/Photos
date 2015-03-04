@@ -108,8 +108,7 @@ Meteor.publish('userInfo', function (username) {
         fields: {
             'createdAt': 0,
             'emails': 0,
-            'services.password': 0,
-            'services.resume': 0
+            'services': 0
         }
     });
 });
@@ -186,8 +185,15 @@ Meteor.publish('tags', function (name, exist) {
         }) : [];
 });
 
-Meteor.publish('notifications', function (userId) {
-    return Notification.find({ userId: userId, read: false }, { sort: { date: -1 } });
+Meteor.publish('notifications', function (userId, limit) {
+    var query = { userId: userId },
+        options = { sort: { date: -1 } };
+    if (!limit) {
+        query.read = false;
+    } else {
+        options.limit = limit;
+    }
+    return Notification.find(query, options);
 });
 
 Meteor.publish('comments', function (shareId, limit) {

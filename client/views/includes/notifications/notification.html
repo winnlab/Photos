@@ -1,38 +1,13 @@
 <template name="notifications">
-    {{#if notifications.count}}
-        <a href="" class="notification-badge dropdown-toggle" data-toggle="dropdown">
-            <span class="count">{{notifications.count}}</span>
+    {{#if $and currentUser currentUser.notification.new}}
+        <a href="{{pathFor 'notifications'}}" class="notification-badge">
+            <span class="count">{{currentUser.notification.new}}</span>
         </a>
-        <ul class="dropdown-menu notification-list" id="notifications">
-            {{#each notifications}}
-                {{> notificationItem}}
-            {{/each}}
-            <li class="notification-list-footer"></li>
-        </ul>
     {{/if}}
 </template>
 
 <template name="notificationsMobile">
-    {{#if notifications.count}}
-        <a class="notifications" href="">{{notifications.count}}</a>
-        <ul class="dropdown-menu notification-list notification-list-wrap" id="notifications">
-            {{#each notifications}}
-                {{> notificationItem}}
-            {{/each}}
-        </ul>
+    {{#if $and currentUser currentUser.notification.new}}
+        <a class="notifications" href="{{pathFor 'notifications'}}">{{currentUser.notification.new}}</a>
     {{/if}}
-</template>
-
-<template name="notificationItem">
-    <li class="notification-item" data-id="{{_id}}">
-        <a href="{{link}}" class="notification-link clearfix">
-            <div class="notification-icon">
-                <span class="sprite-note_mission_34x34"></span>
-            </div>
-            <div class="notification-text">
-                <h4>{{msg}}</h4>
-                <p class="message-date">{{timeAgo date}}</p>
-            </div>
-        </a>
-    </li>
 </template>

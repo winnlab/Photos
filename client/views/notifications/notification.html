@@ -1,0 +1,19 @@
+<template name="notificationList">
+    <div class="container notification-list">
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+            {{#each notifications}}
+                <a href="{{link}}" class="notification-link clearfix {{#if read}} readed{{/if}}">
+                    <div class="notification-icon col-xs-2">
+                        <span class="sprite-note_mission_34x34"></span>
+                    </div>
+                    <div class="col-xs-2"></div>
+                    <div class="notification-text col-xs-10">
+                        <h4>{{msg}}</h4>
+                        <p class="message-date">{{timeAgo date}}</p>
+                    </div>
+                </a>
+            {{/each}}
+            <div class="load-more{{#unless isLoadMore}} hide{{/unless}}">laden mehr</div>
+        </div>
+    </div>
+</template>

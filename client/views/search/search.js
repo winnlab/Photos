@@ -39,6 +39,9 @@ Template.search.helpers({
         return Share.find();
     },
     adjustPosition: function () {
+        if (!$searchInput) {
+            return;
+        }
         var top = $searchInput.offset().top + $searchInput.height() + 27 - $document.scrollTop(),
             left = $searchInput.offset().left;
         return 'top:' + top.toString() + 'px; left:' + left.toString() + 'px;';

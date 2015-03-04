@@ -57,7 +57,7 @@ Template.carousel.helpers({
         };
     },
     shareData: function() {
-        var share, store, url;
+        var share, store, shareUrl;
         if (this.type === 'img') {
             share = ShareFiles.findOne({ _id: this.source._id });
             store = 'shares';
@@ -66,17 +66,18 @@ Template.carousel.helpers({
             share = ShareVideo.findOne({ _id: this.source._id });
             store = 'share-video-thumb';
         }
-        url = function () {
+        shareUrl = function () {
             return share ? share.url({ store: store }) : '';
         };
         return share ? {
+            url: Router.path('categories', { type: 'neueste', shareId: this._id }),
             title: this.description,
             author: this.username,
             description: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
             excerpt: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
             summary: '12Selfie - Geld verdienen mit deinen Handy-Fotos!',
-            image: url,
-            thumbnail: url
+            image: shareUrl,
+            thumbnail: shareUrl
         } : {};
     }
 });
